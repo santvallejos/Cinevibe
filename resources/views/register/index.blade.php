@@ -25,41 +25,45 @@
                 <h1 class="text-3xl md:text-4xl font-black tracking-[0.2em] text-primary-container mb-2 font-headline">
                     CINEVIBE
                 </h1>
-                <p class="text-on-surface/60 font-body text-sm tracking-[0.1em] uppercase">The Velvet Curator Experience</p>
+                <p class="text-on-surface/60 font-body text-sm tracking-[0.1em] uppercase">¡Bienvenido! Creá tu cuenta
+                    en segundos</p>
             </div>
             <div class="glass-panel rounded-xl p-8 md:p-12 shadow-2xl border border-white/5">
                 <header class="mb-10">
-                    <h2 class="text-3xl font-bold font-headline text-on-surface tracking-tight mb-2">Create Account</h2>
-                    <p class="text-on-surface/50 text-sm">Join our premier club for curated cinematic journeys.</p>
+                    <h2 class="text-3xl font-bold font-headline text-on-surface tracking-tight mb-2">Crea tu Cuenta</h2>
+                    <p class="text-on-surface/50 text-sm">Unite hoy y descubrí las mejores peliculas que tenemos para
+                        vos </p>
                 </header>
                 <form class="space-y-6">
                     <!-- Full Name -->
                     <div class="space-y-1">
                         <label class="text-[10px] uppercase tracking-[2px] text-secondary-fixed-dim font-bold"
-                            for="fullname">Full Name</label>
+                            for="fullname">Nombre Completo</label>
                         <div class="relative flex items-center">
-                            <span class="material-symbols-outlined absolute left-0 text-on-surface/30 text-lg">person</span>
+                            <span
+                                class="material-symbols-outlined absolute left-0 text-on-surface/30 text-lg">person</span>
                             <input
                                 class="w-full bg-transparent border-b border-outline-variant/30 py-3 pl-8 text-on-surface placeholder:text-on-surface/20 focus:outline-none focus:border-secondary-fixed-dim transition-colors duration-300"
-                                id="fullname" placeholder="Arthur Morgan" type="text" />
+                                id="fullname" placeholder="Roberto Ojeda" type="text" />
                         </div>
                     </div>
                     <!-- Email -->
                     <div class="space-y-1">
                         <label class="text-[10px] uppercase tracking-[2px] text-secondary-fixed-dim font-bold"
-                            for="email">Email Address</label>
+                            for="email">Correo Electrónico</label>
                         <div class="relative flex items-center">
-                            <span class="material-symbols-outlined absolute left-0 text-on-surface/30 text-lg">mail</span>
+                            <span
+                                class="material-symbols-outlined absolute left-0 text-on-surface/30 text-lg">mail</span>
                             <input
                                 class="w-full bg-transparent border-b border-outline-variant/30 py-3 pl-8 text-on-surface placeholder:text-on-surface/20 focus:outline-none focus:border-secondary-fixed-dim transition-colors duration-300"
-                                id="email" placeholder="curator@cinevibe.com" type="email" />
+                                id="email" placeholder="RobertoOjeda@cinevibe.com" type="email" />
                         </div>
                     </div>
                     <!-- Password Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-1">
                             <label class="text-[10px] uppercase tracking-[2px] text-secondary-fixed-dim font-bold"
-                                for="password">Password</label>
+                                for="password">Contraseña</label>
                             <div class="relative flex items-center">
                                 <span
                                     class="material-symbols-outlined absolute left-0 text-on-surface/30 text-lg">lock</span>
@@ -70,7 +74,7 @@
                         </div>
                         <div class="space-y-1">
                             <label class="text-[10px] uppercase tracking-[2px] text-secondary-fixed-dim font-bold"
-                                for="confirm">Confirm</label>
+                                for="confirm">Confirmar</label>
                             <div class="relative flex items-center">
                                 <span
                                     class="material-symbols-outlined absolute left-0 text-on-surface/30 text-lg">verified_user</span>
@@ -85,22 +89,23 @@
                         <button
                             class="w-full bg-secondary-fixed-dim text-on-secondary py-4 rounded-full font-headline font-extrabold text-sm uppercase tracking-[3px] gold-glow transition-all duration-300 active:scale-95"
                             type="submit">
-                            Join the Club
+                            Siguiente
                         </button>
                         <div class="flex items-center justify-center space-x-2 text-xs tracking-wide">
-                            <span class="text-on-surface/40">ALREADY A MEMBER?</span>
-                            <a class="text-secondary-fixed-dim font-bold hover:text-white transition-colors"
-                                href="#">LOGIN</a>
+                            <span class="text-on-surface/40">¿YA TIENES UNA CUENTA?</span>
+                            <a class="text-secondary-fixed-dim font-bold hover:text-white transition-colors" <a
+                                href="{{ route('login.index') }}">LOGIN</a>
                         </div>
                     </div>
                 </form>
                 <!-- T&C -->
                 <footer class="mt-10 pt-6 border-t border-white/5 text-center">
                     <p class="text-[10px] text-on-surface/30 leading-relaxed uppercase tracking-wider">
-                        By joining, you agree to our <a class="underline hover:text-on-surface transition-colors"
-                            href="#">Privacy Policy</a> &amp; <a
-                            class="underline hover:text-on-surface transition-colors" href="#">Terms of Screening</a>.
-                    </p>
+                        Al unirte, aceptas nuestra <a class="underline hover:text-on-surface transition-colors"
+                            href="#">Política de Privacidad</a> &amp; <a
+                            class="underline hover:text-on-surface transition-colors" href="#">Términos de
+                            Selección</a>.
+                    </p> Al unirte, aceptas nuestra Política de Privacidad y Términos de Selección.
                 </footer>
             </div>
             <!-- Contextual Editorial Element -->

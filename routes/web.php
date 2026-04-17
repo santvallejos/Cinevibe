@@ -13,3 +13,7 @@ Route::get('/movie', function () {
 Route::get('/register', function () {
     return view('register.index');
 })->name('register.index');
+
+Route::get('/login', function () {
+    return view('login.index');
+})->name('login.index');

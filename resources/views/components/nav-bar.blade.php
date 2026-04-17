@@ -19,9 +19,9 @@
             <button class="material-symbols-outlined scale-95 active:opacity-80 transition-all">search</button>
         </div>
         <div class="hidden md:flex items-center gap-4">
-            <button class="text-on-surface font-semibold hover:text-primary transition-colors">Log In</button>
-            <button
-                class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold uppercase text-sm tracking-widest hover:shadow-[0_0_20px_rgba(229,9,20,0.4)] transition-all">register</button>
+            <a class="text-on-surface font-semibold hover:text-primary transition-colors" href={{ route('login.index') }}>Log In</a>
+            <a
+                class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold uppercase text-sm tracking-widest hover:shadow-[0_0_20px_rgba(229,9,20,0.4)] transition-all" href={{ route('register.index') }}>register</a>
         </div>
     </div>
 </nav>
