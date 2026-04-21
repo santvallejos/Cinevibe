@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'Cinevibe | Home')
+@section('title', 'Cinevibe')
 
 @section('content')
     <main class="pt-0">

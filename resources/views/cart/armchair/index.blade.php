@@ -1,6 +1,6 @@
 @extends('layouts.sin-navbar')
 
-@section('title', 'Cart')
+@section('title', 'Selección de Asientos')
 
 @section('content')
     <main class="min-h-screen pt-32 pb-40 px-6 max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">

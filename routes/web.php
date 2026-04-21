@@ -17,3 +17,11 @@ Route::get('/register', function () {
 Route::get('/login', function () {
     return view('login.index');
 })->name('login.index');
+
+Route::get('/select-armchair', function () {
+    return view('cart.armchair.index');
+})->name('armchair.index');
+
+Route::get('/pay', function () {
+    return view('cart.pay.index');
+})->name('pay.index');
