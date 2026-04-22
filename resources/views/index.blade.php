@@ -9,16 +9,16 @@
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="{{ asset('img/carousel-1.png') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('img/carousel-1.png') }}" class="d-block w-100" alt="Combo Dúo">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('img/carousel-2.png') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('img/carousel-2.png') }}" class="d-block w-100" alt="Complejo">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('img/carousel-3.webp') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('img/carousel-3.png') }}" class="d-block w-100" alt="Mario Galaxy">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('img/carousel-4.webp') }}" class="d-block w-100" alt="...">
+                    <img src="{{ asset('img/carousel-4.png') }}" class="d-block w-100" alt="El diablo viste a la moda 2">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
