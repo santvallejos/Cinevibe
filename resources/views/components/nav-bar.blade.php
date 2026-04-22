@@ -1,27 +1,30 @@
-<nav
-    class="fixed top-0 w-full z-50 bg-neutral-900/80 backdrop-blur-xl shadow-2xl flex justify-between items-center px-8 py-4 max-w-full mx-auto">
-    <div class="flex items-center gap-12">
-        <span
-            class="text-2xl font-black tracking-tighter text-red-600 dark:text-red-500 uppercase font-headline">Cinevibe<br></span>
-        <div class="hidden md:flex items-center gap-8 font-headline tracking-tight">
-            <a class="text-red-500 font-bold border-b-2 border-red-600 pb-1" href="#">Movies</a>
-            <a class="text-neutral-400 hover:text-neutral-100 hover:text-red-400 transition-all duration-300"
-                href="#">Cinemas</a>
-            <a class="text-neutral-400 hover:text-neutral-100 hover:text-red-400 transition-all duration-300"
-                href="#">Offers</a>
-            <a class="text-neutral-400 hover:text-neutral-100 hover:text-red-400 transition-all duration-300"
-                href="#">Premium</a>
+{{-- ==========================================================
+     nav-bar.blade.php — Barra de navegación superior
+     Estilos en resources/css/components/nav-bar.css
+     ========================================================== --}}
+<nav class="nav-bar">
+    {{-- Sección izquierda: logo + links principales --}}
+    <div class="nav-bar__left">
+        <span class="nav-bar__brand">Cinevibe</span>
+
+        <div class="nav-bar__links">
+            <a class="nav-bar__link nav-bar__link--active" href="#">Movies</a>
+            <a class="nav-bar__link" href="#">Cinemas</a>
+            <a class="nav-bar__link" href="#">Offers</a>
+            <a class="nav-bar__link" href="#">Premium</a>
         </div>
     </div>
-    <div class="flex items-center gap-6">
-        <div class="flex items-center gap-4 text-on-surface-variant">
-            <button class="material-symbols-outlined scale-95 active:opacity-80 transition-all">location_on</button>
-            <button class="material-symbols-outlined scale-95 active:opacity-80 transition-all">search</button>
+
+    {{-- Sección derecha: iconos + botones de autenticación --}}
+    <div class="nav-bar__right">
+        <div class="nav-bar__icons">
+            <button class="material-symbols-outlined nav-bar__icon-btn">location_on</button>
+            <button class="material-symbols-outlined nav-bar__icon-btn">search</button>
         </div>
-        <div class="hidden md:flex items-center gap-4">
-            <a class="text-on-surface font-semibold hover:text-primary transition-colors" href={{ route('login.index') }}>Log In</a>
-            <a
-                class="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-bold uppercase text-sm tracking-widest hover:shadow-[0_0_20px_rgba(229,9,20,0.4)] transition-all" href={{ route('register.index') }}>register</a>
+
+        <div class="nav-bar__cta">
+            <a class="nav-bar__login" href="{{ route('login.index') }}">Log In</a>
+            <a class="nav-bar__register" href="{{ route('register.index') }}">Register</a>
         </div>
     </div>
 </nav>

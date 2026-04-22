@@ -1,0 +1,453 @@
+/* ============================================================
+   cart-armchair.css — Selección de asientos
+   ============================================================ */
+
+.armchair {
+    min-height: 100vh;
+    padding: 8rem var(--sp-6) 10rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-12);
+}
+
+@media (min-width: 1024px) {
+    .armchair {
+        flex-direction: row;
+    }
+}
+
+/* Área principal de selección */
+.armchair__main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Indicador de pantalla curvada */
+.screen-indicator {
+    width: 100%;
+    max-width: 42rem;
+    margin-bottom: 6rem;
+    position: relative;
+}
+
+.screen-indicator__bar {
+    height: 2rem;
+    width: 100%;
+    opacity: 0.8;
+}
+
+.screen-indicator__label {
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--fs-10);
+    letter-spacing: 0.4em;
+    color: var(--color-neutral-500);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+}
+
+/* Grid de asientos */
+.seat-grid {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-3);
+}
+
+.seat-row__label {
+    width: 1.5rem;
+    font-size: var(--fs-10);
+    font-weight: var(--fw-bold);
+    color: var(--color-neutral-600);
+    text-align: center;
+}
+
+.seat-row__label--premium {
+    color: var(--color-secondary-fixed-dim);
+}
+
+.seat-row__seats {
+    display: flex;
+    gap: var(--sp-2);
+}
+
+/* Fila premium con fondo resaltado */
+.seat-row__seats--premium {
+    padding: var(--sp-3);
+    background-color: rgba(250, 189, 0, 0.05);
+    border-radius: var(--radius-2xl);
+    box-shadow: inset 0 0 0 1px rgba(250, 189, 0, 0.2);
+}
+
+/* Pasillo (espacio) */
+.seat-row__aisle {
+    width: 1rem;
+}
+
+/* === Asiento ============================================== */
+.seat {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--tr-base);
+}
+
+.seat--available {
+    background-color: var(--color-surface-container-high);
+    border: 1px solid rgba(94, 63, 59, 0.1);
+}
+
+.seat--available:hover {
+    border-color: rgba(229, 9, 20, 0.5);
+}
+
+.seat--selected {
+    background-color: var(--color-primary-container);
+    box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+}
+
+.seat--selected .seat__label {
+    font-size: var(--fs-10);
+    font-weight: var(--fw-bold);
+    color: white;
+}
+
+.seat--occupied {
+    background-color: var(--color-surface-container-lowest);
+    border: 1px solid rgba(38, 38, 38, 0.5);
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.seat--occupied .material-symbols-outlined {
+    font-size: var(--fs-xs);
+}
+
+.seat--premium {
+    background-color: rgba(250, 189, 0, 0.2);
+    border: 1px solid rgba(250, 189, 0, 0.4);
+}
+
+.seat--premium:hover {
+    background-color: var(--color-secondary-container);
+}
+
+.seat--premium .material-symbols-outlined {
+    font-size: var(--fs-xs);
+    color: var(--color-secondary-fixed-dim);
+}
+
+.seat--premium-selected {
+    background-color: var(--color-secondary-container);
+    box-shadow: var(--shadow-gold);
+}
+
+.seat--premium-selected .seat__label {
+    font-size: var(--fs-10);
+    font-weight: var(--fw-bold);
+    color: var(--color-on-secondary-container);
+}
+
+/* === Leyenda de asientos ================================== */
+.seat-legend {
+    margin-top: 5rem;
+    display: flex;
+    gap: var(--sp-8);
+    padding: var(--sp-6) var(--sp-12);
+    background-color: var(--color-surface-container-low);
+    border-radius: var(--radius-full);
+    box-shadow: inset 0 0 0 1px rgba(94, 63, 59, 0.1);
+}
+
+.seat-legend__item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+}
+
+.seat-legend__swatch {
+    width: 1rem;
+    height: 1rem;
+    border-radius: var(--radius-lg);
+}
+
+.seat-legend__swatch--available {
+    background-color: var(--color-surface-container-high);
+    box-shadow: inset 0 0 0 1px rgba(94, 63, 59, 0.1);
+}
+
+.seat-legend__swatch--selected {
+    background-color: var(--color-primary-container);
+}
+
+.seat-legend__swatch--occupied {
+    background-color: var(--color-surface-container-lowest);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seat-legend__swatch--premium {
+    background-color: var(--color-secondary-container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seat-legend__icon {
+    font-size: 8px;
+}
+
+.seat-legend__label {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-medium);
+    color: var(--color-neutral-400);
+}
+
+/* === Sidebar de resumen =================================== */
+.armchair__aside {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+}
+
+@media (min-width: 1024px) {
+    .armchair__aside {
+        width: 24rem;
+    }
+}
+
+.order-card {
+    background-color: var(--color-surface-container-low);
+    border-radius: var(--radius-3xl);
+    padding: var(--sp-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-8);
+    position: sticky;
+    top: 8rem;
+}
+
+.order-card__block-title {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-black);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-neutral-500);
+    margin: 0 0 var(--sp-4);
+}
+
+.order-card__cinema {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+}
+
+.order-card__cinema-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-xl);
+    background-color: var(--color-surface-container-highest);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-card__cinema-icon .material-symbols-outlined {
+    color: var(--color-primary);
+}
+
+.order-card__cinema-name {
+    font-weight: var(--fw-bold);
+    color: var(--color-on-surface);
+    margin: 0;
+}
+
+.order-card__cinema-hall {
+    font-size: var(--fs-xs);
+    color: var(--color-neutral-500);
+    margin: 0;
+}
+
+/* Chips de asientos seleccionados */
+.order-card__seats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+}
+
+.seat-chip {
+    background-color: var(--color-surface-container-high);
+    padding: var(--sp-2) var(--sp-4);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(94, 63, 59, 0.2);
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+}
+
+.seat-chip__code {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bold);
+    color: var(--color-primary);
+}
+
+.seat-chip__code--gold {
+    color: var(--color-secondary-fixed-dim);
+}
+
+.seat-chip__price {
+    font-size: var(--fs-xs);
+    color: var(--color-neutral-400);
+}
+
+.seat-chip__close {
+    transition: color var(--tr-base);
+}
+
+.seat-chip__close:hover {
+    color: var(--color-primary);
+}
+
+.seat-chip__close .material-symbols-outlined {
+    font-size: var(--fs-sm);
+}
+
+/* Total */
+.order-card__total {
+    padding-top: var(--sp-8);
+    border-top: 1px solid rgba(38, 38, 38, 0.5);
+}
+
+.order-card__total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--sp-6);
+}
+
+.order-card__total-label {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-neutral-500);
+    margin: 0;
+}
+
+.order-card__total-val {
+    font-size: var(--fs-3xl);
+    font-weight: var(--fw-black);
+    font-family: var(--font-headline);
+    color: var(--color-on-surface);
+    letter-spacing: -0.05em;
+    margin-top: var(--sp-1);
+}
+
+.order-card__taxes {
+    font-size: var(--fs-10);
+    color: var(--color-neutral-500);
+    text-transform: uppercase;
+    margin: 0;
+    text-align: right;
+}
+
+.order-card__note {
+    text-align: center;
+    font-size: var(--fs-10);
+    color: var(--color-neutral-600);
+    margin-top: var(--sp-6);
+    padding: 0 var(--sp-4);
+}
+
+/* Ad/promo inferior */
+.promo-ad {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-full);
+    padding: var(--sp-6);
+    height: 8rem;
+    cursor: pointer;
+}
+
+.promo-ad__bg {
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-neutral-900);
+    z-index: 0;
+}
+
+.promo-ad__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    transition: transform var(--tr-slower);
+}
+
+.promo-ad:hover .promo-ad__img {
+    transform: scale(1.1);
+}
+
+.promo-ad__content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.promo-ad__kicker {
+    font-size: var(--fs-10);
+    font-weight: var(--fw-bold);
+    color: var(--color-secondary-fixed-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+}
+
+.promo-ad__title {
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bold);
+    color: white;
+    margin: 0;
+}
+
+.promo-ad__add {
+    position: absolute;
+    top: 50%;
+    right: var(--sp-6);
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-full);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.promo-ad__add .material-symbols-outlined {
+    color: white;
+}
