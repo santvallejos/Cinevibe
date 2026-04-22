@@ -1,0 +1,39 @@
+/* ============================================================
+   typography.css — Base tipográfica del proyecto
+   Define fuentes y selección global (background gloss)
+   ============================================================ */
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-on-surface);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selección de texto con tonos de marca */
+::selection {
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+}
+
+/* Encabezados usan fuente headline */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-headline);
+    margin: 0;
+}
+
+/* Material Symbols — configuración base del icon font */
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+/* Variante rellenada (usada cuando se desea peso visual) */
+.material-symbols-outlined--fill {
+    font-variation-settings: "FILL" 1;
+}

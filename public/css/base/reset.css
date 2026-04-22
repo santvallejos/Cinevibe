@@ -1,0 +1,59 @@
+/* ============================================================
+   reset.css — Reset mínimo propio
+   Complementa Bootstrap Reboot y evita conflictos. No se redefine
+   lo que Reboot ya cubre; solo ajustes propios del proyecto.
+   ============================================================ */
+
+/* Box model consistente en todos los elementos */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* HTML y body ocupan todo el viewport */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+/* Imágenes responsive por defecto */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Botones heredan tipografía y se les quita estilo nativo */
+button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Enlaces sin subrayado por defecto */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Listas sin estilos por defecto */
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Inputs y form controls heredan tipografía */
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
