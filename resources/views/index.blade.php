@@ -24,12 +24,12 @@
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden">Anterior</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden">Siguiente</span>
             </button>
         </div>
 
@@ -39,8 +39,8 @@
                 {{-- Cabecera de sección con badge + botón filtro --}}
                 <header class="section-header">
                     <div class="section-header__inner">
-                        <span class="section-header__kicker">Live Experience</span>
-                        <h2 class="section-header__title">Now Showing</h2>
+                        <span class="section-header__kicker">Experiencia en Vivo</span>
+                        <h2 class="section-header__title">En Cartelera</h2>
                     </div>
                     <div class="section-header__actions">
                         <button class="btn btn--icon">
@@ -64,11 +64,11 @@
                         <div class="movie-card__info">
                             <div>
                                 <h3 class="movie-card__title">Shadow of the City</h3>
-                                <p class="movie-card__genre">Action, Crime</p>
+                                <p class="movie-card__genre">Acción, Crimen</p>
                             </div>
                             <div class="movie-card__footer">
                                 <span class="movie-card__price">$14.50</span>
-                                <button class="btn btn--ticket">Buy Tickets</button>
+                                <button class="btn btn--ticket">Comprar Entradas</button>
                             </div>
                         </div>
                     </article>
@@ -86,11 +86,11 @@
                         <div class="movie-card__info">
                             <div>
                                 <h3 class="movie-card__title">The Last Horizon</h3>
-                                <p class="movie-card__genre">Sci-Fi, Adventure</p>
+                                <p class="movie-card__genre">Ciencia Ficción, Aventura</p>
                             </div>
                             <div class="movie-card__footer">
                                 <span class="movie-card__price">$16.00</span>
-                                <button class="btn btn--ticket">Buy Tickets</button>
+                                <button class="btn btn--ticket">Comprar Entradas</button>
                             </div>
                         </div>
                     </article>
@@ -108,11 +108,11 @@
                         <div class="movie-card__info">
                             <div>
                                 <h3 class="movie-card__title">Velvet Dynasty</h3>
-                                <p class="movie-card__genre">Drama, History</p>
+                                <p class="movie-card__genre">Drama, Historia</p>
                             </div>
                             <div class="movie-card__footer">
                                 <span class="movie-card__price">$13.00</span>
-                                <button class="btn btn--ticket">Buy Tickets</button>
+                                <button class="btn btn--ticket">Comprar Entradas</button>
                             </div>
                         </div>
                     </article>
@@ -130,11 +130,11 @@
                         <div class="movie-card__info">
                             <div>
                                 <h3 class="movie-card__title">Silence Speaks</h3>
-                                <p class="movie-card__genre">Horror, Thriller</p>
+                                <p class="movie-card__genre">Terror, Thriller</p>
                             </div>
                             <div class="movie-card__footer">
                                 <span class="movie-card__price">$14.50</span>
-                                <button class="btn btn--ticket">Buy Tickets</button>
+                                <button class="btn btn--ticket">Comprar Entradas</button>
                             </div>
                         </div>
                     </article>
@@ -153,15 +153,15 @@
 
                     {{-- Texto principal + CTAs --}}
                     <div class="promo-banner__content">
-                        <h2 class="promo-banner__title">Join THE VELVET CLUB</h2>
+                        <h2 class="promo-banner__title">Únete al VELVET CLUB</h2>
                         <p class="promo-banner__desc">
-                            Get 20% off all bookings, exclusive premiere invites, and complimentary popcorn on every visit.
-                            The ultimate cinematic lifestyle awaits.
+                            Obtén 20% de descuento en todas tus reservas, invitaciones exclusivas a estrenos y pochoclo gratis en cada visita.
+                            El estilo de vida cinematográfico definitivo te espera.
                         </p>
                         <div class="promo-banner__actions">
-                            <button class="btn btn--secondary">Become a Member</button>
+                            <button class="btn btn--secondary">Hazte Miembro</button>
                             <button class="btn btn--ghost">
-                                Learn More
+                                Más Información
                                 <span class="material-symbols-outlined">arrow_forward</span>
                             </button>
                         </div>
@@ -178,9 +178,9 @@
                                 <div class="promo-banner__skel promo-banner__skel--3-4"></div>
                                 <div class="promo-banner__skel promo-banner__skel--1-2"></div>
                                 <div class="promo-banner__card-footer">
-                                    <span class="promo-banner__pass">PREMIUM PASS</span>
+                                    <span class="promo-banner__pass">PASE PREMIUM</span>
                                     <div>
-                                        <div class="promo-banner__since-label">Member Since</div>
+                                        <div class="promo-banner__since-label">Miembro Desde</div>
                                         <div class="promo-banner__since-year">2024</div>
                                     </div>
                                 </div>
@@ -196,10 +196,10 @@
             <div class="container">
                 {{-- Cabecera con divisor --}}
                 <header class="section-header section-header--divider">
-                    <h2 class="section-header__title">Coming Soon</h2>
+                    <h2 class="section-header__title">Próximamente</h2>
                     <div class="section-header__divider"></div>
                     <button class="section-header__action">
-                        <span>View Calendar</span>
+                        <span>Ver Calendario</span>
                     </button>
                 </header>
 
@@ -214,7 +214,7 @@
                             <span class="preview-card__date">Dec 15</span>
                         </div>
                         <h3 class="preview-card__title">Velocity: Drift Protocol</h3>
-                        <p class="preview-card__meta">Directed by Marcus Thorne</p>
+                        <p class="preview-card__meta">Dirigida por Marcus Thorne</p>
                     </article>
 
                     {{-- Preview 2 --}}
@@ -226,7 +226,7 @@
                             <span class="preview-card__date">Jan 02</span>
                         </div>
                         <h3 class="preview-card__title">Summit of Silence</h3>
-                        <p class="preview-card__meta">Documentary Feature</p>
+                        <p class="preview-card__meta">Documental</p>
                     </article>
 
                     {{-- Preview 3 --}}
@@ -238,7 +238,7 @@
                             <span class="preview-card__date">Jan 18</span>
                         </div>
                         <h3 class="preview-card__title">Eternal Kingdom</h3>
-                        <p class="preview-card__meta">Epic Fantasy</p>
+                        <p class="preview-card__meta">Fantasía Épica</p>
                     </article>
 
                     {{-- Preview 4 --}}
@@ -250,7 +250,7 @@
                             <span class="preview-card__date">Feb 14</span>
                         </div>
                         <h3 class="preview-card__title">Midsummer Echoes</h3>
-                        <p class="preview-card__meta">Romance, Comedy</p>
+                        <p class="preview-card__meta">Romance, Comedia</p>
                     </article>
                 </div>
             </div>

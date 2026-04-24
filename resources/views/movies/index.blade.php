@@ -19,12 +19,12 @@
                 <div class="movie-hero__wrap">
                     <div class="movie-hero__kicker">
                         <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
-                        Premium Experience
+                        Experiencia Premium
                     </div>
                     <h1 class="movie-hero__title">ECHOS OF NEON</h1>
                     <div class="movie-hero__meta">
                         <span class="movie-hero__imdb">IMDb 8.9</span>
-                        <span>Sci-Fi / Thriller</span>
+                        <span>Ciencia Ficción / Thriller</span>
                         <span>2h 45m</span>
                         <span>Dir. Elena Varkov</span>
                         <span class="movie-hero__badge">4K • Atmos</span>
@@ -42,13 +42,13 @@
 
                     {{-- Sinopsis --}}
                     <div class="movie-block">
-                        <h3 class="movie-block__title">The Narrative</h3>
+                        <h3 class="movie-block__title">La Sinopsis</h3>
                         <p class="movie-block__text">
-                            In a decaying metropolis where memories are traded like currency, a disillusioned retrieval
-                            agent uncovers a fractured data-stream that suggests the city's atmospheric dome isn't
-                            protecting them—it's projecting a curated reality. As the lines between organic thought and
-                            synthetic simulation blur, they must navigate the velvet-lined corridors of the elite to
-                            expose the ultimate architectural lie.
+                            En una metrópolis en decadencia donde los recuerdos se comercian como moneda, un agente de recuperación
+                            descubre un flujo de datos fragmentado que sugiere que la cúpula atmosférica de la ciudad no los
+                            protege, sino que proyecta una realidad curada. A medida que las líneas entre el pensamiento orgánico y
+                            la simulación sintética se difuminan, debe navegar por los corredores de la élite para
+                            exponer la mentira arquitectónica definitiva.
                         </p>
                     </div>
 
@@ -63,14 +63,14 @@
                                 <span class="material-symbols-outlined material-symbols-outlined--fill">play_arrow</span>
                             </div>
                         </div>
-                        <div class="movie-trailer__label">Official Premiere Trailer</div>
+                        <div class="movie-trailer__label">Tráiler Oficial de Estreno</div>
                     </div>
 
                     {{-- Cast --}}
                     <div class="movie-block">
                         <header class="cast-header">
-                            <h3 class="movie-block__title">Main Ensemble</h3>
-                            <button class="cast-header__link">Full Credits</button>
+                            <h3 class="movie-block__title">Elenco Principal</h3>
+                            <button class="cast-header__link">Créditos Completos</button>
                         </header>
 
                         <div class="cast-grid">
@@ -122,26 +122,26 @@
                 <aside class="movie-content__aside">
                     <div class="booking">
                         <div>
-                            <h3 class="booking__title">Experience Selection</h3>
+                            <h3 class="booking__title">Seleccionar Experiencia</h3>
 
                             {{-- Fechas horizontales --}}
                             <div class="booking__section">
-                                <label class="booking__label">Select Date</label>
+                                <label class="booking__label">Seleccionar Fecha</label>
                                 <div class="booking__dates hide-scrollbar">
                                     <div class="booking__date booking__date--active">
-                                        <span class="booking__date-dow">THU</span>
+                                        <span class="booking__date-dow">JUE</span>
                                         <span class="booking__date-num">24</span>
                                     </div>
                                     <div class="booking__date">
-                                        <span class="booking__date-dow">FRI</span>
+                                        <span class="booking__date-dow">VIE</span>
                                         <span class="booking__date-num">25</span>
                                     </div>
                                     <div class="booking__date">
-                                        <span class="booking__date-dow">SAT</span>
+                                        <span class="booking__date-dow">SÁB</span>
                                         <span class="booking__date-num">26</span>
                                     </div>
                                     <div class="booking__date">
-                                        <span class="booking__date-dow">SUN</span>
+                                        <span class="booking__date-dow">DOM</span>
                                         <span class="booking__date-num">27</span>
                                     </div>
                                 </div>
@@ -149,7 +149,7 @@
 
                             {{-- Horarios por sala --}}
                             <div class="booking__section">
-                                <label class="booking__label">Showtimes</label>
+                                <label class="booking__label">Horarios</label>
 
                                 {{-- Gold Class --}}
                                 <div class="booking__times-group">
@@ -164,7 +164,7 @@
 
                                 {{-- Standard --}}
                                 <div class="booking__times-group">
-                                    <div class="booking__times-label booking__times-label--muted">Standard • 4K Laser</div>
+                                    <div class="booking__times-label booking__times-label--muted">Estándar • 4K Laser</div>
                                     <div class="booking__times">
                                         <span class="booking__time">15:00</span>
                                         <span class="booking__time">18:30</span>
@@ -178,14 +178,14 @@
                         <div class="booking__footer">
                             <div class="booking__summary">
                                 <div class="booking__summary-label">
-                                    Selected: <span class="booking__summary-val">20:15, Hall 4</span>
+                                    Seleccionado: <span class="booking__summary-val">20:15, Sala 4</span>
                                 </div>
                                 <div class="booking__price">$24.50</div>
                             </div>
                             <button class="btn btn--primary btn--block btn--lg">
-                                Secure Premiere Seats
+                                Reservar Asientos
                             </button>
-                            <p class="booking__hint">Limited Seating Available</p>
+                            <p class="booking__hint">Lugares Limitados</p>
                         </div>
                     </div>
                 </aside>

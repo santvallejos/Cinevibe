@@ -8,9 +8,9 @@
         <span class="nav-bar__brand">Cinevibe</span>
 
         <div class="nav-bar__links">
-            <a class="nav-bar__link nav-bar__link--active" href="#">Movies</a>
-            <a class="nav-bar__link" href="#">Cinemas</a>
-            <a class="nav-bar__link" href="#">Offers</a>
+            <a class="nav-bar__link nav-bar__link--active" href="#">Películas</a>
+            <a class="nav-bar__link" href="#">Cines</a>
+            <a class="nav-bar__link" href="#">Ofertas</a>
             <a class="nav-bar__link" href="#">Premium</a>
         </div>
     </div>
@@ -23,8 +23,8 @@
         </div>
 
         <div class="nav-bar__cta">
-            <a class="nav-bar__login" href="{{ route('login.index') }}">Log In</a>
-            <a class="nav-bar__register" href="{{ route('register.index') }}">Register</a>
+            <a class="nav-bar__login" href="{{ route('login.index') }}">Ingresar</a>
+            <a class="nav-bar__register" href="{{ route('register.index') }}">Registrarse</a>
         </div>
     </div>
 </nav>

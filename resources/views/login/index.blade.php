@@ -13,10 +13,10 @@
                 <div>
                     <h1 class="login__kicker">CINEVIBE</h1>
                     <h2 class="login__headline">
-                        The Velvet <br />Curator Experience.
+                        La Experiencia <br />Velvet Curator.
                     </h2>
                     <p class="login__lead">
-                        Step into a realm of curated cinematic excellence. Your private screening room awaits.
+                        Ingresa a un mundo de excelencia cinematográfica curada. Tu sala de cine privada te espera.
                     </p>
                 </div>
 
@@ -33,7 +33,7 @@
                             data-alt="Portrait of a male cinemagoer"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuACRyYsv51_VG-U5_pqReyC_UIQFhzQxqqNq3d0p2A2HNKJb4sySeKP-REhP2pjhcYw7lpDT36blCfwmrQ87QZBxlApNS7x3rtjsrdUWimye7FuStS55XIImqSrb-O3I9BUUgQ_cNqYVKQaytHWtUydTVTFcVz92ctlZYpfbLUnobaTBor_AGPbK3IODDENOG6b3AhOP5EtKsDjV_4h4oeAkeeiRBZvcQRSqCwm4vgnV6mBDRzmIhlQuXygtd-4W7N98RnQzb-UWq11" />
                     </div>
-                    <span class="login__proof-label">JOIN 12K+ CINEPHILES</span>
+                    <span class="login__proof-label">ÚNETE A MÁS DE 12K CINÉFILOS</span>
                 </div>
 
                 {{-- Blur dorado decorativo --}}
@@ -92,7 +92,7 @@
 
                 {{-- Accesos sociales (Google / iOS) --}}
                 <div class="login__social">
-                    <span class="login__social-label">Or access via</span>
+                    <span class="login__social-label">O ingresa con</span>
                     <div class="login__social-icons">
                         <button class="login__social-btn">
                             <span class="material-symbols-outlined">google</span>

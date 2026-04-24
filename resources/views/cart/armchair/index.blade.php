@@ -12,7 +12,7 @@
             {{-- Indicador de pantalla curvada --}}
             <div class="screen-indicator">
                 <div class="curved-screen screen-indicator__bar"></div>
-                <div class="screen-indicator__label">Screen This Way</div>
+                <div class="screen-indicator__label">Pantalla</div>
             </div>
 
             {{-- Grid de asientos organizado por filas --}}
@@ -109,17 +109,17 @@
             <div class="seat-legend">
                 <div class="seat-legend__item">
                     <div class="seat-legend__swatch seat-legend__swatch--available"></div>
-                    <span class="seat-legend__label">Available</span>
+                    <span class="seat-legend__label">Disponible</span>
                 </div>
                 <div class="seat-legend__item">
                     <div class="seat-legend__swatch seat-legend__swatch--selected"></div>
-                    <span class="seat-legend__label">Selected</span>
+                    <span class="seat-legend__label">Seleccionado</span>
                 </div>
                 <div class="seat-legend__item">
                     <div class="seat-legend__swatch seat-legend__swatch--occupied">
                         <span class="material-symbols-outlined seat-legend__icon">close</span>
                     </div>
-                    <span class="seat-legend__label">Occupied</span>
+                    <span class="seat-legend__label">Ocupado</span>
                 </div>
                 <div class="seat-legend__item">
                     <div class="seat-legend__swatch seat-legend__swatch--premium">
@@ -138,21 +138,21 @@
 
                 {{-- Bloque cinema --}}
                 <div>
-                    <h3 class="order-card__block-title">Cinema Location</h3>
+                    <h3 class="order-card__block-title">Ubicación del Cine</h3>
                     <div class="order-card__cinema">
                         <div class="order-card__cinema-icon">
                             <span class="material-symbols-outlined">location_on</span>
                         </div>
                         <div>
                             <p class="order-card__cinema-name">The Grand Velvet Theater</p>
-                            <p class="order-card__cinema-hall">Hall 4, 3rd Floor</p>
+                            <p class="order-card__cinema-hall">Sala 4, 3er Piso</p>
                         </div>
                     </div>
                 </div>
 
                 {{-- Bloque asientos seleccionados --}}
                 <div>
-                    <h3 class="order-card__block-title">Selected Seats</h3>
+                    <h3 class="order-card__block-title">Asientos Seleccionados</h3>
                     <div class="order-card__seats">
                         <div class="seat-chip">
                             <span class="seat-chip__code">A5</span>
@@ -175,17 +175,17 @@
                 <div class="order-card__total">
                     <div class="order-card__total-row">
                         <div>
-                            <p class="order-card__total-label">Total Amount</p>
+                            <p class="order-card__total-label">Total</p>
                             <p class="order-card__total-val">$50.50</p>
                         </div>
-                        <p class="order-card__taxes">Incl. Taxes &amp; Fees</p>
+                        <p class="order-card__taxes">Incl. Impuestos y Tasas</p>
                     </div>
                     <button class="btn btn--primary btn--block btn--lg">
-                        Proceed to Payment
+                        Proceder al Pago
                         <span class="material-symbols-outlined">arrow_forward</span>
                     </button>
                     <p class="order-card__note">
-                        Seats will be reserved for 10:00 minutes after clicking proceed.
+                        Los asientos se reservarán por 10:00 minutos tras hacer clic en proceder.
                     </p>
                 </div>
             </div>
@@ -198,8 +198,8 @@
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdC_z-0iKQypanetGIAhUymo3XVAOWsdQInoOrg87V14VEFTmmsEB_00zCCC282G9py1TcRuoMu-3XrNQ0Y2-n1OlRFSZ2t1wylJcOBem49N6wd7Ojn6duuC03D1nNLXSkFWpatK7YTYKz9Gy-XTJOEtHlgmX2vl_lBwrB5mR-TttUAytsAHYz9BzXw69hgfR1tp2cStHTKA__PafVcNrPgMivPYpuwWUlsrPxm7Dy2inE_KBDeXHa50cuvD4kW_JsoDE-H7BsksFc">
                 </div>
                 <div class="promo-ad__content">
-                    <span class="promo-ad__kicker">Curator Exclusive</span>
-                    <h4 class="promo-ad__title">Join Club for 20% off Snacks</h4>
+                    <span class="promo-ad__kicker">Exclusivo para Miembros</span>
+                    <h4 class="promo-ad__title">Únete al Club y obtén 20% off en Snacks</h4>
                 </div>
                 <div class="promo-ad__add">
                     <span class="material-symbols-outlined">add</span>
