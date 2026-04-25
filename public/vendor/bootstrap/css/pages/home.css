@@ -218,3 +218,80 @@
     font-weight: var(--fw-bold);
     text-align: right;
 }
+
+/* === Bento Grid ============================================ */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 320px 420px;
+    gap: var(--sp-4);
+}
+
+.bento-cell {
+    overflow: hidden;
+    border-radius: var(--radius-3xl);
+    background-color: var(--color-surface-container-low);
+}
+
+.bento-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--tr-slow);
+}
+
+.bento-cell:hover img {
+    transform: scale(1.06);
+}
+
+/* img-2 panorámica → ocupa col 1 y 2, row 1 */
+.bento-cell--wide {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+}
+
+/* img-4 portrait → ocupa col 3, rows 1 y 2 */
+.bento-cell--tall {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+}
+
+/* img-1 e img-3 cuadradas → col 1 y 2, row 2 (posición automática) */
+
+/* Tablet: 2 cols, img-2 wide arriba, img-4 tall derecha, cuadradas abajo */
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 260px 360px;
+    }
+
+    .bento-cell--wide {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+    }
+
+    .bento-cell--tall {
+        grid-column: 2;
+        grid-row: 2;
+        /* sin row-span en tablet: mismo alto que cuadradas */
+    }
+}
+
+/* Mobile: 1 col, apilado, cada imagen a su aspect-ratio natural */
+@media (max-width: 480px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 220px 300px 300px 300px;
+    }
+
+    .bento-cell--wide {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .bento-cell--tall {
+        grid-column: 1;
+        grid-row: 2;
+    }
+}
