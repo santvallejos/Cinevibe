@@ -7,10 +7,10 @@
     <div class="footer__grid">
         {{-- Columna 1: marca + descripción + redes sociales --}}
         <div class="footer__col">
-            <span class="footer__brand">THE VELVET CURATOR</span>
+            <span class="footer__brand">CINEVIBE</span>
             <p class="footer__desc">
-                Elevating the cinematic experience through curated selection and premium comfort.
-                Your destination for pure movie magic.
+                Elevando la experiencia cinematográfica a través de una selección y comodidad premium. 
+                Tu destino para la pura magia del cine.
             </p>
             <div class="footer__social">
                 <a class="footer__social-btn" href="#">
@@ -24,9 +24,9 @@
 
         {{-- Columna 2: géneros --}}
         <div class="footer__col">
-            <h4 class="footer__heading">Genres</h4>
+            <h4 class="footer__heading">Generos</h4>
             <ul class="footer__list">
-                <li><a class="footer__link" href="#">Action</a></li>
+                <li><a class="footer__link" href="#">Accion</a></li>
                 <li><a class="footer__link" href="#">Drama</a></li>
                 <li><a class="footer__link" href="#">Sci-Fi</a></li>
                 <li><a class="footer__link" href="#">Horror</a></li>
@@ -35,12 +35,12 @@
 
         {{-- Columna 3: experiencias --}}
         <div class="footer__col">
-            <h4 class="footer__heading">Experience</h4>
+            <h4 class="footer__heading">Beneficios</h4>
             <ul class="footer__list">
-                <li><a class="footer__link" href="#">Premium IMAX</a></li>
-                <li><a class="footer__link" href="#">4D Sensations</a></li>
-                <li><a class="footer__link" href="#">The Lounge</a></li>
-                <li><a class="footer__link" href="#">Member Events</a></li>
+                <li><a class="footer__link" href="#">Membresia Cinevibe</a></li>
+                <li><a class="footer__link" href="#">Descuentos especiales</a></li>
+                <li><a class="footer__link" href="#">Recompensas</a></li>
+                <li><a class="footer__link" href="#">Estrenos Anticipados</a></li>
             </ul>
         </div>
 
@@ -48,16 +48,16 @@
         <div class="footer__col">
             <h4 class="footer__heading">Legal</h4>
             <ul class="footer__list">
-                <li><a class="footer__link" href="#">Privacy Policy</a></li>
-                <li><a class="footer__link" href="#">Terms of Service</a></li>
-                <li><a class="footer__link" href="#">Refund Policy</a></li>
-                <li><a class="footer__link" href="#">Contact Us</a></li>
+                <li><a class="footer__link" href="#">Politica de Privacidad</a></li>
+                <li><a class="footer__link" href="#">Terminos y Condiciones</a></li>
+                <li><a class="footer__link" href="#">Preguntas Frecuentes</a></li>
+                <li><a class="footer__link" href="#">Contactanos</a></li>
             </ul>
         </div>
     </div>
 
     {{-- Copyright inferior --}}
     <div class="footer__bottom">
-        <p class="footer__copy">&copy; 2024 THE VELVET CURATOR. A PREMIERE EXPERIENCE.</p>
+        <p class="footer__copy">&copy; 2026 THE CINEVIBE EXPERIENCE.</p>
     </div>
 </footer>

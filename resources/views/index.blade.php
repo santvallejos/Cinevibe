@@ -40,7 +40,7 @@
                 <header class="section-header">
                     <div class="section-header__inner">
                         <span class="section-header__kicker">Live Experience</span>
-                        <h2 class="section-header__title">Now Showing</h2>
+                        <h2 class="section-header__title">Cartelera</h2>
                     </div>
                     <div class="section-header__actions">
                         <button class="btn btn--icon">
@@ -56,15 +56,15 @@
                         <div class="movie-card__poster">
                             <img class="movie-card__img"
                                 data-alt="Modern noir film poster aesthetic showing a detective in a rain-slicked city street at night under neon signs"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoiijhroebv0MaFNfyAi4iqm1v_K28CZ8QeVePKrXtgLDWx2aeUmhfY-15iYqX1pegr8th50c4VnrEQrV2NzWzTfEe7OPmVLpL-oEHzc1nKsX6SIr2s6m-b-RzI2zlI3iOWgSZgpMofYcTmmTS7ODse0LCEOZ_0mPNLhSXpaP9MXiZXO1NLw4BVIWpK6jVkSx4kFJORiszqWjQBbI2OOxAwe1die_-RaqUJwGED6Bn_RDO1Hgpz2AgQQSdGIrnsWjKT-0kt3B9kiRx">
+                                src="https://sacnkprodarcms.blob.core.windows.net/content/posters/HO00011952.jpg">
                         </div>
                         <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">★ 8.9</span>
+                            <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
-                                <h3 class="movie-card__title">Shadow of the City</h3>
-                                <p class="movie-card__genre">Action, Crime</p>
+                                <h3 class="movie-card__title">Supermario Galaxy: La pelicula</h3>
+                                <p class="movie-card__genre">Animacion, Aventura</p>
                             </div>
                             <div class="movie-card__footer">
                                 <span class="movie-card__price">$14.50</span>
@@ -81,7 +81,7 @@
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBBLVDA2MCtEU5ft2iXQ4pyJGS0cB0SYUeYUznGChExeORmtNdndHHhqDhTlvjXH1AaG-dN3MWLnPwy66_gnOSm-yeO8zAbV2dGrcAaFesz_o-PAJnN5XWnNrgVm2AeqTLQZHBVwpxEUmr9L-7FRU7VLpkJsnJZoSPaCAU-nHkbl2MPXxxjj4Q6mfl5-Zqm8it9IbCfNZq34_92x7yNSG0ZoKtzOxk5OIKaZZfWxOTPTRPbTHDoGV7_sbPxrQVGz3KeXR9aWkPr9UE">
                         </div>
                         <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">★ 9.2</span>
+                            <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
@@ -103,7 +103,7 @@
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs27qMUsheNFHdVV5j_2tbQW7jgep4NM4_WV0MAzjYRlUfOvDcdmIwV_w8caFAuQ6c5LZ6AhZiBd5L56j5X-GOffd-Vh-GgxlpjH7hC2SoYrI2DZFArEaUddx4hAhJDE2w5Y9-wiAy0MVUZoZDS-MOwT7OyoWRqEZJglhrUjOLj2AN2fk3ABEK0mcUlYxx-58H2MdtnpVKSK8Ix_Ivj0z7-F6btZVsRjAtPk--khqS0oS6rqzPXMZ6CN-elj-HZUVGeXSvrfLRCUo1">
                         </div>
                         <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">★ 8.5</span>
+                            <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
@@ -125,7 +125,7 @@
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmaC_RMDeS-ntvPQeZycAzbVsAFwDD1nowI9oYMRW-083LezjlNaA9cCWKDs--Z4WgH5crUkUrEuvAyZ_goJViIGAPoopC6LN7ZS9FQoytjyYa9jzmNlV2Mz9W52iIyg13AMneeLPf5Arnzlu1v6CUhqUm9SSscZeQScfwss8LS5KpohR-8sMe8uw6ZjM4hZE9t1zJRtlX-qX7Ydf2RWeapuoBAFzPcm8QGMK1yNDA98DywoffU_TOh3dpTNMeeZUzbFH2SSuzDqb0">
                         </div>
                         <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">★ 7.8</span>
+                            <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
@@ -153,15 +153,14 @@
 
                     {{-- Texto principal + CTAs --}}
                     <div class="promo-banner__content">
-                        <h2 class="promo-banner__title">Join THE VELVET CLUB</h2>
+                        <h2 class="promo-banner__title">Unete a CINEVIBE</h2>
                         <p class="promo-banner__desc">
-                            Get 20% off all bookings, exclusive premiere invites, and complimentary popcorn on every visit.
-                            The ultimate cinematic lifestyle awaits.
+                            Obtén un 20% de descuento en todas las reservas, invitaciones exclusivas al estreno y palomitas de maíz gratis en cada visita. El estilo de vida cinematográfico definitivo te espera.
                         </p>
                         <div class="promo-banner__actions">
-                            <button class="btn btn--secondary">Become a Member</button>
+                            <button class="btn btn--secondary">Convertirse en miembro</button>
                             <button class="btn btn--ghost">
-                                Learn More
+                                Aprender más
                                 <span class="material-symbols-outlined">arrow_forward</span>
                             </button>
                         </div>
@@ -181,7 +180,7 @@
                                     <span class="promo-banner__pass">PREMIUM PASS</span>
                                     <div>
                                         <div class="promo-banner__since-label">Member Since</div>
-                                        <div class="promo-banner__since-year">2024</div>
+                                        <div class="promo-banner__since-year">2026</div>
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +195,7 @@
             <div class="container">
                 {{-- Cabecera con divisor --}}
                 <header class="section-header section-header--divider">
-                    <h2 class="section-header__title">Coming Soon</h2>
+                    <h2 class="section-header__title">Proximamente</h2>
                     <div class="section-header__divider"></div>
                     <button class="section-header__action">
                         <span>View Calendar</span>

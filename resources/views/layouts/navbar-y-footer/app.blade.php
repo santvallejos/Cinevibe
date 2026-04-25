@@ -16,6 +16,7 @@
 
 
     <link href="{{ asset('vendor/bootstrap/css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
     @stack('styles')
 </head>

@@ -218,3 +218,74 @@
     font-weight: var(--fw-bold);
     text-align: right;
 }
+/* ============================================================
+   Movie Grid (Cartelera)
+   ============================================================ */
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--sp-8);
+}
+
+/* Card */
+.movie-card {
+    max-width: 280px;
+    margin: 0 auto;
+    position: relative;
+    transition: transform var(--tr-base);
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+/* Poster (CLAVE para que todas sean iguales) */
+.movie-card__poster {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+}
+
+.movie-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Info */
+.movie-card__info {
+    margin-top: var(--sp-4);
+}
+
+.movie-card__title {
+    font-weight: var(--fw-bold);
+}
+
+.movie-card__genre {
+    font-size: var(--fs-sm);
+    color: var(--color-neutral-500);
+}
+
+/* Footer */
+.movie-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--sp-3);
+}
+
+.preview-card__media {
+    width: 100%;
+    height: 220px;       
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.preview-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
