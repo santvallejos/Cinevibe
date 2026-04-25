@@ -103,19 +103,19 @@
                     <div class="register__perk-icon">
                         <span class="material-symbols-outlined">confirmation_number</span>
                     </div>
-                    <div class="register__perk-label">Member First Access</div>
+                    <div class="register__perk-label">Acceso Prioritario</div>
                 </div>
                 <div class="register__perk">
                     <div class="register__perk-icon">
                         <span class="material-symbols-outlined">auto_awesome</span>
                     </div>
-                    <div class="register__perk-label">Curated Festivals</div>
+                    <div class="register__perk-label">Festivales Curados</div>
                 </div>
                 <div class="register__perk">
                     <div class="register__perk-icon">
                         <span class="material-symbols-outlined">workspace_premium</span>
                     </div>
-                    <div class="register__perk-label">Zero Ads. Pure Cinema.</div>
+                    <div class="register__perk-label">Sin Publicidad. Puro Cine.</div>
                 </div>
             </div>
         </section>

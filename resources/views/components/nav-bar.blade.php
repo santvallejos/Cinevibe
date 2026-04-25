@@ -12,15 +12,15 @@
 <a class="nav-bar__link" href="#">Compra</a>
 <a class="nav-bar__link" href="#">Contacto</a>
 <a class="nav-bar__link" href="#">¿Quienes Somos?</a>
-           
+
         </div>
     </div>
 
     {{-- Sección derecha: iconos + botones de autenticación --}}
-  
+
         <div class="nav-bar__cta">
-            <a class="nav-bar__login" href="{{ route('login.index') }}">Log In</a>
-            <a class="nav-bar__register" href="{{ route('register.index') }}">Register</a>
+            <a class="nav-bar__login" href="{{ route('login.index') }}">Ingresar</a>
+            <a class="nav-bar__register" href="{{ route('register.index') }}">Registrarse</a>
         </div>
     </div>
 </nav>

@@ -10,7 +10,7 @@
             {{-- Summary (izquierda desktop, abajo mobile) --}}
             <section class="pay__summary">
                 <div>
-                    <h2 class="pay__heading">Order Summary</h2>
+                    <h2 class="pay__heading">Resumen del Pedido</h2>
 
                     {{-- Tarjeta con poster + datos --}}
                     <div class="summary-card">
@@ -21,7 +21,7 @@
                                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnRuuKqFeURFE_pIptw0ltCx3eqjD6uW0TKlUgQVKP5LsqUSRy0nF7yueZqrzAzA4KHyjrWiwHjSXsxocAGEicT3eOjdUJwXbhQnIxwkQop2AnTYXI_KvOVGV9DVJXVKKGi6lccAhTqTDZajr_thNhhn7rrI1VPH0rTAYAc93ZcKjrNoDGiu5vmr9xdDiGAE42jP5Tzsh6t8BGl54AJhCpX4Ldg8I0VKljVxzkcsEdrH5fsK-SEYdfZOPWzKuJMA15GH6xH87Jsbp3">
                             <div class="summary-card__overlay"></div>
                             <div class="summary-card__meta">
-                                <span class="summary-card__badge">Premiere Experience</span>
+                                <span class="summary-card__badge">Experiencia Premier</span>
                                 <h3 class="summary-card__title">NOCTURNAL ECHOES</h3>
                             </div>
                         </div>
@@ -30,19 +30,19 @@
                         <div class="summary-card__body">
                             <div class="summary-card__grid">
                                 <div>
-                                    <p class="summary-card__label">Cinema</p>
+                                    <p class="summary-card__label">Cine</p>
                                     <p class="summary-card__val">The Grand Palladium, Hall 4</p>
                                 </div>
                                 <div>
-                                    <p class="summary-card__label">Date &amp; Time</p>
+                                    <p class="summary-card__label">Fecha y Hora</p>
                                     <p class="summary-card__val">Dec 14, 2024 • 20:45</p>
                                 </div>
                                 <div>
-                                    <p class="summary-card__label">Seats</p>
+                                    <p class="summary-card__label">Asientos</p>
                                     <p class="summary-card__val">VIP Lounge • J12, J13</p>
                                 </div>
                                 <div>
-                                    <p class="summary-card__label">Format</p>
+                                    <p class="summary-card__label">Formato</p>
                                     <p class="summary-card__val">IMAX Laser 4K</p>
                                 </div>
                             </div>
@@ -50,19 +50,19 @@
                             {{-- Líneas de precio --}}
                             <div class="summary-card__prices">
                                 <div class="summary-card__row">
-                                    <span class="summary-card__row-label">Ticket Price (2x)</span>
+                                    <span class="summary-card__row-label">Precio de Entradas (2x)</span>
                                     <span class="summary-card__row-val">$48.00</span>
                                 </div>
                                 <div class="summary-card__row">
-                                    <span class="summary-card__row-label">Booking Fee</span>
+                                    <span class="summary-card__row-label">Cargo por Reserva</span>
                                     <span class="summary-card__row-val">$4.50</span>
                                 </div>
                                 <div class="summary-card__row">
-                                    <span class="summary-card__row-label">VAT (8%)</span>
+                                    <span class="summary-card__row-label">IVA (8%)</span>
                                     <span class="summary-card__row-val">$4.20</span>
                                 </div>
                                 <div class="summary-card__row summary-card__row--total">
-                                    <span class="summary-card__row-label">Total Amount</span>
+                                    <span class="summary-card__row-label">Total</span>
                                     <span class="summary-card__row-val">$56.70</span>
                                 </div>
                             </div>
@@ -73,11 +73,11 @@
                     <div class="trust-badges">
                         <div class="trust-badges__item">
                             <span class="material-symbols-outlined trust-badges__icon">verified_user</span>
-                            <span class="trust-badges__label">SSL Secured</span>
+                            <span class="trust-badges__label">Seguridad SSL</span>
                         </div>
                         <div class="trust-badges__item">
                             <span class="material-symbols-outlined trust-badges__icon">payment_card</span>
-                            <span class="trust-badges__label">PCI Compliant</span>
+                            <span class="trust-badges__label">Cumple PCI</span>
                         </div>
                         <div class="trust-badges__item">
                             <span class="material-symbols-outlined trust-badges__icon">encrypted</span>
@@ -89,7 +89,7 @@
 
             {{-- Formulario de pago (derecha desktop, arriba mobile) --}}
             <section class="pay__form">
-                <h2 class="pay__heading">Payment Details</h2>
+                <h2 class="pay__heading">Datos de Pago</h2>
 
                 <div class="pay__form-wrap">
 
@@ -99,21 +99,21 @@
                             <input checked class="payment-option__input" name="payment" type="radio">
                             <div class="payment-option__card">
                                 <span class="material-symbols-outlined payment-option__icon">credit_card</span>
-                                <span class="payment-option__label">Credit Card</span>
+                                <span class="payment-option__label">Tarjeta de Crédito</span>
                             </div>
                         </label>
                         <label class="payment-option">
                             <input class="payment-option__input" name="payment" type="radio">
                             <div class="payment-option__card">
                                 <span class="material-symbols-outlined payment-option__icon">account_balance_wallet</span>
-                                <span class="payment-option__label">Digital Wallet</span>
+                                <span class="payment-option__label">Billetera Digital</span>
                             </div>
                         </label>
                         <label class="payment-option">
                             <input class="payment-option__input" name="payment" type="radio">
                             <div class="payment-option__card">
                                 <span class="material-symbols-outlined payment-option__icon">qr_code_2</span>
-                                <span class="payment-option__label">Scan &amp; Pay</span>
+                                <span class="payment-option__label">Escanear y Pagar</span>
                             </div>
                         </label>
                     </div>
@@ -123,14 +123,14 @@
                         <div class="card-form__fields">
                             {{-- Nombre del titular --}}
                             <div class="card-input">
-                                <label class="card-input__label">Cardholder Name</label>
+                                <label class="card-input__label">Nombre del Titular</label>
                                 <input class="card-input__field card-input__field--upper"
                                     placeholder="ALEXANDER VANE" type="text">
                             </div>
 
                             {{-- Número de tarjeta + logos --}}
                             <div class="card-input">
-                                <label class="card-input__label">Card Number</label>
+                                <label class="card-input__label">Número de Tarjeta</label>
                                 <div class="card-input__wrap">
                                     <input class="card-input__field"
                                         placeholder="0000 0000 0000 0000" type="text">
@@ -148,7 +148,7 @@
                             {{-- Expiración + CVV --}}
                             <div class="card-form__row">
                                 <div class="card-input">
-                                    <label class="card-input__label">Expiry Date</label>
+                                    <label class="card-input__label">Fecha de Vencimiento</label>
                                     <input class="card-input__field" placeholder="MM / YY" type="text">
                                 </div>
                                 <div class="card-input">
@@ -166,8 +166,8 @@
                         <div class="save-card">
                             <input class="save-card__input" id="save_card" type="checkbox">
                             <label class="save-card__label" for="save_card">
-                                Save this card for my future premieres. Data is encrypted and managed according to our
-                                <a class="save-card__link" href="#">Privacy Policy</a>.
+                                Guardar esta tarjeta para mis próximas funciones. Los datos están encriptados según nuestra
+                                <a class="save-card__link" href="#">Política de Privacidad</a>.
                             </label>
                         </div>
                     </div>
@@ -175,12 +175,11 @@
                     {{-- CTA de confirmación --}}
                     <div class="pay-actions">
                         <button class="pay-confirm">
-                            Confirm Purchase
+                            Confirmar Compra
                             <span class="material-symbols-outlined">chevron_right</span>
                         </button>
                         <p class="pay-disclaimer">
-                            By confirming your purchase, you agree to our Terms of Sale and acknowledge that tickets are
-                            non-refundable 2 hours prior to showtime.
+                            Al confirmar tu compra, aceptas nuestros Términos de Venta y reconoces que las entradas no son reembolsables 2 horas antes de la función.
                         </p>
                     </div>
                 </div>

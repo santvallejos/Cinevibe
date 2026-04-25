@@ -1,10 +1,10 @@
 @extends('layouts.navbar-y-footer.app')
- 
+
 @section('title', 'Movie')
- 
+
 @section('content')
     <main class="movie-page">
- 
+
         {{-- Hero --}}
         <section class="movie-hero">
             <div class="movie-hero__bg"
@@ -15,18 +15,18 @@
                 <div class="movie-hero__wrap">
                     <div class="movie-hero__kicker">
                         <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
-                        Premium Experience
+                        Experiencia Premium
                     </div>
                     <h1 class="movie-hero__title">Cartelera</h1>
-                
+
                 </div>
             </div>
         </section>
         {{-- FIN hero --}}
- 
- 
- 
- 
+
+
+
+
         {{-- =====================================================
              BLOQUE 2: Cartelera — ancho completo, fuera del grid
         ====================================================== --}}
@@ -35,7 +35,7 @@
                 <header class="section-header">
                     <div class="section-header__inner">
                         <span class="section-header__kicker">Live Experience</span>
-                       
+
                     </div>
                     <div class="section-header__actions">
                         <button class="btn btn--icon">
@@ -43,7 +43,7 @@
                         </button>
                     </div>
                 </header>
- 
+
                 <div class="movie-grid">
                     <article class="movie-card">
                         <div class="movie-card__poster">
@@ -59,12 +59,12 @@
                                 <p class="movie-card__genre">Animacion, Aventura</p>
                             </div>
                             <div class="movie-card__footer">
-                              
+
                                 <button class="btn btn--ticket">Comprar Boletos</button>
                             </div>
                         </div>
                     </article>
- 
+
                     <article class="movie-card">
                         <div class="movie-card__poster">
                             <img class="movie-card__img"
@@ -79,12 +79,12 @@
                                 <p class="movie-card__genre">Ciencia Ficción</p>
                             </div>
                             <div class="movie-card__footer">
-                             
+
                                 <button class="btn btn--ticket">Comprar Boletos</button>
                             </div>
                         </div>
                     </article>
- 
+
                     <article class="movie-card">
                         <div class="movie-card__poster">
                             <img class="movie-card__img"
@@ -99,12 +99,12 @@
                                 <p class="movie-card__genre">Drama</p>
                             </div>
                             <div class="movie-card__footer">
-                         
+
                                 <button class="btn btn--ticket">Comprar Boletos</button>
                             </div>
                         </div>
                     </article>
- 
+
                     <article class="movie-card">
                         <div class="movie-card__poster">
                             <img class="movie-card__img"
@@ -119,12 +119,12 @@
                                 <p class="movie-card__genre">Horror, Terror</p>
                             </div>
                             <div class="movie-card__footer">
-                               
+
                                 <button class="btn btn--ticket">Comprar Boletos</button>
                             </div>
                         </div>
                     </article>
-                     
+
                     <article class="movie-card">
                         <div class="movie-card__poster">
                             <img class="movie-card__img"
@@ -139,12 +139,12 @@
                                 <p class="movie-card__genre">Horror, Terror</p>
                             </div>
                             <div class="movie-card__footer">
-                               
+
                                 <button class="btn btn--ticket">Comprar Boletos</button>
                             </div>
                         </div>
                     </article>
-                     
+
                     <article class="movie-card">
                         <div class="movie-card__poster">
                             <img class="movie-card__img"
@@ -159,12 +159,12 @@
                                 <p class="movie-card__genre">Horror, Terror</p>
                             </div>
                             <div class="movie-card__footer">
-                               
+
                                 <button class="btn btn--ticket">Comprar Boletos</button>
                             </div>
                         </div>
                     </article>
-                     
+
                     <article class="movie-card">
                         <div class="movie-card__poster">
                             <img class="movie-card__img"
@@ -179,12 +179,12 @@
                                 <p class="movie-card__genre">Horror, Terror</p>
                             </div>
                             <div class="movie-card__footer">
-                               
+
                                 <button class="btn btn--ticket">Comprar Boletos</button>
                             </div>
                         </div>
                     </article>
-                     
+
                     <article class="movie-card">
                         <div class="movie-card__poster">
                             <img class="movie-card__img"
@@ -199,7 +199,7 @@
                                 <p class="movie-card__genre">Horror, Terror</p>
                             </div>
                             <div class="movie-card__footer">
-                               
+
                                 <button class="btn btn--ticket">Comprar Boletos</button>
                             </div>
                         </div>
@@ -208,8 +208,8 @@
             </div>
         </section>
         {{-- FIN BLOQUE 2 --}}
- 
- 
+
+
         {{-- Sección Coming Soon con scroll horizontal --}}
         <section class="home-section home-section--surface-lowest">
             <div class="container">
@@ -285,6 +285,6 @@
             </div>
         </section>
         {{-- FIN BLOQUE 3 --}}
- 
+
     </main>
 @endsection

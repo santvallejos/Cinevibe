@@ -9,7 +9,7 @@
         <div class="footer__col">
             <span class="footer__brand">CINEVIBE</span>
             <p class="footer__desc">
-                Elevando la experiencia cinematográfica a través de una selección y comodidad premium. 
+                Elevando la experiencia cinematográfica a través de una selección y comodidad premium.
                 Tu destino para la pura magia del cine.
             </p>
             <div class="footer__social">
@@ -24,23 +24,23 @@
 
         {{-- Columna 2: géneros --}}
         <div class="footer__col">
-            <h4 class="footer__heading">Generos</h4>
+            <h4 class="footer__heading">Géneros</h4>
             <ul class="footer__list">
-                <li><a class="footer__link" href="#">Accion</a></li>
+                <li><a class="footer__link" href="#">Acción</a></li>
                 <li><a class="footer__link" href="#">Drama</a></li>
-                <li><a class="footer__link" href="#">Sci-Fi</a></li>
-                <li><a class="footer__link" href="#">Horror</a></li>
+                <li><a class="footer__link" href="#">Ciencia Ficción</a></li>
+                <li><a class="footer__link" href="#">Terror</a></li>
             </ul>
         </div>
 
         {{-- Columna 3: experiencias --}}
         <div class="footer__col">
-            <h4 class="footer__heading">Beneficios</h4>
+            <h4 class="footer__heading">Experiencia</h4>
             <ul class="footer__list">
-                <li><a class="footer__link" href="#">Membresia Cinevibe</a></li>
-                <li><a class="footer__link" href="#">Descuentos especiales</a></li>
-                <li><a class="footer__link" href="#">Recompensas</a></li>
-                <li><a class="footer__link" href="#">Estrenos Anticipados</a></li>
+                <li><a class="footer__link" href="#">Premium IMAX</a></li>
+                <li><a class="footer__link" href="#">Sensaciones 4D</a></li>
+                <li><a class="footer__link" href="#">El Lounge</a></li>
+                <li><a class="footer__link" href="#">Eventos para Miembros</a></li>
             </ul>
         </div>
 
@@ -58,6 +58,6 @@
 
     {{-- Copyright inferior --}}
     <div class="footer__bottom">
-        <p class="footer__copy">&copy; 2026 THE CINEVIBE EXPERIENCE.</p>
+        <p class="footer__copy">&copy; 2024 THE VELVET CURATOR. A PREMIERE EXPERIENCE.</p>
     </div>
 </footer>
