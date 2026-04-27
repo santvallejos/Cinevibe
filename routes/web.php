@@ -25,3 +25,11 @@ Route::get('/select-armchair', function () {
 Route::get('/pay', function () {
     return view('cart.pay.index');
 })->name('pay.index');
+
+Route::get('/sobre-nosotros', function () {
+    return view('about-us.index');
+})->name('about-us.index');
+
+Route::get('/contacto', function () {
+    return view('contact.index');
+})->name('contact.index');

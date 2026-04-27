@@ -1,0 +1,442 @@
+/* ============================================================
+   contact.css — Página de Contacto
+   Secciones: Hero, Canales + Formulario, FAQ
+   ============================================================ */
+
+/* ====== HERO ====== */
+.contact-hero {
+    position: relative;
+    height: 614px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.contact-hero__bg-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.contact-hero__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+}
+
+/* Gradiente que funde la imagen hacia el color de fondo */
+.contact-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(14, 14, 14, 0) 0%, rgba(19, 19, 19, 1) 100%);
+}
+
+.contact-hero__content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 var(--sp-6);
+}
+
+.contact-hero__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-5xl);
+    font-weight: var(--fw-extrabold);
+    letter-spacing: -0.025em;
+    color: var(--color-on-surface);
+    margin: 0 0 var(--sp-4);
+}
+
+@media (min-width: 768px) {
+    .contact-hero__title {
+        font-size: var(--fs-6xl);
+    }
+}
+
+.contact-hero__subtitle {
+    font-family: var(--font-body);
+    font-size: var(--fs-lg);
+    color: var(--color-neutral-400);
+    max-width: 42rem;
+    margin: 0 auto;
+    font-weight: var(--fw-light);
+    line-height: 1.75;
+}
+
+@media (min-width: 768px) {
+    .contact-hero__subtitle {
+        font-size: var(--fs-xl);
+    }
+}
+
+/* ====== MAIN GRID (Canales + Formulario) ====== */
+.contact-main {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: var(--sp-24) var(--sp-8);
+}
+
+/* 2 columnas en desktop, 1 en mobile */
+.contact-main__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-20);
+}
+
+@media (min-width: 1024px) {
+    .contact-main__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ====== CANALES DE CONTACTO (columna izquierda) ====== */
+.contact-channels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-12);
+}
+
+.contact-channels__section-title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-3xl);
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.025em;
+    margin: 0 0 var(--sp-8);
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+}
+
+/* Línea de acento dorada antes del título */
+.contact-channels__accent {
+    display: inline-block;
+    width: 3rem;
+    height: 2px;
+    background-color: var(--color-secondary-fixed-dim);
+    flex-shrink: 0;
+}
+
+.contact-channels__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-8);
+}
+
+/* Ítem de canal: ícono + texto */
+.contact-channel {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sp-6);
+}
+
+.contact-channel__icon-box {
+    background-color: var(--color-surface-container-high);
+    padding: var(--sp-4);
+    border-radius: var(--radius-xl);
+    flex-shrink: 0;
+    transition: background-color var(--tr-base);
+}
+
+/* Aclara el fondo del ícono al pasar el mouse */
+.contact-channel:hover .contact-channel__icon-box {
+    background-color: var(--color-surface-bright);
+}
+
+.contact-channel__icon {
+    color: var(--color-secondary-fixed-dim);
+    font-size: var(--fs-3xl);
+    display: block;
+}
+
+.contact-channel__label {
+    font-family: var(--font-headline);
+    color: var(--color-neutral-500);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bold);
+    margin: 0 0 var(--sp-1);
+}
+
+.contact-channel__value {
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-light);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Tarjeta promo Private Screenings */
+.contact-promo {
+    background-color: var(--color-surface-container-low);
+    padding: var(--sp-8);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(94, 63, 59, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Brillo sutil dorado en la esquina inferior derecha */
+.contact-promo__flare {
+    position: absolute;
+    right: -3rem;
+    bottom: -3rem;
+    width: 12rem;
+    height: 12rem;
+    background-color: rgba(250, 189, 0, 0.05);
+    border-radius: var(--radius-full);
+    filter: blur(48px);
+    pointer-events: none;
+    transition: background-color var(--tr-base);
+}
+
+.contact-promo:hover .contact-promo__flare {
+    background-color: rgba(250, 189, 0, 0.1);
+}
+
+.contact-promo__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-bold);
+    margin: 0 0 var(--sp-2);
+}
+
+.contact-promo__text {
+    color: var(--color-neutral-400);
+    line-height: 1.75;
+    margin: 0 0 var(--sp-6);
+}
+
+/* Link con flecha que se desplaza en hover */
+.contact-promo__link {
+    color: var(--color-secondary-fixed-dim);
+    font-weight: var(--fw-bold);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+    text-decoration: none;
+    transition: transform var(--tr-base);
+}
+
+.contact-promo:hover .contact-promo__link {
+    transform: translateX(0.5rem);
+}
+
+/* ====== PANEL DEL FORMULARIO (columna derecha) ====== */
+.contact-form-panel {
+    background-color: var(--color-surface-container);
+    padding: var(--sp-10);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-2xl);
+}
+
+@media (min-width: 768px) {
+    .contact-form-panel {
+        padding: var(--sp-12) var(--sp-16);
+    }
+}
+
+.contact-form-panel__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-3xl);
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.025em;
+    margin: 0 0 var(--sp-10);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-10);
+}
+
+/* Contenedor de campo con label flotante */
+.contact-field {
+    position: relative;
+}
+
+/* Input y textarea comparten base */
+.contact-field__input,
+.contact-field__textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-outline-variant);
+    padding: var(--sp-3) 0;
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    outline: none;
+    transition: border-color var(--tr-base);
+}
+
+.contact-field__input:focus,
+.contact-field__textarea:focus {
+    border-bottom-color: var(--color-secondary-fixed-dim);
+}
+
+.contact-field__textarea {
+    resize: none;
+}
+
+/* Label flotante: empieza encima del campo */
+.contact-field__label {
+    position: absolute;
+    left: 0;
+    top: -0.875rem;
+    color: var(--color-neutral-500);
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+    transition: top var(--tr-base), font-size var(--tr-base), color var(--tr-base);
+}
+
+/* Cuando el campo está vacío (placeholder visible) el label baja al campo */
+.contact-field__input:placeholder-shown + .contact-field__label,
+.contact-field__textarea:placeholder-shown + .contact-field__label {
+    font-size: var(--fs-base);
+    top: 0.75rem;
+}
+
+/* Al enfocar el campo, el label sube y se colorea */
+.contact-field__input:focus + .contact-field__label,
+.contact-field__textarea:focus + .contact-field__label {
+    top: -0.875rem;
+    font-size: var(--fs-sm);
+    color: var(--color-secondary-fixed-dim);
+}
+
+.contact-field__select {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-outline-variant);
+    padding: var(--sp-3) 0;
+    color: var(--color-neutral-400);
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    outline: none;
+    cursor: pointer;
+    transition: border-color var(--tr-base);
+}
+
+.contact-field__select:focus {
+    border-bottom-color: var(--color-secondary-fixed-dim);
+}
+
+/* Fondo de las opciones del select */
+.contact-field__select option {
+    background-color: var(--color-surface-container);
+}
+
+/* Botón de envío con gradiente rojo-rosado */
+.contact-form__submit {
+    width: 100%;
+    background: linear-gradient(135deg, #ffb4aa 0%, #e50914 100%);
+    color: var(--color-on-primary-container);
+    padding: var(--sp-4) 0;
+    border-radius: var(--radius-full);
+    border: none;
+    font-family: var(--font-headline);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: box-shadow var(--tr-base), transform var(--tr-base);
+}
+
+.contact-form__submit:hover {
+    box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+}
+
+.contact-form__submit:active {
+    transform: scale(0.95);
+}
+
+/* ====== FAQ ====== */
+.contact-faq {
+    background-color: var(--color-surface-container-low);
+    padding: var(--sp-24) 0;
+}
+
+.contact-faq__inner {
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 0 var(--sp-8);
+}
+
+.contact-faq__header {
+    text-align: center;
+    margin-bottom: var(--sp-16);
+}
+
+.contact-faq__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-extrabold);
+    letter-spacing: -0.025em;
+    margin: 0 0 var(--sp-4);
+}
+
+.contact-faq__subtitle {
+    color: var(--color-neutral-500);
+    font-weight: var(--fw-light);
+    margin: 0;
+}
+
+.contact-faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+}
+
+/* Acordeón nativo con <details> */
+.contact-faq__item {
+    background-color: var(--color-surface-container-high);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.contact-faq__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--sp-6);
+    cursor: pointer;
+    list-style: none;
+    transition: background-color var(--tr-base);
+}
+
+/* Elimina el marcador nativo de details en webkit */
+.contact-faq__summary::-webkit-details-marker {
+    display: none;
+}
+
+.contact-faq__summary:hover {
+    background-color: var(--color-surface-bright);
+}
+
+.contact-faq__question {
+    font-family: var(--font-headline);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-lg);
+}
+
+.contact-faq__icon {
+    flex-shrink: 0;
+    transition: transform var(--tr-base);
+}
+
+/* Rota el ícono cuando el acordeón está abierto */
+.contact-faq__item[open] .contact-faq__icon {
+    transform: rotate(180deg);
+}
+
+.contact-faq__answer {
+    padding: 0 var(--sp-6) var(--sp-6);
+    color: var(--color-neutral-400);
+    line-height: 1.75;
+    font-weight: var(--fw-light);
+}
