@@ -219,13 +219,100 @@
     text-align: right;
 }
 /* ============================================================
-   Movie Grid (Cartelera)
+   Movie Carousel (Cartelera / Próximamente)
    ============================================================ */
 
-.movie-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+/* Wrapper relativo — padding lateral reserva espacio a los botones */
+.movie-carousel {
+    position: relative;
+    padding: 0 60px;
+}
+
+/* Track: fila flexible con scroll horizontal suave y snap */
+.movie-carousel__track {
+    display: flex;
     gap: var(--sp-8);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    /* Oculta scrollbar visual pero mantiene funcionalidad */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: var(--sp-2);
+}
+
+.movie-carousel__track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cada card ocupa ~25% en desktop dejando un vistazo de la siguiente */
+.movie-carousel__track .movie-card {
+    flex: 0 0 calc(25% - var(--sp-6));
+    min-width: 220px;
+    max-width: 280px;
+    scroll-snap-align: start;
+    margin: 0;
+}
+
+/* Botones de navegación prev/next:
+   top: 40% centra sobre el poster (aspecto 2:3 ≈ 78% del alto total de card) */
+.movie-carousel__btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-surface-container-high);
+    color: var(--color-on-surface);
+    cursor: pointer;
+    transition: background-color var(--tr-base), opacity var(--tr-base), transform var(--tr-base);
+    box-shadow: var(--shadow-lg);
+}
+
+.movie-carousel__btn:hover:not(:disabled) {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary, #fff);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.movie-carousel__btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+/* Botones dentro del padding lateral del carousel */
+.movie-carousel__btn--prev {
+    left: 4px;
+}
+
+.movie-carousel__btn--next {
+    right: 4px;
+}
+
+/* Tablet: 2 cards visibles */
+@media (min-width: 641px) and (max-width: 1023px) {
+    .movie-carousel__track .movie-card {
+        flex: 0 0 calc(50% - var(--sp-4));
+    }
+}
+
+/* Mobile: 1 card + botones con padding reducido */
+@media (max-width: 640px) {
+    .movie-carousel {
+        padding: 0 44px;
+    }
+
+    .movie-carousel__btn--prev { left: 0; }
+    .movie-carousel__btn--next { right: 0; }
+
+    .movie-carousel__track .movie-card {
+        flex: 0 0 calc(80% - var(--sp-4));
+    }
 }
 
 /* Card */

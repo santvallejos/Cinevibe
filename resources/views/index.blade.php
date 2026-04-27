@@ -43,95 +43,148 @@
                     </div>
                 </header>
 
-                {{-- Grid responsivo de tarjetas --}}
-                <div class="movie-grid">
-                    {{-- Movie Card 1 --}}
-                    <article class="movie-card">
-                        <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                data-alt="Modern noir film poster aesthetic showing a detective in a rain-slicked city street at night under neon signs"
-                                src="https://sacnkprodarcms.blob.core.windows.net/content/posters/HO00011952.jpg">
-                        </div>
-                        <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">ESTRENO</span>
-                        </div>
-                        <div class="movie-card__info">
-                            <div>
-                                <h3 class="movie-card__title">Supermario Galaxy: La pelicula</h3>
-                                <p class="movie-card__genre">Animacion, Aventura</p>
-                            </div>
-                            <div class="movie-card__footer">
-                                <span class="movie-card__price">$14.50</span>
-                                <button class="btn btn--ticket">Comprar Entradas</button>
-                            </div>
-                        </div>
-                    </article>
+                {{-- Carousel de tarjetas "En Cartelera" --}}
+                <div class="movie-carousel" data-carousel>
+                    <button class="movie-carousel__btn movie-carousel__btn--prev" aria-label="Anterior">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
 
-                    {{-- Movie Card 2 --}}
-                    <article class="movie-card">
-                        <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                data-alt="Conceptual film poster of a lone astronaut walking on a white salt flat under an enormous orange sun"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBBLVDA2MCtEU5ft2iXQ4pyJGS0cB0SYUeYUznGChExeORmtNdndHHhqDhTlvjXH1AaG-dN3MWLnPwy66_gnOSm-yeO8zAbV2dGrcAaFesz_o-PAJnN5XWnNrgVm2AeqTLQZHBVwpxEUmr9L-7FRU7VLpkJsnJZoSPaCAU-nHkbl2MPXxxjj4Q6mfl5-Zqm8it9IbCfNZq34_92x7yNSG0ZoKtzOxk5OIKaZZfWxOTPTRPbTHDoGV7_sbPxrQVGz3KeXR9aWkPr9UE">
-                        </div>
-                        <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">ESTRENO</span>
-                        </div>
-                        <div class="movie-card__info">
-                            <div>
-                                <h3 class="movie-card__title">The Last Horizon</h3>
-                                <p class="movie-card__genre">Ciencia Ficción, Aventura</p>
+                    <div class="movie-carousel__track">
+                        {{-- Movie Card 1 --}}
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://sacnkprodarcms.blob.core.windows.net/content/posters/HO00011952.jpg"
+                                    alt="Supermario Galaxy: La pelicula">
                             </div>
-                            <div class="movie-card__footer">
-                                <span class="movie-card__price">$16.00</span>
-                                <button class="btn btn--ticket">Comprar Entradas</button>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">ESTRENO</span>
                             </div>
-                        </div>
-                    </article>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">Supermario Galaxy: La pelicula</h3>
+                                    <p class="movie-card__genre">Animacion, Aventura</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$14.50</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
 
-                    {{-- Movie Card 3 --}}
-                    <article class="movie-card">
-                        <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                data-alt="Cinematic portrait of a regal woman in ornate historical costume with soft candlelight and dark velvet background"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs27qMUsheNFHdVV5j_2tbQW7jgep4NM4_WV0MAzjYRlUfOvDcdmIwV_w8caFAuQ6c5LZ6AhZiBd5L56j5X-GOffd-Vh-GgxlpjH7hC2SoYrI2DZFArEaUddx4hAhJDE2w5Y9-wiAy0MVUZoZDS-MOwT7OyoWRqEZJglhrUjOLj2AN2fk3ABEK0mcUlYxx-58H2MdtnpVKSK8Ix_Ivj0z7-F6btZVsRjAtPk--khqS0oS6rqzPXMZ6CN-elj-HZUVGeXSvrfLRCUo1">
-                        </div>
-                        <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">ESTRENO</span>
-                        </div>
-                        <div class="movie-card__info">
-                            <div>
-                                <h3 class="movie-card__title">Velvet Dynasty</h3>
-                                <p class="movie-card__genre">Drama, Historia</p>
+                        {{-- Movie Card 2 --}}
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBBLVDA2MCtEU5ft2iXQ4pyJGS0cB0SYUeYUznGChExeORmtNdndHHhqDhTlvjXH1AaG-dN3MWLnPwy66_gnOSm-yeO8zAbV2dGrcAaFesz_o-PAJnN5XWnNrgVm2AeqTLQZHBVwpxEUmr9L-7FRU7VLpkJsnJZoSPaCAU-nHkbl2MPXxxjj4Q6mfl5-Zqm8it9IbCfNZq34_92x7yNSG0ZoKtzOxk5OIKaZZfWxOTPTRPbTHDoGV7_sbPxrQVGz3KeXR9aWkPr9UE"
+                                    alt="The Last Horizon">
                             </div>
-                            <div class="movie-card__footer">
-                                <span class="movie-card__price">$13.00</span>
-                                <button class="btn btn--ticket">Comprar Entradas</button>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">ESTRENO</span>
                             </div>
-                        </div>
-                    </article>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">The Last Horizon</h3>
+                                    <p class="movie-card__genre">Ciencia Ficción, Aventura</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$16.00</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
 
-                    {{-- Movie Card 4 --}}
-                    <article class="movie-card">
-                        <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                data-alt="Abstract horror movie poster with a shadowy figure standing in a dimly lit doorway with red foggy atmosphere"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmaC_RMDeS-ntvPQeZycAzbVsAFwDD1nowI9oYMRW-083LezjlNaA9cCWKDs--Z4WgH5crUkUrEuvAyZ_goJViIGAPoopC6LN7ZS9FQoytjyYa9jzmNlV2Mz9W52iIyg13AMneeLPf5Arnzlu1v6CUhqUm9SSscZeQScfwss8LS5KpohR-8sMe8uw6ZjM4hZE9t1zJRtlX-qX7Ydf2RWeapuoBAFzPcm8QGMK1yNDA98DywoffU_TOh3dpTNMeeZUzbFH2SSuzDqb0">
-                        </div>
-                        <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">ESTRENO</span>
-                        </div>
-                        <div class="movie-card__info">
-                            <div>
-                                <h3 class="movie-card__title">Silence Speaks</h3>
-                                <p class="movie-card__genre">Terror, Thriller</p>
+                        {{-- Movie Card 3 --}}
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs27qMUsheNFHdVV5j_2tbQW7jgep4NM4_WV0MAzjYRlUfOvDcdmIwV_w8caFAuQ6c5LZ6AhZiBd5L56j5X-GOffd-Vh-GgxlpjH7hC2SoYrI2DZFArEaUddx4hAhJDE2w5Y9-wiAy0MVUZoZDS-MOwT7OyoWRqEZJglhrUjOLj2AN2fk3ABEK0mcUlYxx-58H2MdtnpVKSK8Ix_Ivj0z7-F6btZVsRjAtPk--khqS0oS6rqzPXMZ6CN-elj-HZUVGeXSvrfLRCUo1"
+                                    alt="Velvet Dynasty">
                             </div>
-                            <div class="movie-card__footer">
-                                <span class="movie-card__price">$14.50</span>
-                                <button class="btn btn--ticket">Comprar Entradas</button>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">ESTRENO</span>
                             </div>
-                        </div>
-                    </article>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">Velvet Dynasty</h3>
+                                    <p class="movie-card__genre">Drama, Historia</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$13.00</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        {{-- Movie Card 4 --}}
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmaC_RMDeS-ntvPQeZycAzbVsAFwDD1nowI9oYMRW-083LezjlNaA9cCWKDs--Z4WgH5crUkUrEuvAyZ_goJViIGAPoopC6LN7ZS9FQoytjyYa9jzmNlV2Mz9W52iIyg13AMneeLPf5Arnzlu1v6CUhqUm9SSscZeQScfwss8LS5KpohR-8sMe8uw6ZjM4hZE9t1zJRtlX-qX7Ydf2RWeapuoBAFzPcm8QGMK1yNDA98DywoffU_TOh3dpTNMeeZUzbFH2SSuzDqb0"
+                                    alt="Silence Speaks">
+                            </div>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">ESTRENO</span>
+                            </div>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">Silence Speaks</h3>
+                                    <p class="movie-card__genre">Terror, Thriller</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$14.50</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        {{-- Movie Card 5 --}}
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoiijhroebv0MaFNfyAi4iqm1v_K28CZ8QeVePKrXtgLDWx2aeUmhfY-15iYqX1pegr8th50c4VnrEQrV2NzWzTfEe7OPmVLpL-oEHzc1nKsX6SIr2s6m-b-RzI2zlI3iOWgSZgpMofYcTmmTS7ODse0LCEOZ_0mPNLhSXpaP9MXiZXO1NLw4BVIWpK6jVkSx4kFJORiszqWjQBbI2OOxAwe1die_-RaqUJwGED6Bn_RDO1Hgpz2AgQQSdGIrnsWjKT-0kt3B9kiRx"
+                                    alt="Shadow of the City">
+                            </div>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">ESTRENO</span>
+                            </div>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">Shadow of the City</h3>
+                                    <p class="movie-card__genre">Acción, Crimen</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$14.50</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://sacnkprodarcms.blob.core.windows.net/content/posters/HO00011952.jpg"
+                                    alt="Supermario Galaxy: La pelicula">
+                            </div>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">ESTRENO</span>
+                            </div>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">Supermario Galaxy: La pelicula</h3>
+                                    <p class="movie-card__genre">Animacion, Aventura</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$14.50</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <button class="movie-carousel__btn movie-carousel__btn--next" aria-label="Siguiente">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
                 </div>
             </div>
         </section>
@@ -221,97 +274,166 @@
                     </div>
                 </header>
 
-                {{-- Grid responsivo de tarjetas --}}
-                <div class="movie-grid">
-                    {{-- Movie Card 1 --}}
-                    <article class="movie-card">
-                        <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                data-alt="Modern noir film poster aesthetic showing a detective in a rain-slicked city street at night under neon signs"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoiijhroebv0MaFNfyAi4iqm1v_K28CZ8QeVePKrXtgLDWx2aeUmhfY-15iYqX1pegr8th50c4VnrEQrV2NzWzTfEe7OPmVLpL-oEHzc1nKsX6SIr2s6m-b-RzI2zlI3iOWgSZgpMofYcTmmTS7ODse0LCEOZ_0mPNLhSXpaP9MXiZXO1NLw4BVIWpK6jVkSx4kFJORiszqWjQBbI2OOxAwe1die_-RaqUJwGED6Bn_RDO1Hgpz2AgQQSdGIrnsWjKT-0kt3B9kiRx">
-                        </div>
-                        <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">★ 8.9</span>
-                        </div>
-                        <div class="movie-card__info">
-                            <div>
-                                <h3 class="movie-card__title">Shadow of the City</h3>
-                                <p class="movie-card__genre">Acción, Crimen</p>
-                            </div>
-                            <div class="movie-card__footer">
-                                <span class="movie-card__price">$14.50</span>
-                                <button class="btn btn--ticket">Comprar Entradas</button>
-                            </div>
-                        </div>
-                    </article>
+                {{-- Carousel de tarjetas "Proximamente" --}}
+                <div class="movie-carousel" data-carousel>
+                    <button class="movie-carousel__btn movie-carousel__btn--prev" aria-label="Anterior">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
 
-                    {{-- Movie Card 2 --}}
-                    <article class="movie-card">
-                        <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                data-alt="Conceptual film poster of a lone astronaut walking on a white salt flat under an enormous orange sun"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBBLVDA2MCtEU5ft2iXQ4pyJGS0cB0SYUeYUznGChExeORmtNdndHHhqDhTlvjXH1AaG-dN3MWLnPwy66_gnOSm-yeO8zAbV2dGrcAaFesz_o-PAJnN5XWnNrgVm2AeqTLQZHBVwpxEUmr9L-7FRU7VLpkJsnJZoSPaCAU-nHkbl2MPXxxjj4Q6mfl5-Zqm8it9IbCfNZq34_92x7yNSG0ZoKtzOxk5OIKaZZfWxOTPTRPbTHDoGV7_sbPxrQVGz3KeXR9aWkPr9UE">
-                        </div>
-                        <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">★ 9.2</span>
-                        </div>
-                        <div class="movie-card__info">
-                            <div>
-                                <h3 class="movie-card__title">The Last Horizon</h3>
-                                <p class="movie-card__genre">Ciencia Ficción, Aventura</p>
+                    <div class="movie-carousel__track">
+                        {{-- Movie Card 1 --}}
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoiijhroebv0MaFNfyAi4iqm1v_K28CZ8QeVePKrXtgLDWx2aeUmhfY-15iYqX1pegr8th50c4VnrEQrV2NzWzTfEe7OPmVLpL-oEHzc1nKsX6SIr2s6m-b-RzI2zlI3iOWgSZgpMofYcTmmTS7ODse0LCEOZ_0mPNLhSXpaP9MXiZXO1NLw4BVIWpK6jVkSx4kFJORiszqWjQBbI2OOxAwe1die_-RaqUJwGED6Bn_RDO1Hgpz2AgQQSdGIrnsWjKT-0kt3B9kiRx"
+                                    alt="Shadow of the City">
                             </div>
-                            <div class="movie-card__footer">
-                                <span class="movie-card__price">$16.00</span>
-                                <button class="btn btn--ticket">Comprar Entradas</button>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">★ 8.9</span>
                             </div>
-                        </div>
-                    </article>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">Shadow of the City</h3>
+                                    <p class="movie-card__genre">Acción, Crimen</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$14.50</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
 
-                    {{-- Movie Card 3 --}}
-                    <article class="movie-card">
-                        <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                data-alt="Cinematic portrait of a regal woman in ornate historical costume with soft candlelight and dark velvet background"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs27qMUsheNFHdVV5j_2tbQW7jgep4NM4_WV0MAzjYRlUfOvDcdmIwV_w8caFAuQ6c5LZ6AhZiBd5L56j5X-GOffd-Vh-GgxlpjH7hC2SoYrI2DZFArEaUddx4hAhJDE2w5Y9-wiAy0MVUZoZDS-MOwT7OyoWRqEZJglhrUjOLj2AN2fk3ABEK0mcUlYxx-58H2MdtnpVKSK8Ix_Ivj0z7-F6btZVsRjAtPk--khqS0oS6rqzPXMZ6CN-elj-HZUVGeXSvrfLRCUo1">
-                        </div>
-                        <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">★ 8.5</span>
-                        </div>
-                        <div class="movie-card__info">
-                            <div>
-                                <h3 class="movie-card__title">Velvet Dynasty</h3>
-                                <p class="movie-card__genre">Drama, Historia</p>
+                        {{-- Movie Card 2 --}}
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBBLVDA2MCtEU5ft2iXQ4pyJGS0cB0SYUeYUznGChExeORmtNdndHHhqDhTlvjXH1AaG-dN3MWLnPwy66_gnOSm-yeO8zAbV2dGrcAaFesz_o-PAJnN5XWnNrgVm2AeqTLQZHBVwpxEUmr9L-7FRU7VLpkJsnJZoSPaCAU-nHkbl2MPXxxjj4Q6mfl5-Zqm8it9IbCfNZq34_92x7yNSG0ZoKtzOxk5OIKaZZfWxOTPTRPbTHDoGV7_sbPxrQVGz3KeXR9aWkPr9UE"
+                                    alt="The Last Horizon">
                             </div>
-                            <div class="movie-card__footer">
-                                <span class="movie-card__price">$13.00</span>
-                                <button class="btn btn--ticket">Comprar Entradas</button>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">★ 9.2</span>
                             </div>
-                        </div>
-                    </article>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">The Last Horizon</h3>
+                                    <p class="movie-card__genre">Ciencia Ficción, Aventura</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$16.00</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
 
-                    {{-- Movie Card 4 --}}
-                    <article class="movie-card">
-                        <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                data-alt="Abstract horror movie poster with a shadowy figure standing in a dimly lit doorway with red foggy atmosphere"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmaC_RMDeS-ntvPQeZycAzbVsAFwDD1nowI9oYMRW-083LezjlNaA9cCWKDs--Z4WgH5crUkUrEuvAyZ_goJViIGAPoopC6LN7ZS9FQoytjyYa9jzmNlV2Mz9W52iIyg13AMneeLPf5Arnzlu1v6CUhqUm9SSscZeQScfwss8LS5KpohR-8sMe8uw6ZjM4hZE9t1zJRtlX-qX7Ydf2RWeapuoBAFzPcm8QGMK1yNDA98DywoffU_TOh3dpTNMeeZUzbFH2SSuzDqb0">
-                        </div>
-                        <div class="movie-card__rating">
-                            <span class="movie-card__rating-value">★ 7.8</span>
-                        </div>
-                        <div class="movie-card__info">
-                            <div>
-                                <h3 class="movie-card__title">Silence Speaks</h3>
-                                <p class="movie-card__genre">Terror, Thriller</p>
+                        {{-- Movie Card 3 --}}
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs27qMUsheNFHdVV5j_2tbQW7jgep4NM4_WV0MAzjYRlUfOvDcdmIwV_w8caFAuQ6c5LZ6AhZiBd5L56j5X-GOffd-Vh-GgxlpjH7hC2SoYrI2DZFArEaUddx4hAhJDE2w5Y9-wiAy0MVUZoZDS-MOwT7OyoWRqEZJglhrUjOLj2AN2fk3ABEK0mcUlYxx-58H2MdtnpVKSK8Ix_Ivj0z7-F6btZVsRjAtPk--khqS0oS6rqzPXMZ6CN-elj-HZUVGeXSvrfLRCUo1"
+                                    alt="Velvet Dynasty">
                             </div>
-                            <div class="movie-card__footer">
-                                <span class="movie-card__price">$14.50</span>
-                                <button class="btn btn--ticket">Comprar Entradas</button>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">★ 8.5</span>
                             </div>
-                        </div>
-                    </article>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">Velvet Dynasty</h3>
+                                    <p class="movie-card__genre">Drama, Historia</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$13.00</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        {{-- Movie Card 4 --}}
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmaC_RMDeS-ntvPQeZycAzbVsAFwDD1nowI9oYMRW-083LezjlNaA9cCWKDs--Z4WgH5crUkUrEuvAyZ_goJViIGAPoopC6LN7ZS9FQoytjyYa9jzmNlV2Mz9W52iIyg13AMneeLPf5Arnzlu1v6CUhqUm9SSscZeQScfwss8LS5KpohR-8sMe8uw6ZjM4hZE9t1zJRtlX-qX7Ydf2RWeapuoBAFzPcm8QGMK1yNDA98DywoffU_TOh3dpTNMeeZUzbFH2SSuzDqb0"
+                                    alt="Silence Speaks">
+                            </div>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">★ 7.8</span>
+                            </div>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">Silence Speaks</h3>
+                                    <p class="movie-card__genre">Terror, Thriller</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$14.50</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
+
+                        {{-- Movie Card 5 --}}
+                        <article class="movie-card">
+                            <div class="movie-card__poster">
+                                <img class="movie-card__img"
+                                    src="https://sacnkprodarcms.blob.core.windows.net/content/posters/HO00011952.jpg"
+                                    alt="Supermario Galaxy: La pelicula">
+                            </div>
+                            <div class="movie-card__rating">
+                                <span class="movie-card__rating-value">★ 9.0</span>
+                            </div>
+                            <div class="movie-card__info">
+                                <div>
+                                    <h3 class="movie-card__title">Supermario Galaxy: La pelicula</h3>
+                                    <p class="movie-card__genre">Animacion, Aventura</p>
+                                </div>
+                                <div class="movie-card__footer">
+                                    <span class="movie-card__price">$14.50</span>
+                                    <button class="btn btn--ticket">Comprar Entradas</button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <button class="movie-carousel__btn movie-carousel__btn--next" aria-label="Siguiente">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
                 </div>
             </div>
         </section>
     </main>
 @endsection
+
+@push('scripts')
+<script>
+    /* Inicializa cada carousel de películas: botones prev/next desplazan
+       el track por el ancho de una card + gap */
+    document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
+        var track = carousel.querySelector('.movie-carousel__track');
+        var btnPrev = carousel.querySelector('.movie-carousel__btn--prev');
+        var btnNext = carousel.querySelector('.movie-carousel__btn--next');
+
+        /* Desplazamiento = ancho de la primera card + gap del track */
+        function getScrollAmount() {
+            var card = track.querySelector('.movie-card');
+            if (!card) return 300;
+            var gap = parseInt(getComputedStyle(track).gap) || 32;
+            return card.offsetWidth + gap;
+        }
+
+        btnPrev.addEventListener('click', function() {
+            track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+
+        btnNext.addEventListener('click', function() {
+            track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+
+        /* Actualiza estado de botones según posición del scroll */
+        function updateButtons() {
+            btnPrev.disabled = track.scrollLeft <= 0;
+            btnNext.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+        }
+
+        track.addEventListener('scroll', updateButtons);
+        updateButtons();
+    });
+</script>
+@endpush
