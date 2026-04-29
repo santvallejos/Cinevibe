@@ -23,7 +23,7 @@
             <div class="contact-hero__content">
                 <h1 class="contact-hero__title">Centro de Atención al Cliente</h1>
                 <p class="contact-hero__subtitle">
-                    Elevamos tu experiencia cinematográfica con un servicio impecable y atención dedicada.
+                    Elevando tu viaje cinematográfico mediante un servicio impecable y un apoyo dedicado.
                 </p>
             </div>
         </section>

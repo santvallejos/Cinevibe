@@ -67,7 +67,6 @@
     font-size: var(--fs-xs);
     margin-bottom: var(--sp-2);
 }
-
 .movie-hero__title {
     font-family: var(--font-headline);
     font-size: var(--fs-6xl);
@@ -76,11 +75,19 @@
     color: var(--color-on-surface);
     text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     margin: 0;
+    
+    /* --- LAS CORRECCIONES AQUÍ --- */
+    text-align: center;      /* Centra el texto */
+    line-height: 1.2;        /* Da espacio vertical para que no se corte arriba/abajo */
+    padding: 10px 0;         /* Espacio extra para que brille el text-shadow */
+    display: block;          /* Asegura que ocupe el ancho disponible */
+    width: 100%;
 }
 
 @media (min-width: 768px) {
     .movie-hero__title {
         font-size: var(--fs-8xl);
+        line-height: 1.1;    /* Ajuste fino para tamaño grande */
     }
 }
 
