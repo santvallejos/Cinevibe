@@ -42,7 +42,7 @@
                 <div class="about-mission__text">
                     <h2 class="about-mission__headline">Compromiso con la Exclusividad</h2>
                     <p class="about-mission__body about-mission__body--xl">
-                        En <em class="about-mission__brand">The Velvet Curator</em>, no solo proyectamos
+                        En <em class="about-mission__brand">Cinevibe</em>, no solo proyectamos
                         películas; preservamos la mística del séptimo arte. Nuestra misión es transformar
                         cada función en una gala privada, donde la calidad técnica se encuentra con la
                         hospitalidad de clase mundial.
@@ -126,7 +126,7 @@
                     <div class="about-experience__curator">
                         <div class="about-experience__curator-bg"></div>
                         <div class="about-experience__curator-content">
-                            <h3 class="about-experience__curator-title">The Curator Circle</h3>
+                            <h3 class="about-experience__curator-title">Cinevibe Elite</h3>
                             <p class="about-experience__curator-text">
                                 Únase a nuestra membresía élite y obtenga acceso a pre-estrenos mundiales,
                                 asientos preferenciales permanentes y conserjería personalizada.
@@ -180,7 +180,7 @@
                         <span class="about-legacy__year">Hoy</span>
                         <h4 class="about-legacy__entry-title">El Referente del Lujo</h4>
                         <p class="about-legacy__entry-text">
-                            Hoy, The Velvet Curator es sinónimo de excelencia cinematográfica a nivel
+                            Hoy, Cinevibe es sinónimo de excelencia cinematográfica a nivel
                             internacional, siendo la sede preferida para los festivales más prestigiosos
                             del mundo.
                         </p>

@@ -118,10 +118,115 @@
     box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
 }
 
-/* Breakpoint md: muestra links y CTAs */
+/* ============================================================
+   Botón hamburguesa — visible solo en mobile (<768px)
+   ============================================================ */
+.nav-bar__hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 60;
+}
+
+/* Cada barra del ícono hamburguesa */
+.nav-bar__hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-neutral-100);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+
+/* Animación hamburguesa → X al abrir */
+.nav-bar__hamburger--open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-bar__hamburger--open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.nav-bar__hamburger--open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   Panel mobile — debajo del navbar, oculto por default
+   ============================================================ */
+.nav-bar__mobile {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 64px; /* altura del navbar */
+    left: 0;
+    width: 100%;
+    background-color: rgba(15, 15, 15, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 49;
+    padding: var(--sp-6) var(--sp-6) var(--sp-8);
+    gap: var(--sp-2);
+    box-shadow: var(--shadow-2xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Clase añadida por JS al abrir */
+.nav-bar__mobile--open {
+    display: flex;
+}
+
+/* Links dentro del panel mobile */
+.nav-bar__mobile-link {
+    color: var(--color-neutral-300);
+    font-family: var(--font-headline);
+    font-size: var(--fs-lg);
+    padding: var(--sp-3) var(--sp-2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: color var(--tr-base);
+}
+
+.nav-bar__mobile-link:last-of-type {
+    border-bottom: none;
+}
+
+.nav-bar__mobile-link:hover {
+    color: var(--color-neutral-100);
+}
+
+/* CTA (login/register) al pie del panel mobile */
+.nav-bar__mobile-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    margin-top: var(--sp-6);
+    padding-top: var(--sp-6);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================
+   Breakpoint md (>=768px): muestra links/CTA, oculta hamburguesa
+   ============================================================ */
 @media (min-width: 768px) {
     .nav-bar__links,
     .nav-bar__cta {
         display: flex;
+    }
+
+    .nav-bar__hamburger {
+        display: none;
+    }
+
+    /* Panel mobile nunca visible en desktop */
+    .nav-bar__mobile,
+    .nav-bar__mobile--open {
+        display: none !important;
     }
 }

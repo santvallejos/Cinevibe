@@ -23,7 +23,7 @@
         </div>
 
         {{-- Columna 2: géneros --}}
-        <div class="footer__col">
+        {{-- <div class="footer__col">
             <h4 class="footer__heading">Géneros</h4>
             <ul class="footer__list">
                 <li><a class="footer__link" href="#">Acción</a></li>
@@ -31,10 +31,10 @@
                 <li><a class="footer__link" href="#">Ciencia Ficción</a></li>
                 <li><a class="footer__link" href="#">Terror</a></li>
             </ul>
-        </div>
+        </div> --}}
 
         {{-- Columna 3: experiencias --}}
-        <div class="footer__col">
+        {{-- <div class="footer__col">
             <h4 class="footer__heading">Experiencia</h4>
             <ul class="footer__list">
                 <li><a class="footer__link" href="#">Premium IMAX</a></li>
@@ -42,16 +42,17 @@
                 <li><a class="footer__link" href="#">El Lounge</a></li>
                 <li><a class="footer__link" href="#">Eventos para Miembros</a></li>
             </ul>
-        </div>
+        </div> --}}
 
         {{-- Columna 4: legal --}}
         <div class="footer__col">
             <h4 class="footer__heading">Legal</h4>
             <ul class="footer__list">
-                <li><a class="footer__link" href="#">Politica de Privacidad</a></li>
+                {{-- <li><a class="footer__link" href="#">Politica de Privacidad</a></li> --}}
                 <li><a class="footer__link" href="#">Terminos y Condiciones</a></li>
-                <li><a class="footer__link" href="#">Preguntas Frecuentes</a></li>
-                <li><a class="footer__link" href="#">Contactanos</a></li>
+                <li><a class="footer__link" href="{{ route('about-us.index') }}">Sobre Nosotros</a></li>
+                <li><a class="footer__link" href="{{ route('contact.index') }}">Contactanos Y Preguntas Frecuentes</a>
+                </li>
             </ul>
         </div>
     </div>

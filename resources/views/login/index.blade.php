@@ -13,7 +13,7 @@
                 <div>
                     <h1 class="login__kicker">CINEVIBE</h1>
                     <h2 class="login__headline">
-                        La Experiencia <br />Velvet Curator.
+                        La Experiencia <br />Cinevibe.
                     </h2>
                     <p class="login__lead">
                         Ingresa a un mundo de excelencia cinematográfica curada. Tu sala de cine privada te espera.

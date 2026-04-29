@@ -23,7 +23,7 @@
             <div class="contact-hero__content">
                 <h1 class="contact-hero__title">Centro de Atención al Cliente</h1>
                 <p class="contact-hero__subtitle">
-                    Elevating your cinematic journey through impeccable service and dedicated support.
+                    Elevamos tu experiencia cinematográfica con un servicio impecable y atención dedicada.
                 </p>
             </div>
         </section>
@@ -37,7 +37,7 @@
                     <div>
                         <h2 class="contact-channels__section-title">
                             <span class="contact-channels__accent"></span>
-                            Direct Channels
+                            Canales Directos
                         </h2>
                         <div class="contact-channels__list">
 
@@ -47,7 +47,7 @@
                                     <span class="material-symbols-outlined contact-channel__icon">location_on</span>
                                 </div>
                                 <div>
-                                    <p class="contact-channel__label">Main Office</p>
+                                    <p class="contact-channel__label">Oficina Principal</p>
                                     <p class="contact-channel__value">
                                         Calle de la Terciopelo 42, Chamberí<br>
                                         28010 Madrid, Spain
@@ -61,7 +61,7 @@
                                     <span class="material-symbols-outlined contact-channel__icon">call</span>
                                 </div>
                                 <div>
-                                    <p class="contact-channel__label">Concierge Line</p>
+                                    <p class="contact-channel__label">Línea de Atención</p>
                                     <p class="contact-channel__value">+34 912 345 678</p>
                                 </div>
                             </div>
@@ -72,8 +72,8 @@
                                     <span class="material-symbols-outlined contact-channel__icon">mail</span>
                                 </div>
                                 <div>
-                                    <p class="contact-channel__label">Official Inquiry</p>
-                                    <p class="contact-channel__value">curator@velvetcurator.com</p>
+                                    <p class="contact-channel__label">Consultas Oficiales</p>
+                                    <p class="contact-channel__value">contacto@cinevibe.com</p>
                                 </div>
                             </div>
 
@@ -83,12 +83,12 @@
                     {{-- Tarjeta promocional de eventos privados --}}
                     <div class="contact-promo">
                         <div class="contact-promo__flare"></div>
-                        <h3 class="contact-promo__title">Private Screenings</h3>
+                        <h3 class="contact-promo__title">Proyecciones Privadas</h3>
                         <p class="contact-promo__text">
-                            Host your next gala or premiere in an atmosphere of unparalleled sophistication.
+                            Organiza tu próxima gala o premiere en un ambiente de sofisticación sin igual.
                         </p>
                         <a class="contact-promo__link" href="#">
-                            Explore Events
+                            Explorar Eventos
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
                     </div>
@@ -96,39 +96,39 @@
 
                 {{-- Columna derecha: formulario de consulta --}}
                 <div class="contact-form-panel">
-                    <h2 class="contact-form-panel__title">Sophisticated Inquiry</h2>
+                    <h2 class="contact-form-panel__title">Envíanos tu Consulta</h2>
                     <form class="contact-form" action="#">
 
                         {{-- Nombre (label flotante) --}}
                         <div class="contact-field">
                             <input class="contact-field__input" id="name" type="text" placeholder=" ">
-                            <label class="contact-field__label" for="name">Full Name</label>
+                            <label class="contact-field__label" for="name">Nombre Completo</label>
                         </div>
 
                         {{-- Email (label flotante) --}}
                         <div class="contact-field">
                             <input class="contact-field__input" id="email" type="email" placeholder=" ">
-                            <label class="contact-field__label" for="email">Email Address</label>
+                            <label class="contact-field__label" for="email">Correo Electrónico</label>
                         </div>
 
                         {{-- Asunto (select) --}}
                         <div class="contact-field">
                             <select class="contact-field__select" id="subject">
-                                <option disabled selected value="">Subject of Interest</option>
-                                <option value="booking">Ticketing &amp; Bookings</option>
-                                <option value="membership">Velvet Membership</option>
-                                <option value="events">Private Events</option>
-                                <option value="other">General Feedback</option>
+                                <option disabled selected value="">Asunto de Interés</option>
+                                <option value="booking">Entradas y Reservas</option>
+                                <option value="membership">Membresía Cinevibe</option>
+                                <option value="events">Eventos Privados</option>
+                                <option value="other">Comentarios Generales</option>
                             </select>
                         </div>
 
                         {{-- Mensaje (textarea con label flotante) --}}
                         <div class="contact-field">
                             <textarea class="contact-field__textarea" id="message" rows="4" placeholder=" "></textarea>
-                            <label class="contact-field__label" for="message">Your Message</label>
+                            <label class="contact-field__label" for="message">Tu Mensaje</label>
                         </div>
 
-                        <button class="contact-form__submit" type="submit">Submit Inquiry</button>
+                        <button class="contact-form__submit" type="submit">Enviar Consulta</button>
                     </form>
                 </div>
 
@@ -139,58 +139,57 @@
         <section class="contact-faq">
             <div class="contact-faq__inner">
                 <div class="contact-faq__header">
-                    <h2 class="contact-faq__title">Curated Assistance</h2>
-                    <p class="contact-faq__subtitle">Refined answers to your most frequent considerations.</p>
+                    <h2 class="contact-faq__title">Preguntas Frecuentes</h2>
+                    <p class="contact-faq__subtitle">Respuestas a las dudas más comunes de nuestros espectadores.</p>
                 </div>
 
                 <div class="contact-faq__list">
 
                     <details class="contact-faq__item" open>
                         <summary class="contact-faq__summary">
-                            <span class="contact-faq__question">How do I access the Velvet Lounge before my screening?</span>
+                            <span class="contact-faq__question">¿Cómo accedo a la sala VIP antes de mi función?</span>
                             <span class="material-symbols-outlined contact-faq__icon">expand_more</span>
                         </summary>
                         <div class="contact-faq__answer">
-                            All patrons with a Premier or Private Box ticket may access the Velvet Lounge
-                            45 minutes prior to their scheduled showtime. Simply present your digital
-                            curator pass at the entrance on Level 2.
+                            Todos los espectadores con entrada Premier o Palco Privado pueden acceder a la
+                            sala VIP 45 minutos antes del horario de su función. Solo presenta tu pase
+                            digital de Cinevibe en la entrada del Nivel 2.
                         </div>
                     </details>
 
                     <details class="contact-faq__item">
                         <summary class="contact-faq__summary">
-                            <span class="contact-faq__question">Can I modify a booking after confirmation?</span>
+                            <span class="contact-faq__question">¿Puedo modificar una reserva después de confirmarla?</span>
                             <span class="material-symbols-outlined contact-faq__icon">expand_more</span>
                         </summary>
                         <div class="contact-faq__answer">
-                            Modifications can be curated up to 4 hours before the screening time. Please
-                            navigate to 'My Curations' in your profile or contact our concierge line for
-                            immediate assistance.
+                            Podés realizar modificaciones hasta 4 horas antes del horario de la función.
+                            Ingresá a "Mis Reservas" en tu perfil o contactá nuestra línea de atención
+                            para asistencia inmediata.
                         </div>
                     </details>
 
                     <details class="contact-faq__item">
                         <summary class="contact-faq__summary">
-                            <span class="contact-faq__question">What are the benefits of the Membership program?</span>
+                            <span class="contact-faq__question">¿Cuáles son los beneficios de la Membresía Cinevibe?</span>
                             <span class="material-symbols-outlined contact-faq__icon">expand_more</span>
                         </summary>
                         <div class="contact-faq__answer">
-                            Membership offers tiered access to pre-releases, complementary gourmet
-                            concessions, and our quarterly 'Director's Choice' private screenings.
-                            Points are accumulated with every visit and can be redeemed for private
-                            suite upgrades.
+                            La membresía ofrece acceso escalonado a preventas, consumiciones gourmet
+                            gratuitas y proyecciones privadas trimestrales de la "Selección del Director".
+                            Acumulás puntos con cada visita y podés canjearlos por upgrades de palco.
                         </div>
                     </details>
 
                     <details class="contact-faq__item">
                         <summary class="contact-faq__summary">
-                            <span class="contact-faq__question">How are private events and screenings handled?</span>
+                            <span class="contact-faq__question">¿Cómo se gestionan los eventos y proyecciones privadas?</span>
                             <span class="material-symbols-outlined contact-faq__icon">expand_more</span>
                         </summary>
                         <div class="contact-faq__answer">
-                            Our dedicated events team handles every detail, from bespoke catering menus
-                            by our resident chef to technical support for corporate presentations. Please
-                            use the inquiry form above to initiate a consultation.
+                            Nuestro equipo de eventos se ocupa de cada detalle, desde menús de catering
+                            personalizados hasta soporte técnico para presentaciones corporativas. Usá
+                            el formulario de consulta de arriba para iniciar una conversación con nosotros.
                         </div>
                     </details>
 
