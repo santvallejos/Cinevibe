@@ -1,0 +1,202 @@
+/* ============================================
+   HOME PAGE ONLY
+============================================ */
+
+.home-page {
+    background-color: var(--color-bg);
+    color: var(--color-on-bg);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ============================================
+   UTILIDADES
+============================================ */
+
+.home-page .py-section {
+    padding-block: 4rem;
+}
+
+.home-page .cs-text-display-xl {
+    font-family: var(--font-display);
+    font-size: 64px;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+}
+
+.home-page .cs-text-headline-lg {
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.home-page .cs-text-body-lg {
+    font-size: 18px;
+}
+
+.home-page .cs-text-body-md {
+    font-size: 15px;
+}
+
+/* ============================================
+   HERO
+============================================ */
+
+.home-page .cs-hero {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    background-color: var(--color-surface);
+}
+
+.home-page .cs-hero__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.05);
+    transition: transform 8s ease;
+}
+
+.home-page .cs-hero:hover .cs-hero__bg {
+    transform: scale(1);
+}
+
+.home-page .cs-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        var(--color-bg) 0%,
+        rgba(19,19,19,.75) 50%,
+        transparent 100%
+    );
+}
+
+.home-page .cs-hero__content {
+    position: relative;
+    z-index: 10;
+}
+
+/* ============================================
+   BOTONES
+============================================ */
+
+.home-page .cs-btn {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.home-page .cs-btn--primary {
+    background: var(--color-primary-container);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 1rem 2rem;
+}
+
+.home-page .cs-btn--outline {
+    background: var(--color-surface-variant);
+    color: white;
+    border: 1px solid var(--color-outline);
+}
+
+.home-page .cs-btn--join {
+    background: var(--color-primary-container);
+    color: white;
+    border: none;
+}
+
+/* ============================================
+   TARJETAS
+============================================ */
+
+.home-page .cs-promo-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(26,26,26,.8);
+    box-shadow: 0 8px 30px rgba(0,0,0,.4);
+    height: 100%;
+}
+
+.home-page .cs-promo-card__image {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+}
+
+.home-page .cs-promo-card__body {
+    padding: 1.5rem;
+}
+
+.home-page .cs-promo-card__title {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.home-page .cs-promo-card__desc {
+    color: #ccc;
+    font-size: 15px;
+}
+
+/* ============================================
+   MEMBERSHIP
+============================================ */
+
+.home-page .cs-membership {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.home-page .cs-membership__inner {
+    background: var(--color-surface-high);
+    padding: 3rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-page .cs-membership__pricing {
+    background: rgba(0,0,0,.25);
+    padding: 2rem;
+    border-radius: 15px;
+    min-width: 280px;
+}
+
+.home-page .cs-membership__price {
+    font-size: 60px;
+    font-family: var(--font-display);
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+
+@media (max-width:768px){
+
+.home-page .cs-text-display-xl{
+    font-size:44px;
+}
+
+.home-page .cs-text-headline-lg{
+    font-size:28px;
+}
+
+.home-page .cs-hero{
+    height:480px;
+}
+
+.home-page .cs-membership__inner{
+    flex-direction:column;
+}
+
+.home-page .cs-membership__pricing{
+    width:100%;
+}
+
+}
