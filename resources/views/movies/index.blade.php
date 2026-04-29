@@ -18,24 +18,18 @@
                         Experiencia Premium
                     </div>
                     <h1 class="movie-hero__title">Cartelera</h1>
-
                 </div>
             </div>
         </section>
         {{-- FIN hero --}}
 
 
-
-
-        {{-- =====================================================
-             BLOQUE 2: Cartelera — ancho completo, fuera del grid
-        ====================================================== --}}
+        {{-- BLOQUE 2: Cartelera --}}
         <section class="home-section home-section--surface">
             <div class="container">
                 <header class="section-header">
                     <div class="section-header__inner">
                         <span class="section-header__kicker">Live Experience</span>
-
                     </div>
                     <div class="section-header__actions">
                         <button class="btn btn--icon">
@@ -45,223 +39,254 @@
                 </header>
 
                 <div class="movie-grid">
+
                     <article class="movie-card">
                         <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                <img src="/img/peliculas/supermario.jpg">
+                            <img class="movie-card__img" src="/img/peliculas/supermario.jpg" alt="Super Mario Galaxy">
                         </div>
                         <div class="movie-card__rating">
                             <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
-                                <h3 class="movie-card__title">Supermario Galaxy: La pelicula</h3>
+                                <h3 class="movie-card__title">SUPERMARIO GALAXY: LA PELICULA</h3>
                                 <p class="movie-card__genre">Animacion, Aventura</p>
                             </div>
                             <div class="movie-card__footer">
-
-                                <button class="btn btn--ticket">Comprar Boletos</button>
+                                <a href="{{ url('/movies/supermario') }}" class="btn btn--ticket">
+                                    Comprar Boletos
+                                </a>
                             </div>
                         </div>
                     </article>
 
                     <article class="movie-card">
                         <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                <img src="/img/peliculas/proyectofindelmundo.jpg">
+                            <img class="movie-card__img" src="/img/peliculas/proyectofindelmundo.jpg" alt="Proyecto Fin del Mundo">
                         </div>
                         <div class="movie-card__rating">
                             <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
-                                <h3 class="movie-card__title">Proyecto Fin del Mundo</h3>
+                                <h3 class="movie-card__title">PROYECTO FIN DEL MUNDO</h3>
                                 <p class="movie-card__genre">Ciencia Ficción</p>
                             </div>
                             <div class="movie-card__footer">
-
-                                <button class="btn btn--ticket">Comprar Boletos</button>
+                                <a href="{{ url('/movies/proyectofindelmundo') }}" class="btn btn--ticket">
+                                    Comprar Boletos
+                                </a>
                             </div>
                         </div>
                     </article>
 
                     <article class="movie-card">
                         <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                               <img src="/img/peliculas/Nurenberg.jpg">
+                            <img class="movie-card__img" src="/img/peliculas/Nurenberg.jpg" alt="Nurenberg">
                         </div>
                         <div class="movie-card__rating">
                             <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
-                                <h3 class="movie-card__title">Nurenberg: El Juicio del siglo</h3>
+                                <h3 class="movie-card__title">NURENBERG: EL JUICIO DEL SIGLO</h3>
                                 <p class="movie-card__genre">Drama</p>
                             </div>
                             <div class="movie-card__footer">
-
-                                <button class="btn btn--ticket">Comprar Boletos</button>
+                                <a href="{{ url('/movies/nurenberg') }}" class="btn btn--ticket">
+                                    Comprar Boletos
+                                </a>
                             </div>
                         </div>
                     </article>
 
                     <article class="movie-card">
                         <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                src="/img/peliculas/ElBufon2.jpg">
+                            <img class="movie-card__img" src="/img/peliculas/ElBufon2.jpg" alt="El Bufón 2">
                         </div>
                         <div class="movie-card__rating">
                             <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
-                                <h3 class="movie-card__title">El Bufón 2</h3>
+                                <h3 class="movie-card__title">EL BUFÓN 2</h3>
                                 <p class="movie-card__genre">Horror, Terror</p>
                             </div>
                             <div class="movie-card__footer">
-
-                                <button class="btn btn--ticket">Comprar Boletos</button>
+                                <a href="{{ url('/movies/elbufon2') }}" class="btn btn--ticket">
+                                    Comprar Boletos
+                                </a>
                             </div>
                         </div>
                     </article>
 
                     <article class="movie-card">
                         <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                src="/img/peliculas/ElBufon2.jpg">
+                            <img class="movie-card__img" src="/img/peliculas/mortalKombat.jpg" alt="Mortal Kombat II">
                         </div>
                         <div class="movie-card__rating">
                             <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
-                                <h3 class="movie-card__title">El Bufón 2</h3>
-                                <p class="movie-card__genre">Horror, Terror</p>
+                                <h3 class="movie-card__title">MORTAL KOMBAT II</h3>
+                                <p class="movie-card__genre">Acción</p>
                             </div>
                             <div class="movie-card__footer">
-
-                                <button class="btn btn--ticket">Comprar Boletos</button>
+                                <a href="{{ url('/movies/mortalKombat') }}" class="btn btn--ticket">
+                                    Comprar Boletos
+                                </a>
                             </div>
                         </div>
                     </article>
 
                     <article class="movie-card">
                         <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                src="/img/peliculas/ElBufon2.jpg">
+                            <img class="movie-card__img" src="/img/peliculas/Pelicula,eldiablo.jpg" alt="El Diablo Viste a la Moda">
                         </div>
                         <div class="movie-card__rating">
                             <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
-                                <h3 class="movie-card__title">El Bufón 2</h3>
-                                <p class="movie-card__genre">Horror, Terror</p>
+                                <h3 class="movie-card__title">EL DIABLO VISTE A LA MODA</h3>
+                                <p class="movie-card__genre">Comedia</p>
                             </div>
                             <div class="movie-card__footer">
-
-                                <button class="btn btn--ticket">Comprar Boletos</button>
+                                <a href="{{ url('/movies/eldiablo') }}" class="btn btn--ticket">
+                                    Comprar Boletos
+                                </a>
                             </div>
                         </div>
                     </article>
 
                     <article class="movie-card">
                         <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                src="/img/peliculas/ElBufon2.jpg">
+                            <img class="movie-card__img" src="/img/peliculas/MichaelJacjkson.jpg" alt="Michael">
                         </div>
                         <div class="movie-card__rating">
                             <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
-                                <h3 class="movie-card__title">El Bufón 2</h3>
-                                <p class="movie-card__genre">Horror, Terror</p>
+                                <h3 class="movie-card__title">MICHAEL</h3>
+                                <p class="movie-card__genre">Biografía, Drama</p>
                             </div>
                             <div class="movie-card__footer">
-
-                                <button class="btn btn--ticket">Comprar Boletos</button>
+                                <a href="{{ url('/movies/michael') }}" class="btn btn--ticket">
+                                    Comprar Boletos
+                                </a>
                             </div>
                         </div>
                     </article>
 
                     <article class="movie-card">
                         <div class="movie-card__poster">
-                            <img class="movie-card__img"
-                                src="/img/peliculas/ElBufon2.jpg">
+                            <img class="movie-card__img" src="/img/peliculas/Elmago.jpg" alt="El Mago del Kremlin">
                         </div>
                         <div class="movie-card__rating">
                             <span class="movie-card__rating-value">ESTRENO</span>
                         </div>
                         <div class="movie-card__info">
                             <div>
-                                <h3 class="movie-card__title">El Bufón 2</h3>
-                                <p class="movie-card__genre">Horror, Terror</p>
+                                <h3 class="movie-card__title">EL MAGO DEL KREMLIN</h3>
+                                <p class="movie-card__genre">Thriller</p>
                             </div>
                             <div class="movie-card__footer">
-
-                                <button class="btn btn--ticket">Comprar Boletos</button>
+                                <a href="{{ url('/movies/ElmagodelKremlin') }}" class="btn btn--ticket">
+                                    Comprar Boletos
+                                </a>
                             </div>
                         </div>
                     </article>
-                </div>
-            </div>
+
+                </div>{{-- fin .movie-grid --}}
+            </div>{{-- fin .container --}}
         </section>
         {{-- FIN BLOQUE 2 --}}
 
 
-        {{-- Sección Coming Soon con scroll horizontal --}}
+        {{-- Sección Próximamente --}}
         <section class="home-section home-section--surface-lowest">
             <div class="container">
-                {{-- Cabecera con divisor --}}
+
                 <header class="section-header section-header--divider">
-                    <h2 class="section-header__title">Proximamente</h2>
+                    <h2 class="section-header__title">PRÓXIMOS ESTRENOS</h2>
                     <div class="section-header__divider"></div>
                     <button class="section-header__action">
                         <span>View Calendar</span>
                     </button>
                 </header>
 
-                {{-- Lista horizontal con scroll snap --}}
-                <div class="preview-row hide-scrollbar">
-                    {{-- Preview 1 --}}
-                    <article class="preview-card">
-                        <div class="preview-card__media">
-                            <img class="preview-card__img"
-                                data-alt="Cinematic shot of a high-speed car chase at night with glowing taillights and blurred city lights in the background"
-                               src="/img/peliculas/Spiderman1.jpg">
+                <div class="movie-grid">
+
+                    <article class="movie-card">
+                        <div class="movie-card__poster">
+                            <img class="movie-card__img" src="/img/peliculas/Spiderman1.jpg" alt="Spider-Man: Un Nuevo Día">
                         </div>
-                        <h3 class="preview-card__title">Velocity: Drift Protocol</h3>
-                        <p class="preview-card__meta">Directed by Marcus Thorne</p>
+                        <div class="movie-card__rating">
+                            <span class="movie-card__rating-value">30 DE JULIO</span>
+                        </div>
+                        <div class="movie-card__info">
+                            <div>
+                                <h3 class="movie-card__title">SPIDER-MAN: UN NUEVO DÍA</h3>
+                                <p class="movie-card__genre">Acción, Aventura</p>
+                            </div>
+                        </div>
                     </article>
 
-                    {{-- Preview 2 --}}
-                    <article class="preview-card">
-                        <div class="preview-card__media">
-                            <img class="preview-card__img"
-                                data-alt="Dramatic mountain peaks covered in snow under a starry night sky with deep purple and blue cinematic grading"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWwFyh93hqY68qn-pgjxZ1JeAZc8HYmSeGThKG7ZrsPF1Az0BExfnXUbYU_z3xXQ8H2iuArgr4ymg4IDAPKMesf9iPdYphBsIQFcoJMvNU14gGFKxlmARnG6Zgx5q9Nin8DGAYc8ev1CjwEtWvZip_ZNqa-cZu2ZDN2bGXZBbNmM1m1j-tkOCL8lCRPIkpdR8vQCVtIBrygDUywvM9dK4KTfLLxd4xsF9dDJ6wXgwjZ1xz2J9Fe1IM8VQGSwTNLPpgCk92jQeQHlYG">
-                            <span class="preview-card__date">Jan 02</span>
+                    <article class="movie-card">
+                        <div class="movie-card__poster">
+                            <img class="movie-card__img" src="/img/peliculas/TOYSTORY5.jpg" alt="Toy Story 5">
                         </div>
-                        <h3 class="preview-card__title">Summit of Silence</h3>
-                        <p class="preview-card__meta">Documentary Feature</p>
+                        <div class="movie-card__rating">
+                            <span class="movie-card__rating-value">18 DE JUNIO</span>
+                        </div>
+                        <div class="movie-card__info">
+                            <div>
+                                <h3 class="movie-card__title">TOY STORY 5</h3>
+                                <p class="movie-card__genre">Animación, Aventura</p>
+                            </div>
+                        </div>
                     </article>
 
-                    {{-- Preview 3 --}}
-                    <article class="preview-card">
-                        <div class="preview-card__media">
-                            <img class="preview-card__img"
-                                data-alt="Dark fantasy landscape with a gothic castle silhouette against a massive moon and swirling magical particles"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjpVrA7Z10G0bdD9-HNzOY79zUTB9xwmknUkjHdj40xWNiE-OXxPgtIsMCKfCCEVEHLbQsB-xSFJ5sWrPUZVy_z0KpZ0upYUH9jX_daeYTLlTulYogZi7RzkKcgR7A5KfxbOEhFx_I0S5vcL9HPi2BBPDgPB9N9-Hm2mH4pgLl3JmxfsmAJyX6vns63HFRCLEbigFPFzqRZYi-IDd1ZPKoO9xCiRHBAtAWH_KXqYOkmROL5Os2OLFxBFO9yKeJ-J4xPmJPfn0kbVZ-">
-                            <span class="preview-card__date">Jan 18</span>
+                    <article class="movie-card">
+                        <div class="movie-card__poster">
+                            <img class="movie-card__img" src="/img/peliculas/LA ODISEA.jpg" alt="La Odisea">
                         </div>
-                        <h3 class="preview-card__title">Eternal Kingdom</h3>
-                        <p class="preview-card__meta">Epic Fantasy</p>
+                        <div class="movie-card__rating">
+                            <span class="movie-card__rating-value">16 DE JULIO</span>
+                        </div>
+                        <div class="movie-card__info">
+                            <div>
+                                <h3 class="movie-card__title">LA ODISEA</h3>
+                                <p class="movie-card__genre">Aventura</p>
+                            </div>
+                        </div>
                     </article>
 
-        {{-- =====================================================
-             BLOQUE 3: Banner promocional — solo el promo, nada más
-        ====================================================== --}}
+                    <article class="movie-card">
+                        <div class="movie-card__poster">
+                            <img class="movie-card__img" src="/img/peliculas/Zonaderiesgo.jpg" alt="Zona de Riesgo">
+                        </div>
+                        <div class="movie-card__rating">
+                            <span class="movie-card__rating-value">28 DE MAYO</span>
+                        </div>
+                        <div class="movie-card__info">
+                            <div>
+                                <h3 class="movie-card__title">ZONA DE RIESGO</h3>
+                                <p class="movie-card__genre">Thriller, Drama</p>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>{{-- fin .movie-grid --}}
+            </div>{{-- fin .container --}}
+        </section>
+        {{-- FIN Próximamente --}}
+
+
+        {{-- BLOQUE 3: Banner promocional --}}
         <section class="home-section home-section--compact">
             <div class="container">
                 <div class="promo-banner">
