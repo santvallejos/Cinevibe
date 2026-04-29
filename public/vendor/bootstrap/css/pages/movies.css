@@ -153,7 +153,7 @@
     }
 }
 
-/* Bloque "Narrative" — sinopsis */
+/* Bloque sinopsis */
 .movie-block {
     display: flex;
     flex-direction: column;
@@ -177,7 +177,7 @@
     margin: 0;
 }
 
-/* Trailer placeholder */
+/* Trailer */
 .movie-trailer {
     position: relative;
     aspect-ratio: 16 / 9;
@@ -185,7 +185,6 @@
     border-radius: var(--radius-xl);
     overflow: hidden;
     cursor: pointer;
-    border: 1px solid rgba(94, 63, 59, 0.1);
 }
 
 .movie-trailer__bg {
@@ -194,67 +193,14 @@
     background-size: cover;
     background-position: center;
     opacity: 0.6;
-    transition: transform var(--tr-slower);
+    transition: transform .4s ease;
 }
 
 .movie-trailer:hover .movie-trailer__bg {
     transform: scale(1.05);
 }
 
-.movie-trailer__play {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.movie-trailer__play-btn {
-    width: 5rem;
-    height: 5rem;
-    background-color: rgba(229, 9, 20, 0.9);
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: var(--shadow-2xl);
-    transition: transform var(--tr-base);
-}
-
-.movie-trailer:hover .movie-trailer__play-btn {
-    transform: scale(1.1);
-}
-
-.movie-trailer__label {
-    position: absolute;
-    bottom: var(--sp-4);
-    left: var(--sp-6);
-    font-family: var(--font-headline);
-    font-weight: var(--fw-bold);
-    color: var(--color-on-surface);
-}
-
-/* === Cast grid ============================================ */
-.cast-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: var(--sp-8);
-}
-
-.cast-header__link {
-    font-size: var(--fs-sm);
-    color: var(--color-primary);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.cast-header__link:hover {
-    text-decoration: underline;
-}
-
+/* Cast */
 .cast-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -267,200 +213,88 @@
     }
 }
 
-.cast-card__media {
-    aspect-ratio: 4 / 5;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    background-color: var(--color-surface-container);
-    margin-bottom: var(--sp-4);
-}
-
-.cast-card__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--tr-slow);
-}
-
-.cast-card:hover .cast-card__img {
-    transform: scale(1.1);
-}
-
-.cast-card__name {
-    font-weight: var(--fw-bold);
-    color: var(--color-on-surface);
-    margin: 0 0 var(--sp-1);
-}
-
-.cast-card__role {
-    font-size: var(--fs-sm);
-    color: var(--color-neutral-500);
-    margin: 0;
-}
-
-/* === Booking widget (aside) ================================ */
+/* Booking */
 .booking {
     position: sticky;
     top: 7rem;
     background-color: var(--color-surface-container-low);
     border-radius: var(--radius-xl);
     padding: var(--sp-8);
-    border: 1px solid rgba(94, 63, 59, 0.1);
-    box-shadow: var(--shadow-2xl);
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-8);
 }
 
-.booking__title {
-    font-family: var(--font-headline);
-    font-size: var(--fs-xl);
-    font-weight: var(--fw-bold);
-    margin: 0 0 var(--sp-6);
-    color: var(--color-on-surface);
+/* ============================================================
+   IMÁGENES
+   ============================================================ */
+
+.preview-card__media {
+    width: 100%;
+    height: 220px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.booking__section {
-    margin-bottom: var(--sp-8);
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-3);
+.preview-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
-.booking__label {
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-neutral-500);
-    font-weight: var(--fw-bold);
+.preview-card__img--top {
+    object-position: center top;
 }
 
-/* Fechas horizontales */
-.booking__dates {
-    display: flex;
-    gap: var(--sp-3);
-    overflow-x: auto;
-    padding-bottom: var(--sp-2);
+/* ============================================================
+   CORRECCIÓN DE MOVIE GRID (4 arriba y 4 abajo)
+   ============================================================ */
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--sp-6);
+    overflow: visible;
+    padding-bottom: 0;
 }
 
-.booking__date {
-    flex-shrink: 0;
-    width: 4rem;
-    height: 5rem;
-    border-radius: var(--radius-xl);
-    background-color: var(--color-surface-container-high);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-on-surface-variant);
-    cursor: pointer;
-    transition: background-color var(--tr-base);
+.movie-card {
+    width: 100%;
+    flex-shrink: initial;
 }
 
-.booking__date:hover {
-    background-color: var(--color-surface-bright);
+/* Tablet */
+@media (max-width: 992px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.booking__date--active {
-    background-color: var(--color-primary-container);
-    color: white;
-    box-shadow: 0 0 0 2px var(--color-primary);
+/* Celular */
+@media (max-width: 576px) {
+    .movie-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.movie-grid{
+    display:grid !important;
+    grid-template-columns:repeat(4,1fr) !important;
+    gap:24px !important;
+    overflow:visible !important;
 }
 
-.booking__date-dow {
-    font-size: var(--fs-xs);
+.movie-card{
+    width:100% !important;
+    flex-shrink:unset !important;
 }
 
-.booking__date-num {
-    font-size: var(--fs-xl);
-    font-weight: var(--fw-black);
+@media(max-width:992px){
+    .movie-grid{
+        grid-template-columns:repeat(2,1fr) !important;
+    }
 }
 
-/* Grupo horarios */
-.booking__times-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-3);
-}
-
-.booking__times-label {
-    font-size: var(--fs-10);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
-    letter-spacing: -0.025em;
-}
-
-.booking__times-label--gold {
-    color: var(--color-secondary-fixed-dim);
-}
-
-.booking__times-label--muted {
-    color: var(--color-neutral-500);
-}
-
-.booking__times {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--sp-2);
-}
-
-.booking__time {
-    padding: var(--sp-2) var(--sp-4);
-    border-radius: var(--radius-lg);
-    background-color: var(--color-surface-container-highest);
-    font-size: var(--fs-sm);
-    font-weight: var(--fw-bold);
-    border: 1px solid rgba(94, 63, 59, 0.3);
-    cursor: pointer;
-    transition: border-color var(--tr-base);
-}
-
-.booking__time:hover {
-    border-color: var(--color-primary);
-}
-
-.booking__time--active {
-    background-color: rgba(229, 9, 20, 0.1);
-    color: var(--color-primary);
-    border-color: rgba(229, 9, 20, 0.5);
-}
-
-/* Footer checkout */
-.booking__footer {
-    padding-top: var(--sp-6);
-    border-top: 1px solid rgba(94, 63, 59, 0.1);
-}
-
-.booking__summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--sp-6);
-}
-
-.booking__summary-label {
-    font-size: var(--fs-sm);
-    color: var(--color-on-surface-variant);
-}
-
-.booking__summary-val {
-    color: var(--color-on-surface);
-    font-weight: var(--fw-bold);
-}
-
-.booking__price {
-    font-family: var(--font-headline);
-    font-size: var(--fs-xl);
-    font-weight: var(--fw-black);
-    color: var(--color-on-surface);
-}
-
-.booking__hint {
-    font-size: var(--fs-10);
-    text-align: center;
-    margin-top: var(--sp-4);
-    color: var(--color-neutral-500);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+@media(max-width:576px){
+    .movie-grid{
+        grid-template-columns:1fr !important;
+    }
 }

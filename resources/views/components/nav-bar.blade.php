@@ -8,7 +8,7 @@
         <span class="nav-bar__brand">Cinevibe</span>
 <a class="nav-bar__link {{ request()->routeIs('index') ? 'nav-bar__link--active' : '' }}" href="{{ route('index') }}">Inicio</a>
 <a class="nav-bar__link {{ request()->routeIs('movies.*') ? 'nav-bar__link--active' : '' }}" href="{{ route('movies.index') }}">Peliculas</a>
-<a class="nav-bar__link" href="#">Ofertas</a>
+<a class="nav-bar__link {{ request()->routeIs('ofertas.*') ? 'nav-bar__link--active' : '' }}" href="{{ route('ofertas.index') }}">Ofertas</a>
 <a class="nav-bar__link" href="#">Compra</a>
 <a class="nav-bar__link" href="#">Contacto</a>
 <a class="nav-bar__link" href="#">¿Quienes Somos?</a>
