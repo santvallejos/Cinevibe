@@ -62,3 +62,7 @@ Route::get('/sobre-nosotros', function () {
 Route::get('/contacto', function () {
     return view('contact.index');
 })->name('contact.index');
+
+Route::get('/terminos-condiciones', function () {
+    return view('terms-and-conditions.index');
+})->name('terms-and-conditions.index');

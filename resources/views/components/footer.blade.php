@@ -49,7 +49,8 @@
             <h4 class="footer__heading">Legal</h4>
             <ul class="footer__list">
                 {{-- <li><a class="footer__link" href="#">Politica de Privacidad</a></li> --}}
-                <li><a class="footer__link" href="#">Terminos y Condiciones</a></li>
+                <li><a class="footer__link" href="{{ route('terms-and-conditions.index') }}">Terminos y Condiciones</a>
+                </li>
                 <li><a class="footer__link" href="{{ route('about-us.index') }}">Sobre Nosotros</a></li>
                 <li><a class="footer__link" href="{{ route('contact.index') }}">Contactanos Y Preguntas Frecuentes</a>
                 </li>
