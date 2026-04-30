@@ -66,3 +66,11 @@ Route::get('/contacto', function () {
 Route::get('/terminos-condiciones', function () {
     return view('terms-and-conditions.index');
 })->name('terms-and-conditions.index');
+
+Route::get('/select-movie', function () {
+    return view('cart.select-movie.index');
+})->name('select-movie.index');
+
+Route::get('/movie', function () {
+    return view('cart.movie.index');
+})->name('cart.movie.index');

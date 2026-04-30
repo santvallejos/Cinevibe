@@ -123,7 +123,8 @@
                 </div>
                 <div class="seat-legend__item">
                     <div class="seat-legend__swatch seat-legend__swatch--premium">
-                        <span class="material-symbols-outlined material-symbols-outlined--fill seat-legend__icon">star</span>
+                        <span
+                            class="material-symbols-outlined material-symbols-outlined--fill seat-legend__icon">star</span>
                     </div>
                     <span class="seat-legend__label">Premium</span>
                 </div>
@@ -180,10 +181,10 @@
                         </div>
                         <p class="order-card__taxes">Incl. Impuestos y Tasas</p>
                     </div>
-                    <button class="btn btn--primary btn--block btn--lg">
+                    <a href="{{ route('pay.index') }}" class="btn btn--primary btn--block btn--lg">
                         Proceder al Pago
                         <span class="material-symbols-outlined">arrow_forward</span>
-                    </button>
+                    </a>
                     <p class="order-card__note">
                         Los asientos se reservarán por 10:00 minutos tras hacer clic en proceder.
                     </p>
