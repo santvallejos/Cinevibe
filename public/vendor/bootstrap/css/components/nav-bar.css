@@ -1,0 +1,232 @@
+/* ============================================================
+   nav-bar.css — Barra de navegación superior fija
+   ============================================================ */
+
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--sp-4) var(--sp-8);
+    background-color: rgba(23, 23, 23, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-2xl);
+}
+
+/* Bloque izquierdo: logo + links */
+.nav-bar__left {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-12);
+}
+
+/* Logo de marca */
+.nav-bar__brand {
+    font-family: var(--font-headline);
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-black);
+    letter-spacing: -0.05em;
+    color: #dc2626;
+    text-transform: uppercase;
+}
+
+/* Links de navegación (ocultos en mobile) */
+.nav-bar__links {
+    display: none;
+    align-items: center;
+    gap: var(--sp-8);
+    font-family: var(--font-headline);
+    letter-spacing: -0.025em;
+}
+
+.nav-bar__link {
+    color: var(--color-neutral-400);
+    transition: color var(--tr-base);
+}
+
+.nav-bar__link:hover {
+    color: var(--color-neutral-100);
+}
+
+/* Link activo — subrayado rojo */
+.nav-bar__link--active {
+    color: #ef4444;
+    font-weight: var(--fw-bold);
+    border-bottom: 2px solid #dc2626;
+    padding-bottom: var(--sp-1);
+}
+
+/* Bloque derecho: acciones e iconos */
+.nav-bar__right {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-6);
+}
+
+/* Iconos de utilidad (location, search) */
+.nav-bar__icons {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    color: var(--color-on-surface-variant);
+}
+
+.nav-bar__icon-btn {
+    transform: scale(0.95);
+    transition: opacity var(--tr-base);
+}
+
+.nav-bar__icon-btn:active {
+    opacity: 0.8;
+}
+
+/* Bloque CTA (login/register) — oculto en mobile */
+.nav-bar__cta {
+    display: none;
+    align-items: center;
+    gap: var(--sp-4);
+}
+
+.nav-bar__login {
+    color: var(--color-on-surface);
+    font-weight: var(--fw-semibold);
+    transition: color var(--tr-base);
+}
+
+.nav-bar__login:hover {
+    color: var(--color-primary);
+}
+
+.nav-bar__register {
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    padding: var(--sp-2) var(--sp-6);
+    border-radius: var(--radius-full);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: box-shadow var(--tr-base);
+}
+
+.nav-bar__register:hover {
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+}
+
+/* ============================================================
+   Botón hamburguesa — visible solo en mobile (<768px)
+   ============================================================ */
+.nav-bar__hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 60;
+}
+
+/* Cada barra del ícono hamburguesa */
+.nav-bar__hamburger span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-neutral-100);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+
+/* Animación hamburguesa → X al abrir */
+.nav-bar__hamburger--open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-bar__hamburger--open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.nav-bar__hamburger--open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
+   Panel mobile — debajo del navbar, oculto por default
+   ============================================================ */
+.nav-bar__mobile {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 64px; /* altura del navbar */
+    left: 0;
+    width: 100%;
+    background-color: rgba(15, 15, 15, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 49;
+    padding: var(--sp-6) var(--sp-6) var(--sp-8);
+    gap: var(--sp-2);
+    box-shadow: var(--shadow-2xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Clase añadida por JS al abrir */
+.nav-bar__mobile--open {
+    display: flex;
+}
+
+/* Links dentro del panel mobile */
+.nav-bar__mobile-link {
+    color: var(--color-neutral-300);
+    font-family: var(--font-headline);
+    font-size: var(--fs-lg);
+    padding: var(--sp-3) var(--sp-2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: color var(--tr-base);
+}
+
+.nav-bar__mobile-link:last-of-type {
+    border-bottom: none;
+}
+
+.nav-bar__mobile-link:hover {
+    color: var(--color-neutral-100);
+}
+
+/* CTA (login/register) al pie del panel mobile */
+.nav-bar__mobile-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    margin-top: var(--sp-6);
+    padding-top: var(--sp-6);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================
+   Breakpoint md (>=768px): muestra links/CTA, oculta hamburguesa
+   ============================================================ */
+@media (min-width: 768px) {
+    .nav-bar__links,
+    .nav-bar__cta {
+        display: flex;
+    }
+
+    .nav-bar__hamburger {
+        display: none;
+    }
+
+    /* Panel mobile nunca visible en desktop */
+    .nav-bar__mobile,
+    .nav-bar__mobile--open {
+        display: none !important;
+    }
+}

@@ -1,0 +1,126 @@
+/* ============================================================
+   buttons.css — Sistema de botones reusable (BEM)
+   .btn           → base
+   .btn--primary  → CTA rojo con glow
+   .btn--gold     → CTA secundario dorado (login/register)
+   .btn--ghost    → texto + hover, sin fondo
+   .btn--icon     → botón circular solo icono
+   .btn--pill     → redondeado total (rounded-full)
+   ============================================================ */
+
+/* Botón base: reset + tipografía + layout inline */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    padding: var(--sp-3) var(--sp-6);
+    font-family: var(--font-headline);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--tr-base);
+    border: none;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Variante primaria — rojo de marca con glow rojo */
+.btn--primary {
+    background: linear-gradient(
+        to right,
+        var(--color-primary),
+        var(--color-primary-container)
+    );
+    color: #ffffff;
+    box-shadow: var(--shadow-red);
+}
+
+.btn--primary:hover {
+    box-shadow: var(--shadow-red-hover);
+    transform: translateY(-2px);
+}
+
+/* Variante ticket/Buy — fondo container sólido */
+.btn--ticket {
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    padding: var(--sp-2) var(--sp-5);
+    font-size: var(--fs-xs);
+}
+
+.btn--ticket:hover {
+    background-color: var(--color-primary);
+}
+
+/* Variante gold/secundaria — botones de autenticación */
+.btn--gold {
+    background: linear-gradient(
+        to bottom right,
+        var(--color-secondary-fixed-dim),
+        #b89600
+    );
+    color: var(--color-on-secondary);
+    box-shadow: 0 10px 30px rgba(250, 189, 0, 0.2);
+    padding: var(--sp-4) var(--sp-6);
+    letter-spacing: 0.15em;
+}
+
+.btn--gold:hover {
+    box-shadow: 0 15px 40px rgba(250, 189, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Variante secondary container — "Become a Member" */
+.btn--secondary {
+    background-color: var(--color-secondary-container);
+    color: var(--color-on-secondary-container);
+    padding: var(--sp-4) var(--sp-10);
+    letter-spacing: 0.15em;
+}
+
+.btn--secondary:hover {
+    transform: scale(1.05);
+}
+
+/* Variante ghost — solo texto con chevron */
+.btn--ghost {
+    background: transparent;
+    color: var(--color-on-surface);
+    padding: var(--sp-2) var(--sp-3);
+    box-shadow: none;
+}
+
+.btn--ghost:hover {
+    gap: var(--sp-3);
+}
+
+/* Botón icono circular (filtros, búsqueda, añadir) */
+.btn--icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(94, 63, 59, 0.2);
+}
+
+.btn--icon:hover {
+    background-color: var(--color-surface-container-high);
+}
+
+/* Bloque full width — usado en forms y pagos */
+.btn--block {
+    width: 100%;
+}
+
+/* Tamaño lg — botones principales de secciones hero */
+.btn--lg {
+    padding: var(--sp-5) var(--sp-6);
+    font-size: var(--fs-base);
+    letter-spacing: 0.15em;
+}

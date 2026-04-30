@@ -1,0 +1,70 @@
+/* ============================================================
+   section-header.css — Cabecera reutilizable de sección
+   (título + badge + acciones)
+   ============================================================ */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--sp-12);
+}
+
+.section-header__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+}
+
+.section-header__kicker {
+    color: var(--color-primary);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: var(--fs-sm);
+}
+
+.section-header__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-bold);
+    margin: 0;
+}
+
+/* Variante con linea divisoria + título secundario (Coming Soon) */
+.section-header--divider {
+    align-items: center;
+    gap: var(--sp-4);
+}
+
+.section-header--divider .section-header__title {
+    font-size: var(--fs-3xl);
+}
+
+.section-header__divider {
+    flex: 1;
+    height: 1px;
+    background-color: rgba(94, 63, 59, 0.2);
+}
+
+.section-header__action {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    color: var(--color-on-surface-variant);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color var(--tr-base);
+}
+
+.section-header__action:hover {
+    color: var(--color-on-surface);
+}
+
+/* Acciones derecha (ej: botón filtro) */
+.section-header__actions {
+    display: flex;
+    gap: var(--sp-4);
+}

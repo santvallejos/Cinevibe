@@ -1,0 +1,693 @@
+/* ============================================================
+   cart-movie.css — Selección de Película (Audio, Formato, Fecha, Horario)
+   Secciones: Hero, Config (Prefs | Schedule), Action Bar
+   ============================================================ */
+
+/* ====== MAIN ====== */
+.movie-main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-top: 0;
+}
+
+@media (min-width: 768px) {
+    .movie-main {
+        padding-top: 5rem; /* pt-20 */
+    }
+}
+
+/* ====== HERO ====== */
+.movie-hero {
+    position: relative;
+    width: 100%;
+    height: 512px;
+    background-color: var(--color-surface-container-lowest);
+}
+
+@media (min-width: 768px) {
+    .movie-hero {
+        height: 665px;
+    }
+}
+
+/* Fondo con imagen (background-image se aplica inline desde la vista) */
+.movie-hero__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Gradiente de oscurecimiento hacia arriba */
+.movie-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        var(--color-surface) 0%,
+        rgba(19, 19, 19, 0.6) 50%,
+        transparent 100%
+    );
+}
+
+/* Contenido en la parte inferior del hero */
+.movie-hero__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 1536px;
+    margin: 0 auto;
+    right: 0;
+    padding: 0 var(--sp-6) var(--sp-8);
+}
+
+@media (min-width: 768px) {
+    .movie-hero__content {
+        padding: 0 var(--sp-12) var(--sp-16);
+    }
+}
+
+/* Badge "Now Showing" */
+.movie-hero__badge {
+    display: inline-block;
+    padding: var(--sp-1) var(--sp-3);
+    margin-bottom: var(--sp-4);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+    border-radius: var(--radius);
+    font-family: var(--font-label);
+}
+
+/* Título de la película */
+.movie-hero__title {
+    font-family: var(--font-headline);
+    font-size: 2.25rem;
+    font-weight: var(--fw-extrabold);
+    letter-spacing: -0.025em;
+    color: var(--color-on-surface);
+    margin: 0 0 var(--sp-2);
+    line-height: 1.05;
+}
+
+@media (min-width: 768px) {
+    .movie-hero__title {
+        font-size: var(--fs-6xl);
+    }
+}
+
+/* Fila de metadatos (género, duración, rating) */
+.movie-hero__meta {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    color: var(--color-on-surface-variant);
+    font-family: var(--font-label);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+}
+
+@media (min-width: 768px) {
+    .movie-hero__meta {
+        font-size: var(--fs-base);
+    }
+}
+
+/* Punto separador */
+.movie-hero__dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    background-color: var(--color-on-surface-variant);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+/* Rating con estrella */
+.movie-hero__rating {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+    color: var(--color-secondary-fixed-dim);
+}
+
+.movie-hero__rating .material-symbols-outlined {
+    font-size: 18px;
+}
+
+/* ====== PANEL DE CONFIGURACIÓN ====== */
+.movie-config {
+    max-width: 1536px;
+    margin: 0 auto;
+    padding: var(--sp-8) var(--sp-6);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-8);
+}
+
+@media (min-width: 768px) {
+    .movie-config {
+        padding: var(--sp-12);
+        gap: var(--sp-16);
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-config {
+        grid-template-columns: 4fr 8fr; /* col-span-4 / col-span-8 */
+    }
+}
+
+/* ====== COLUMNA IZQUIERDA: Preferencias ====== */
+.movie-prefs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-10);
+}
+
+.movie-prefs__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.025em;
+    margin: 0 0 var(--sp-4);
+}
+
+/* Lista de opciones de radio (versión / audio) */
+.movie-version-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+}
+
+/* Label-wrapper clickeable */
+.movie-version-option {
+    cursor: pointer;
+    position: relative;
+    display: block;
+}
+
+/* Input radio oculto accesiblemente */
+.movie-version-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Card visible de versión */
+.movie-version-card {
+    padding: var(--sp-4);
+    background-color: var(--color-surface-container-low);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color var(--tr-base);
+}
+
+/* Card activa cuando el radio está checked */
+.movie-version-input:checked + .movie-version-card {
+    background-color: var(--color-surface-container-high);
+}
+
+.movie-version-label {
+    font-family: var(--font-label);
+    font-weight: var(--fw-medium);
+    color: var(--color-on-surface);
+}
+
+.movie-version-label--muted {
+    color: var(--color-on-surface-variant);
+}
+
+/* Círculo indicador exterior */
+.movie-version-indicator {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-outline-variant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color var(--tr-base);
+}
+
+.movie-version-input:checked + .movie-version-card .movie-version-indicator {
+    border-color: var(--color-secondary-fixed-dim);
+}
+
+/* Punto interior del radio */
+.movie-version-dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-secondary-fixed-dim);
+    opacity: 0;
+    transition: opacity var(--tr-base);
+}
+
+.movie-version-input:checked + .movie-version-card .movie-version-dot {
+    opacity: 1;
+}
+
+/* Lista de formatos (IMAX / Standard) */
+.movie-format-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+}
+
+.movie-format-option {
+    cursor: pointer;
+    display: block;
+}
+
+.movie-format-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Card de formato (IMAX / Digital) */
+.movie-format-card {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-surface-container-low);
+    border-radius: var(--radius-xl);
+    padding: var(--sp-5);
+    border: 1px solid transparent;
+    transition: background-color var(--tr-base), box-shadow var(--tr-base);
+}
+
+.movie-format-input:checked + .movie-format-card {
+    background-color: var(--color-surface-container-high);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Blob decorativo rojo en esquina */
+.movie-format-card__flare {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6rem;
+    height: 6rem;
+    background-color: rgba(229, 9, 20, 0.1);
+    border-bottom-left-radius: var(--radius-full);
+    filter: blur(24px);
+    pointer-events: none;
+}
+
+.movie-format-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--sp-2);
+}
+
+.movie-format-card__name {
+    font-family: var(--font-headline);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-xl);
+    color: var(--color-on-surface);
+}
+
+.movie-format-card__name--muted {
+    color: var(--color-on-surface-variant);
+}
+
+/* Badge "Premium" */
+.movie-format-card__badge {
+    color: var(--color-primary-container);
+    font-size: var(--fs-10);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: var(--sp-1) var(--sp-2);
+    background-color: rgba(229, 9, 20, 0.1);
+    border-radius: var(--radius);
+}
+
+.movie-format-card__desc {
+    font-size: var(--fs-sm);
+    color: var(--color-on-surface-variant);
+    font-family: var(--font-body);
+    margin: 0 0 var(--sp-4);
+}
+
+.movie-format-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.movie-format-card__price {
+    font-family: var(--font-label);
+    font-weight: var(--fw-semibold);
+    color: var(--color-secondary-fixed-dim);
+}
+
+.movie-format-card__price--muted {
+    color: var(--color-on-surface-variant);
+}
+
+/* Indicador circular del formato */
+.movie-format-card__indicator {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-outline-variant);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color var(--tr-base);
+}
+
+.movie-format-input:checked + .movie-format-card .movie-format-card__indicator {
+    border-color: var(--color-secondary-fixed-dim);
+}
+
+.movie-format-card__indicator-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-secondary-fixed-dim);
+    opacity: 0;
+    transition: opacity var(--tr-base);
+}
+
+.movie-format-input:checked + .movie-format-card .movie-format-card__indicator-dot {
+    opacity: 1;
+}
+
+/* ====== COLUMNA DERECHA: Fecha y Horarios ====== */
+.movie-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-10);
+}
+
+/* Selector de fecha */
+.movie-dates__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--sp-4);
+}
+
+.movie-dates__month {
+    font-size: var(--fs-sm);
+    font-family: var(--font-label);
+    color: var(--color-secondary-fixed-dim);
+    font-weight: var(--fw-medium);
+}
+
+/* Carrusel horizontal de fechas */
+.movie-date-strip {
+    display: flex;
+    gap: var(--sp-3);
+    overflow-x: auto;
+    padding-bottom: var(--sp-4);
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none; /* IE */
+    scrollbar-width: none;    /* Firefox */
+}
+
+.movie-date-strip::-webkit-scrollbar {
+    display: none;
+}
+
+/* Botón de fecha base (inactivo) */
+.movie-date-btn {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 4rem;
+    height: 5rem;
+    background-color: var(--color-surface-container-low);
+    border-radius: var(--radius-xl);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-on-surface-variant);
+    transition: background-color var(--tr-base);
+}
+
+.movie-date-btn:hover {
+    background-color: var(--color-surface-container-high);
+}
+
+/* Fecha activa (seleccionada) */
+.movie-date-btn--active {
+    background-color: var(--color-surface-container-high);
+    color: var(--color-secondary-fixed-dim);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gradiente dorado sutil en fecha activa */
+.movie-date-btn--active::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(250, 189, 0, 0.1) 0%, transparent 100%);
+}
+
+/* Fecha no disponible */
+.movie-date-btn--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.movie-date-btn__day {
+    font-size: var(--fs-xs);
+    font-family: var(--font-label);
+    text-transform: uppercase;
+    font-weight: var(--fw-medium);
+    position: relative;
+    z-index: 1;
+}
+
+.movie-date-btn__num {
+    font-family: var(--font-headline);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-bold);
+    position: relative;
+    z-index: 1;
+}
+
+/* ====== HORARIOS ====== */
+.movie-showtimes__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.025em;
+    margin: 0 0 var(--sp-4);
+}
+
+.movie-showtime-groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+}
+
+/* Grupo de horarios por formato */
+.movie-showtime-group {
+    background-color: var(--color-surface-container-low);
+    border-radius: var(--radius-xl);
+    padding: var(--sp-6);
+}
+
+/* Grupo secundario (ligeramente transparente) */
+.movie-showtime-group--dim {
+    opacity: 0.75;
+}
+
+.movie-showtime-group__header {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-4);
+}
+
+.movie-showtime-group__icon {
+    color: var(--color-secondary-fixed-dim);
+    font-size: 20px;
+}
+
+.movie-showtime-group__icon--muted {
+    color: var(--color-on-surface-variant);
+}
+
+.movie-showtime-group__title {
+    font-family: var(--font-headline);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-lg);
+}
+
+.movie-showtime-group__title--muted {
+    color: var(--color-on-surface-variant);
+}
+
+/* Grid de botones de hora */
+.movie-time-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+}
+
+/* Botón de horario inactivo */
+.movie-time-btn {
+    padding: 0.625rem var(--sp-5);
+    background-color: var(--color-surface-container-high);
+    color: var(--color-on-surface);
+    border-radius: var(--radius-lg);
+    border: none;
+    font-family: var(--font-label);
+    font-weight: var(--fw-medium);
+    cursor: pointer;
+    transition: background-color var(--tr-base), color var(--tr-base);
+}
+
+.movie-time-btn:hover {
+    background-color: var(--color-surface-bright);
+    color: var(--color-secondary-fixed-dim);
+}
+
+/* Botón de horario seleccionado */
+.movie-time-btn--active {
+    background-color: var(--color-surface-container-highest);
+    color: var(--color-secondary-fixed-dim);
+    font-weight: var(--fw-bold);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Botón de horario para grupo dim */
+.movie-time-btn--dim {
+    padding: 0.625rem var(--sp-5);
+    background-color: var(--color-surface-container-high);
+    color: var(--color-on-surface-variant);
+    border-radius: var(--radius-lg);
+    border: none;
+    font-family: var(--font-label);
+    font-weight: var(--fw-medium);
+    cursor: pointer;
+    transition: background-color var(--tr-base);
+}
+
+.movie-time-btn--dim:hover {
+    background-color: var(--color-surface-bright);
+}
+
+/* ====== BARRA DE ACCIÓN (Fixed mobile / Sticky desktop) ====== */
+.movie-action-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(32, 31, 31, 0.9);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    padding: var(--sp-4) var(--sp-6);
+    z-index: 40;
+    box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.5);
+    border-top: 1px solid rgba(94, 63, 59, 0.1);
+}
+
+@media (min-width: 768px) {
+    .movie-action-bar {
+        position: sticky;
+        bottom: auto;
+        box-shadow: none;
+        border-top: none;
+        padding: var(--sp-4) var(--sp-12);
+    }
+}
+
+.movie-action-bar__inner {
+    max-width: 1536px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-4);
+}
+
+@media (min-width: 768px) {
+    .movie-action-bar__inner {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Resumen de selección (solo desktop) */
+.movie-action-bar__summary {
+    display: none;
+    color: var(--color-on-surface-variant);
+    font-family: var(--font-label);
+    font-size: var(--fs-sm);
+}
+
+.movie-action-bar__summary strong {
+    color: var(--color-secondary-fixed-dim);
+}
+
+@media (min-width: 768px) {
+    .movie-action-bar__summary {
+        display: block;
+    }
+}
+
+/* Botón CTA con gradiente primario */
+.movie-action-bar__cta {
+    width: 100%;
+    padding: var(--sp-4) var(--sp-8);
+    background: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-container));
+    color: var(--color-on-primary-container);
+    border-radius: var(--radius-full);
+    border: none;
+    font-family: var(--font-label);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: var(--fs-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    transition: box-shadow var(--tr-base);
+}
+
+@media (min-width: 768px) {
+    .movie-action-bar__cta {
+        width: auto;
+    }
+}
+
+.movie-action-bar__cta:hover {
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+}
+
+.movie-action-bar__cta .material-symbols-outlined {
+    font-size: 18px;
+}

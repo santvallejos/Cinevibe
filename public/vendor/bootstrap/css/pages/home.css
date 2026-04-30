@@ -1,0 +1,458 @@
+/* ============================================================
+   home.css — Página inicio (index.blade.php)
+   Incluye secciones: Now Showing, Promotion, Coming Soon
+   ============================================================ */
+
+/* Main de home — padding-top compensa navbar fixed (72px aprox) */
+.home-main {
+    padding-top: 72px;
+}
+
+/* Carousel: escala proporcional según viewport */
+.home-main .carousel-item {
+    background-color: var(--color-surface-container-low);
+    overflow: hidden;
+}
+
+/* clamp: mínimo 200px (móvil), preferido 45vw, máximo 650px (desktop) */
+.home-main .carousel-item img {
+    width: 100%;
+    height: clamp(200px, 45vw, 650px);
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Sección principal "Now Showing" */
+.home-section {
+    padding: var(--sp-24) var(--sp-8);
+}
+
+.home-section--surface {
+    background-color: var(--color-surface);
+}
+
+.home-section--surface-lowest {
+    background-color: var(--color-surface-container-lowest);
+}
+
+.home-section--compact {
+    padding: var(--sp-12) var(--sp-8);
+}
+
+/* === Promo banner ========================================== */
+.promo-banner {
+    position: relative;
+    background: linear-gradient(
+        to right,
+        var(--color-surface-container-low),
+        var(--color-surface-container-high)
+    );
+    border-radius: 2rem;
+    padding: var(--sp-12);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-12);
+}
+
+@media (min-width: 768px) {
+    .promo-banner {
+        flex-direction: row;
+    }
+}
+
+/* Icono gigante decorativo en la esquina */
+.promo-banner__decor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 33%;
+    height: 100%;
+    opacity: 0.1;
+    pointer-events: none;
+    transition: opacity var(--tr-base);
+}
+
+.promo-banner:hover .promo-banner__decor {
+    opacity: 0.2;
+}
+
+.promo-banner__decor-icon {
+    position: absolute;
+    right: -5rem;
+    top: -5rem;
+    font-size: 300px;
+}
+
+/* Columna textual del banner */
+.promo-banner__content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-6);
+    flex: 1;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .promo-banner__content {
+        text-align: left;
+    }
+}
+
+.promo-banner__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-black);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .promo-banner__title {
+        font-size: var(--fs-5xl);
+    }
+}
+
+.promo-banner__desc {
+    color: var(--color-on-surface-variant);
+    font-size: var(--fs-lg);
+    max-width: 32rem;
+    margin: 0;
+}
+
+.promo-banner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--sp-4);
+    padding-top: var(--sp-4);
+}
+
+@media (min-width: 768px) {
+    .promo-banner__actions {
+        justify-content: flex-start;
+    }
+}
+
+/* Card de membresía decorativa (flotante) */
+.promo-banner__card-wrap {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 24rem;
+}
+
+.promo-banner__card {
+    background-color: rgba(57, 57, 57, 0.4);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(94, 63, 59, 0.3);
+    padding: var(--sp-8);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-2xl);
+    transform: rotate(3deg);
+    transition: transform var(--tr-slow);
+}
+
+.promo-banner:hover .promo-banner__card {
+    transform: rotate(0deg);
+}
+
+.promo-banner__card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--sp-12);
+}
+
+.promo-banner__logo {
+    color: var(--color-primary);
+    font-weight: var(--fw-black);
+    font-style: italic;
+    font-size: var(--fs-xl);
+}
+
+.promo-banner__card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+}
+
+.promo-banner__skel {
+    height: 1rem;
+    background-color: rgba(233, 188, 182, 0.2);
+    border-radius: var(--radius-lg);
+}
+
+.promo-banner__skel--3-4 {
+    width: 75%;
+}
+
+.promo-banner__skel--1-2 {
+    width: 50%;
+}
+
+.promo-banner__card-footer {
+    padding-top: var(--sp-8);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.promo-banner__pass {
+    font-family: var(--font-headline);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-lg);
+    letter-spacing: 0.1em;
+}
+
+.promo-banner__since-label {
+    font-size: var(--fs-10);
+    text-transform: uppercase;
+    opacity: 0.5;
+}
+
+.promo-banner__since-year {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bold);
+    text-align: right;
+}
+/* ============================================================
+   Movie Carousel (Cartelera / Próximamente)
+   ============================================================ */
+
+/* Wrapper relativo — padding lateral reserva espacio a los botones */
+.movie-carousel {
+    position: relative;
+    padding: 0 60px;
+}
+
+/* Track: fila flexible con scroll horizontal suave y snap */
+.movie-carousel__track {
+    display: flex;
+    gap: var(--sp-8);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    /* Oculta scrollbar visual pero mantiene funcionalidad */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: var(--sp-2);
+}
+
+.movie-carousel__track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cada card ocupa ~25% en desktop dejando un vistazo de la siguiente */
+.movie-carousel__track .movie-card {
+    flex: 0 0 calc(25% - var(--sp-6));
+    min-width: 220px;
+    max-width: 280px;
+    scroll-snap-align: start;
+    margin: 0;
+}
+
+/* Botones de navegación prev/next:
+   top: 40% centra sobre el poster (aspecto 2:3 ≈ 78% del alto total de card) */
+.movie-carousel__btn {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--color-surface-container-high);
+    color: var(--color-on-surface);
+    cursor: pointer;
+    transition: background-color var(--tr-base), opacity var(--tr-base), transform var(--tr-base);
+    box-shadow: var(--shadow-lg);
+}
+
+.movie-carousel__btn:hover:not(:disabled) {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary, #fff);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.movie-carousel__btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+}
+
+/* Botones dentro del padding lateral del carousel */
+.movie-carousel__btn--prev {
+    left: 4px;
+}
+
+.movie-carousel__btn--next {
+    right: 4px;
+}
+
+/* Tablet: 2 cards visibles */
+@media (min-width: 641px) and (max-width: 1023px) {
+    .movie-carousel__track .movie-card {
+        flex: 0 0 calc(50% - var(--sp-4));
+    }
+}
+
+/* Mobile: 1 card + botones con padding reducido */
+@media (max-width: 640px) {
+    .movie-carousel {
+        padding: 0 44px;
+    }
+
+    .movie-carousel__btn--prev { left: 0; }
+    .movie-carousel__btn--next { right: 0; }
+
+    .movie-carousel__track .movie-card {
+        flex: 0 0 calc(80% - var(--sp-4));
+    }
+}
+
+/* Card */
+.movie-card {
+    max-width: 280px;
+    margin: 0 auto;
+    position: relative;
+    transition: transform var(--tr-base);
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+/* Poster (CLAVE para que todas sean iguales) */
+.movie-card__poster {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+}
+
+.movie-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Info */
+.movie-card__info {
+    margin-top: var(--sp-4);
+}
+
+.movie-card__title {
+    font-weight: var(--fw-bold);
+}
+
+.movie-card__genre {
+    font-size: var(--fs-sm);
+    color: var(--color-neutral-500);
+}
+
+/* Footer */
+.movie-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--sp-3);
+}
+
+.preview-card__media {
+    width: 100%;
+    height: 220px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.preview-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* === Bento Grid ============================================ */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 320px 420px;
+    gap: var(--sp-4);
+}
+
+.bento-cell {
+    overflow: hidden;
+    border-radius: var(--radius-3xl);
+    background-color: var(--color-surface-container-low);
+}
+
+.bento-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--tr-slow);
+}
+
+.bento-cell:hover img {
+    transform: scale(1.06);
+}
+
+/* img-2 panorámica → ocupa col 1 y 2, row 1 */
+.bento-cell--wide {
+    grid-column: 1 / span 2;
+    grid-row: 1;
+}
+
+/* img-4 portrait → ocupa col 3, rows 1 y 2 */
+.bento-cell--tall {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+}
+
+/* img-1 e img-3 cuadradas → col 1 y 2, row 2 (posición automática) */
+
+/* Tablet: 2 cols, img-2 wide arriba, img-4 tall derecha, cuadradas abajo */
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 260px 360px;
+    }
+
+    .bento-cell--wide {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+    }
+
+    .bento-cell--tall {
+        grid-column: 2;
+        grid-row: 2;
+        /* sin row-span en tablet: mismo alto que cuadradas */
+    }
+}
+
+/* Mobile: 1 col, apilado, cada imagen a su aspect-ratio natural */
+@media (max-width: 480px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 220px 300px 300px 300px;
+    }
+
+    .bento-cell--wide {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .bento-cell--tall {
+        grid-column: 1;
+        grid-row: 2;
+    }
+}

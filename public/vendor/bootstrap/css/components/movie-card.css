@@ -1,0 +1,211 @@
+/* ============================================================
+   movie-card.css — Tarjeta de película (grid "Now Showing")
+   y preview horizontal (Coming Soon)
+   ============================================================ */
+
+/* Tarjeta vertical con poster 2/3 */
+.movie-card {
+    position: relative;
+    background-color: var(--color-surface-container);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all var(--tr-slow);
+}
+
+.movie-card:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-2xl);
+}
+
+/* Poster (aspecto 2:3) */
+.movie-card__poster {
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    position: relative;
+}
+
+.movie-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--tr-slower);
+}
+
+.movie-card:hover .movie-card__img {
+    transform: scale(1.1);
+}
+
+/* Overlay degradado inferior */
+.movie-card__poster::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        var(--color-surface-container-lowest),
+        transparent 60%
+    );
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+/* Badge rating arriba derecha */
+.movie-card__rating {
+    position: absolute;
+    top: var(--sp-4);
+    right: var(--sp-4);
+    background-color: rgba(14, 14, 14, 0.8);
+    backdrop-filter: blur(12px);
+    padding: var(--sp-1) var(--sp-3);
+    border-radius: var(--radius-lg);
+    z-index: 2;
+}
+
+.movie-card__rating-value {
+    color: var(--color-secondary);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-sm);
+}
+
+/* Info inferior absoluta sobre poster */
+.movie-card__info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--sp-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+    z-index: 2;
+}
+
+.movie-card__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-bold);
+    line-height: 1.2;
+    margin: 0;
+    color: var(--color-on-surface);
+}
+
+.movie-card__genre {
+    color: var(--color-on-surface-variant);
+    font-size: var(--fs-sm);
+    margin: 0;
+}
+
+.movie-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--sp-2);
+}
+
+.movie-card__price {
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-bold);
+    color: var(--color-on-surface);
+}
+
+/* Grid contenedor para las tarjetas */
+.movie-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-8);
+}
+
+@media (min-width: 640px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* === Preview horizontal (Coming Soon) ====================== */
+.preview-card {
+    min-width: 400px;
+    scroll-snap-align: start;
+    cursor: pointer;
+}
+
+.preview-card__media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    margin-bottom: var(--sp-6);
+}
+
+.preview-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.preview-card:hover .preview-card__img {
+    transform: scale(1.05);
+}
+
+.preview-card__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        var(--color-surface-container-lowest),
+        transparent
+    );
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.preview-card__date {
+    position: absolute;
+    bottom: var(--sp-4);
+    left: var(--sp-4);
+    background-color: rgba(229, 9, 20, 0.2);
+    backdrop-filter: blur(12px);
+    color: var(--color-primary-fixed);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    padding: var(--sp-1) var(--sp-3);
+    border-radius: var(--radius);
+    font-size: var(--fs-10);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+    letter-spacing: -0.025em;
+    z-index: 2;
+}
+
+.preview-card__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-bold);
+    margin: 0;
+    transition: color var(--tr-base);
+}
+
+.preview-card:hover .preview-card__title {
+    color: var(--color-primary);
+}
+
+.preview-card__meta {
+    color: var(--color-on-surface-variant);
+    font-size: var(--fs-sm);
+    margin-top: var(--sp-1);
+}
+
+/* Fila scroll horizontal para previews */
+.preview-row {
+    display: flex;
+    gap: var(--sp-8);
+    overflow-x: auto;
+    padding-bottom: var(--sp-8);
+    scroll-snap-type: x mandatory;
+}

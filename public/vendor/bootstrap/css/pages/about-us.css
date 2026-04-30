@@ -1,0 +1,479 @@
+/* ============================================================
+   about-us.css — Página "Sobre Nosotros"
+   Secciones: Hero, Misión, Experiencia (Bento Grid), Legado
+   ============================================================ */
+
+/* Animación rebote para flecha de scroll */
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(-12px); }
+}
+
+/* ====== HERO ====== */
+.about-hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.about-hero__bg-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.about-hero__bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+}
+
+/* Gradiente hacia arriba desde el color de fondo */
+.about-hero__overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--color-background) 0%, rgba(19, 19, 19, 0.4) 50%, transparent 100%);
+}
+
+/* Capa oscura semi-transparente */
+.about-hero__overlay-dark {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.about-hero__content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 var(--sp-6);
+    max-width: 64rem;
+}
+
+.about-hero__kicker {
+    display: inline-block;
+    padding: var(--sp-1) var(--sp-4);
+    margin-bottom: var(--sp-6);
+    border: 1px solid rgba(250, 189, 0, 0.3);
+    border-radius: var(--radius-full);
+    color: var(--color-secondary-fixed-dim);
+    font-family: var(--font-label);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.about-hero__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-5xl);
+    font-weight: var(--fw-extrabold);
+    color: var(--color-on-surface);
+    letter-spacing: -0.025em;
+    line-height: 1;
+    margin: 0 0 var(--sp-8);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.8);
+}
+
+@media (min-width: 768px) {
+    .about-hero__title {
+        font-size: var(--fs-8xl);
+    }
+}
+
+/* Texto degradado rojo-rosado para el span de acento */
+.about-hero__title-accent {
+    background: linear-gradient(135deg, #ffb4aa 0%, #e50914 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.about-hero__divider {
+    width: 6rem;
+    height: 4px;
+    background-color: var(--color-primary-container);
+    margin: 0 auto;
+    border-radius: var(--radius-full);
+}
+
+/* Flecha de scroll animada con rebote */
+.about-hero__scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    animation: bounce 1.5s ease-in-out infinite;
+}
+
+.about-hero__scroll .material-symbols-outlined {
+    color: var(--color-secondary-fixed-dim);
+    font-size: var(--fs-3xl);
+}
+
+/* ====== MISIÓN ====== */
+.about-mission {
+    padding: var(--sp-32) var(--sp-8);
+    background-color: var(--color-surface);
+}
+
+.about-mission__grid {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-20);
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .about-mission__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.about-mission__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-8);
+}
+
+.about-mission__headline {
+    font-family: var(--font-headline);
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.025em;
+    color: var(--color-on-surface);
+    margin: 0;
+}
+
+.about-mission__body {
+    color: var(--color-on-surface-variant);
+    line-height: 1.75;
+    margin: 0;
+}
+
+.about-mission__body--xl {
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-light);
+}
+
+.about-mission__body--lg {
+    font-size: var(--fs-lg);
+}
+
+/* Nombre de marca con énfasis dorado */
+.about-mission__brand {
+    color: var(--color-secondary-fixed-dim);
+    font-weight: var(--fw-semibold);
+    font-style: italic;
+}
+
+/* Imagen cuadrada con borde sutil inset */
+.about-mission__image-wrap {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-2xl);
+}
+
+.about-mission__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Ring blanco semitransparente sobre la imagen */
+.about-mission__image-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-xl);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* ====== EXPERIENCIA (Bento Grid) ====== */
+.about-experience {
+    padding: var(--sp-24) var(--sp-8);
+    background-color: var(--color-surface-container-low);
+}
+
+.about-experience__inner {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.about-experience__header {
+    margin-bottom: var(--sp-16);
+    text-align: center;
+}
+
+.about-experience__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-bold);
+    margin: 0 0 var(--sp-4);
+}
+
+.about-experience__subtitle {
+    color: var(--color-on-surface-variant);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: var(--fs-sm);
+}
+
+/* Grid de 3 columnas en desktop */
+.about-experience__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-6);
+}
+
+@media (min-width: 768px) {
+    .about-experience__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card base con imagen y overlay */
+.about-experience__card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    background-color: var(--color-surface-container-high);
+    height: 400px;
+}
+
+/* Card ancha ocupa 2 columnas en desktop */
+.about-experience__card--wide {
+    grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+    .about-experience__card--wide {
+        grid-column: span 2;
+    }
+}
+
+.about-experience__card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--tr-slower);
+}
+
+/* Zoom suave en hover sobre la imagen */
+.about-experience__card:hover .about-experience__card-img {
+    transform: scale(1.1);
+}
+
+/* Gradiente oscuro desde abajo */
+.about-experience__card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+}
+
+/* Variante más oscura para cards pequeñas */
+.about-experience__card-overlay--heavy {
+    background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+}
+
+.about-experience__card-body {
+    position: absolute;
+    bottom: 0;
+    padding: var(--sp-10);
+}
+
+.about-experience__card-icon {
+    display: block;
+    color: var(--color-secondary-fixed-dim);
+    font-size: var(--fs-3xl);
+    margin-bottom: var(--sp-4);
+}
+
+.about-experience__card-title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-3xl);
+    font-weight: var(--fw-bold);
+    color: #ffffff;
+    margin: 0 0 var(--sp-2);
+}
+
+.about-experience__card-title--sm {
+    font-size: var(--fs-2xl);
+}
+
+.about-experience__card-text {
+    color: #d4d4d4;
+    max-width: 28rem;
+    margin: 0;
+}
+
+.about-experience__card-text--sm {
+    font-size: var(--fs-sm);
+}
+
+/* Card de membresía sin imagen, con gradiente de fondo tenue */
+.about-experience__curator {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    background-color: var(--color-surface-container-high);
+    height: 400px;
+    grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+    .about-experience__curator {
+        grid-column: span 2;
+    }
+}
+
+/* Gradiente decorativo muy suave */
+.about-experience__curator-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #ffb4aa 0%, #e50914 100%);
+    opacity: 0.1;
+}
+
+.about-experience__curator-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--sp-12);
+}
+
+.about-experience__curator-title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-bold);
+    color: var(--color-on-surface);
+    margin: 0 0 var(--sp-4);
+}
+
+.about-experience__curator-text {
+    color: var(--color-on-surface-variant);
+    font-size: var(--fs-lg);
+    max-width: 36rem;
+    margin: 0 0 var(--sp-8);
+}
+
+.about-experience__curator-btn {
+    display: inline-block;
+    padding: var(--sp-3) var(--sp-8);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--color-secondary-fixed-dim);
+    color: var(--color-secondary-fixed-dim);
+    font-family: var(--font-headline);
+    font-weight: var(--fw-bold);
+    background: transparent;
+    cursor: pointer;
+    transition: background-color var(--tr-base), color var(--tr-base);
+}
+
+.about-experience__curator-btn:hover {
+    background-color: var(--color-secondary-fixed-dim);
+    color: var(--color-on-secondary);
+}
+
+/* ====== LEGADO (Timeline) ====== */
+.about-legacy {
+    padding: var(--sp-32) var(--sp-8);
+    background-color: var(--color-surface);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Manchas de luz decorativas con blur extremo */
+.about-legacy__flare {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border-radius: var(--radius-full);
+    filter: blur(120px);
+    pointer-events: none;
+}
+
+.about-legacy__flare--top {
+    top: 0;
+    right: 0;
+    background-color: rgba(229, 9, 20, 0.05);
+}
+
+.about-legacy__flare--bottom {
+    bottom: 0;
+    left: 0;
+    background-color: rgba(250, 189, 0, 0.05);
+}
+
+.about-legacy__inner {
+    max-width: 56rem;
+    margin: 0 auto;
+}
+
+.about-legacy__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-4xl);
+    font-weight: var(--fw-bold);
+    margin: 0 0 var(--sp-16);
+    text-align: center;
+}
+
+.about-legacy__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-24);
+}
+
+/* Entrada de timeline con línea vertical izquierda */
+.about-legacy__entry {
+    position: relative;
+    padding-left: var(--sp-12);
+    border-left: 1px solid rgba(94, 63, 59, 0.3);
+}
+
+/* Punto de timeline con anillo que cubre la línea */
+.about-legacy__dot {
+    position: absolute;
+    left: -0.75rem;
+    top: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-primary-container);
+    box-shadow: 0 0 0 8px var(--color-background);
+}
+
+/* Variante más tenue para entradas intermedias */
+.about-legacy__dot--dim {
+    background-color: rgba(229, 9, 20, 0.6);
+}
+
+.about-legacy__year {
+    display: block;
+    font-family: var(--font-headline);
+    color: var(--color-secondary-fixed-dim);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--sp-4);
+}
+
+.about-legacy__entry-title {
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-bold);
+    margin: 0 0 var(--sp-4);
+}
+
+.about-legacy__entry-text {
+    color: var(--color-on-surface-variant);
+    line-height: 1.75;
+    margin: 0;
+}

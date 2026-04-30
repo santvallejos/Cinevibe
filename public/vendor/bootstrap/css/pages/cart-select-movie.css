@@ -1,0 +1,313 @@
+/* ============================================================
+   cart-select-movie.css — Cartelera / Selección de Película
+   Secciones: Header + Filtros, Grid de tarjetas de película
+   ============================================================ */
+
+/* ====== WRAPPER PRINCIPAL ====== */
+.select-movie {
+    flex-grow: 1;
+    padding-top: var(--sp-32);
+    padding-bottom: var(--sp-24);
+    padding-left: var(--sp-8);
+    padding-right: var(--sp-8);
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ====== HEADER + FILTROS ====== */
+.select-movie__header {
+    margin-bottom: var(--sp-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-8);
+}
+
+@media (min-width: 768px) {
+    .select-movie__header {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+}
+
+/* Bloque del título */
+.select-movie__title {
+    font-family: var(--font-headline);
+    font-size: var(--fs-5xl);
+    font-weight: var(--fw-extrabold);
+    letter-spacing: -0.025em;
+    color: var(--color-on-surface);
+    margin: 0 0 var(--sp-4);
+    line-height: 1.05;
+}
+
+@media (min-width: 768px) {
+    .select-movie__title {
+        font-size: 4.5rem;
+    }
+}
+
+.select-movie__subtitle {
+    font-family: var(--font-body);
+    color: var(--color-on-surface-variant);
+    font-size: var(--fs-lg);
+    max-width: 42rem;
+    margin: 0;
+}
+
+/* Barra de filtros: pastilla con botones */
+.select-movie__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-4);
+    align-items: center;
+    background-color: var(--color-surface-container-low);
+    padding: var(--sp-2);
+    border-radius: var(--radius-xl);
+}
+
+/* Botón de filtro activo (Now Showing) */
+.select-movie__filter-btn {
+    padding: var(--sp-3) var(--sp-6);
+    background-color: var(--color-surface-container-high);
+    border-radius: var(--radius-lg);
+    border: none;
+    font-family: var(--font-label);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-sm);
+    color: var(--color-on-surface);
+    cursor: pointer;
+    transition: background-color var(--tr-base);
+    box-shadow: var(--shadow-lg);
+}
+
+.select-movie__filter-btn:hover {
+    background-color: var(--color-surface-bright);
+}
+
+/* Botón de filtro inactivo (Coming Soon, Genre, Format) */
+.select-movie__filter-btn--ghost {
+    padding: var(--sp-3) var(--sp-6);
+    background: transparent;
+    border-radius: var(--radius-lg);
+    border: none;
+    font-family: var(--font-label);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
+    color: var(--color-on-surface-variant);
+    cursor: pointer;
+    transition: color var(--tr-base), background-color var(--tr-base);
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+}
+
+.select-movie__filter-btn--ghost:hover {
+    color: var(--color-on-surface);
+    background-color: var(--color-surface-container);
+}
+
+/* Separador vertical entre grupos de filtros */
+.select-movie__filter-divider {
+    height: 1.5rem;
+    width: 1px;
+    background-color: rgba(94, 63, 59, 0.3);
+    flex-shrink: 0;
+    margin: 0 var(--sp-2);
+}
+
+/* ====== GRID DE PELÍCULAS ====== */
+.select-movie__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-8);
+}
+
+@media (min-width: 768px) {
+    .select-movie__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .select-movie__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .select-movie__grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* ====== TARJETA DE PELÍCULA ====== */
+.movie-card {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background-color: var(--color-surface-container-high);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: transform 500ms ease, background-color 500ms ease;
+}
+
+/* Ligero zoom y aclarado al hover */
+.movie-card:hover {
+    transform: scale(1.02);
+    background-color: var(--color-surface-bright);
+}
+
+/* Imagen del poster */
+.movie-card__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: opacity 500ms ease;
+}
+
+.movie-card:hover .movie-card__img {
+    opacity: 1;
+}
+
+/* Gradiente de oscurecimiento hacia arriba */
+.movie-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        #0e0e0e 0%,
+        rgba(14, 14, 14, 0.8) 50%,
+        transparent 100%
+    );
+}
+
+/* Contenido inferior de la tarjeta */
+.movie-card__body {
+    position: relative;
+    z-index: 10;
+    padding: var(--sp-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-4);
+}
+
+/* Fila superior: badge de formato + rating */
+.movie-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Badge de formato base */
+.movie-card__format {
+    font-family: var(--font-label);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.1em;
+    padding: var(--sp-1) var(--sp-2);
+    border-radius: var(--radius);
+}
+
+/* Variante destacada (IMAX, IMAX 3D) */
+.movie-card__format--highlight {
+    background-color: var(--color-secondary-container);
+    color: var(--color-on-secondary-container);
+}
+
+/* Variante con borde (4DX, STANDARD) */
+.movie-card__format--outline {
+    background-color: var(--color-surface-container);
+    color: var(--color-on-surface);
+    border: 1px solid rgba(94, 63, 59, 0.3);
+}
+
+/* Rating: estrella + número */
+.movie-card__rating {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+    color: var(--color-secondary-fixed-dim);
+}
+
+.movie-card__rating .material-symbols-outlined {
+    font-size: var(--fs-sm);
+}
+
+.movie-card__rating-num {
+    font-family: var(--font-label);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-bold);
+}
+
+/* Bloque de título + metadatos */
+.movie-card__name {
+    font-family: var(--font-headline);
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-bold);
+    letter-spacing: -0.025em;
+    color: var(--color-on-surface);
+    margin: 0 0 var(--sp-1);
+}
+
+.movie-card__meta {
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    color: var(--color-on-surface-variant);
+    margin: 0;
+}
+
+/* Fila de botones de acción */
+.movie-card__actions {
+    display: flex;
+    gap: var(--sp-3);
+    padding-top: var(--sp-2);
+}
+
+/* Botón principal "Book Tickets" */
+.movie-card__cta {
+    flex: 1;
+    background: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-container));
+    color: var(--color-on-primary-container);
+    padding: var(--sp-3) 0;
+    border-radius: var(--radius-full);
+    border: none;
+    font-family: var(--font-label);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: box-shadow var(--tr-base);
+}
+
+.movie-card__cta:hover {
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+}
+
+/* Botón secundario de info (círculo con ícono) */
+.movie-card__info-btn {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(94, 63, 59, 0.2);
+    color: var(--color-on-surface);
+    background: transparent;
+    cursor: pointer;
+    transition: background-color var(--tr-base);
+    flex-shrink: 0;
+}
+
+.movie-card__info-btn:hover {
+    background-color: var(--color-surface-container);
+}
