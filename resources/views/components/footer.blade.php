@@ -59,6 +59,6 @@
 
     {{-- Copyright inferior --}}
     <div class="footer__bottom">
-        <p class="footer__copy">&copy; 2024 THE VELVET CURATOR. A PREMIERE EXPERIENCE.</p>
+        <p class="footer__copy">&copy; 2026 THE CINEVIBE EXPERIENCE.</p>
     </div>
 </footer>
