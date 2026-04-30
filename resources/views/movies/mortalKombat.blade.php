@@ -20,7 +20,7 @@
                         <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
                         Premium Experience
                     </div>
-                    <h1 class="movie-hero__title">SUPERMARIO GALAXY: LA PELICULA</h1>
+                    <h1 class="movie-hero__title">Mortal Kombat II</h1>
                     <div class="movie-hero__meta">
                         <span class="movie-hero__imdb">IMDb 8.9</span>
                         <span>Animación / Aventura</span>
@@ -65,8 +65,7 @@
                             <span class="movie-genre-tag">Aventura</span>
                         </div>
                         <p class="movie-block__text">
-                            Super Mario Galaxy: La película es una película animada basada en el mundo de Super Mario Bros. y es continuación de Super Mario Bros. La película, que estrenó en 2023, recaudó más de 1,3 mil millones de dólares a nivel mundial. Ambas películas son producidas por Chris Meledandri de Illumination y Shigeru Miyamoto de Nintendo.
-                        </p>
+                            SDe la mano de New Line Cinema llega la más reciente y explosiva entrega de la exitosa franquicia de videojuegos, en todo su brutal esplendor: Mortal Kombat II. Esta vez, los campeones favoritos de los fans —ahora acompañados por el mismísimo Johnny Cage— se enfrentan entre sí en la batalla definitiva, sangrienta y sin reglas, para derrotar el oscuro dominio de Shao Kahn, que amenaza con destruir el Reino de la Tierra y a sus defensores.
                     </div>
 
                     {{-- Ficha técnica --}}

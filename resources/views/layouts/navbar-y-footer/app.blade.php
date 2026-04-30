@@ -17,7 +17,7 @@
 
     <link href="{{ asset('vendor/bootstrap/css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-
+<link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
     @stack('styles')
 </head>
 

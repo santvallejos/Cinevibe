@@ -61,12 +61,11 @@
                     {{-- Sinopsis --}}
                     <div class="movie-block">
                         <div class="movie-block__genres">
-                            <span class="movie-genre-tag">Animación</span>
-                            <span class="movie-genre-tag">Aventura</span>
+            
+                            <span class="movie-genre-tag">Ciencia Ficción</span>
                         </div>
                         <p class="movie-block__text">
-                            Super Mario Galaxy: La película es una película animada basada en el mundo de Super Mario Bros. y es continuación de Super Mario Bros. La película, que estrenó en 2023, recaudó más de 1,3 mil millones de dólares a nivel mundial. Ambas películas son producidas por Chris Meledandri de Illumination y Shigeru Miyamoto de Nintendo.
-                        </p>
+                           El profesor de ciencias Ryland Grace (Ryan Gosling) se despierta en una nave espacial a años luz de la Tierra, sin recordar quién es ni cómo llegó allí. A medida que recupera la memoria, empieza a descubrir su misión: resolver el enigma de una misteriosa sustancia que está causando la extinción del sol. Deberá recurrir a sus conocimientos científicos y a ideas poco convencionales para salvar todo lo que existe en la Tierra de la extinción… pero una amistad inesperada podría significar que no tendrá que hacerlo solo.
                     </div>
 
                     {{-- Ficha técnica --}}

@@ -16,6 +16,7 @@
 
     {{-- CSS propio del proyecto (ya incluye Bootstrap + design system) --}}
     <link href="{{ asset('vendor/bootstrap/css/app.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
 
     @stack('styles')
 </head>

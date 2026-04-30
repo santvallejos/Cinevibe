@@ -65,7 +65,7 @@
                             <span class="movie-genre-tag">Aventura</span>
                         </div>
                         <p class="movie-block__text">
-                            Super Mario Galaxy: La película es una película animada basada en el mundo de Super Mario Bros. y es continuación de Super Mario Bros. La película, que estrenó en 2023, recaudó más de 1,3 mil millones de dólares a nivel mundial. Ambas películas son producidas por Chris Meledandri de Illumination y Shigeru Miyamoto de Nintendo.
+                           Casi veinte años después de dar vida a los icónicos personajes Miranda, Andy, Emily y Nigel, Meryl Streep, Anne Hathaway, Emily Blunt y Stanley Tucci regresan a las elegantes calles de Nueva York y a las sofisticadas oficinas de la revista Runway en la esperada secuela del fenómeno de 2006 que marcó a toda una generación. La película reúne al reparto principal original con el director David Frankel y la guionista Aline Brosh McKenna, e introduce una nueva pasarela de personajes interpretados por Kenneth Branagh, Simone Ashley, Justin Theroux, Lucy Liu, Patrick Brammall, Caleb Hearon, Helen J. Shen, Pauline Chalamet, B.J. Novak y Conrad Ricamora. Tracie Thoms y Tibor Feldman también retoman sus papeles como “Lily” e “Irv” de la primera película.
                         </p>
                     </div>
 

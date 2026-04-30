@@ -20,7 +20,7 @@
                         <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
                         Premium Experience
                     </div>
-                    <h1 class="movie-hero__title">SUPERMARIO GALAXY: LA PELICULA</h1>
+                    <h1 class="movie-hero__title">El mago del Kremlin</h1>
                     <div class="movie-hero__meta">
                         <span class="movie-hero__imdb">IMDb 8.9</span>
                         <span>Animación / Aventura</span>
@@ -65,7 +65,7 @@
                             <span class="movie-genre-tag">Aventura</span>
                         </div>
                         <p class="movie-block__text">
-                            Super Mario Galaxy: La película es una película animada basada en el mundo de Super Mario Bros. y es continuación de Super Mario Bros. La película, que estrenó en 2023, recaudó más de 1,3 mil millones de dólares a nivel mundial. Ambas películas son producidas por Chris Meledandri de Illumination y Shigeru Miyamoto de Nintendo.
+                           En la Rusia posterior al colapso soviético, un asesor político brillante (Paul Dano) se convierte en el arquitecto detrás de la imagen pública de un nuevo líder: Vladimir Putin. A medida que el poder crece, también lo hace la maquinaria que lo sostiene —medios, narrativa y control— revelando el lado más oscuro y estratégico del poder contemporáneo.
                         </p>
                     </div>
 

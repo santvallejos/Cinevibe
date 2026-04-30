@@ -20,10 +20,10 @@
                         <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
                         Premium Experience
                     </div>
-                    <h1 class="movie-hero__title">SUPERMARIO GALAXY: LA PELICULA</h1>
+                    <h1 class="movie-hero__title">Nurenberg</h1>
                     <div class="movie-hero__meta">
                         <span class="movie-hero__imdb">IMDb 8.9</span>
-                        <span>Animación / Aventura</span>
+                        <span>Historia</span>
                         <span>1h 38m</span>
                         <span>23 Abril, 2026</span>
                         <span class="movie-hero__badge">4K • Atmos</span>
@@ -61,11 +61,11 @@
                     {{-- Sinopsis --}}
                     <div class="movie-block">
                         <div class="movie-block__genres">
-                            <span class="movie-genre-tag">Animación</span>
-                            <span class="movie-genre-tag">Aventura</span>
+                           
+                            <span class="movie-genre-tag">Historia</span>
                         </div>
                         <p class="movie-block__text">
-                            Super Mario Galaxy: La película es una película animada basada en el mundo de Super Mario Bros. y es continuación de Super Mario Bros. La película, que estrenó en 2023, recaudó más de 1,3 mil millones de dólares a nivel mundial. Ambas películas son producidas por Chris Meledandri de Illumination y Shigeru Miyamoto de Nintendo.
+                            Tras el fin de la II Guerra Mundial, con ocasión de los cruciales juicios de Nuremberg de los Aliados contra el derrotado régimen nazi, el psiquiatra estadounidense Douglas Kelley (Malek), encargado de determinar si los prisioneros oficiales nazis son aptos para ser juzgados por sus crímenes de guerra, se ve inmerso en una compleja batalla de ingenio con Hermann Göring (Crowe), mano derecha de Hitler. Basada en el libro "El nazi y el psiquiatra" de Jack El-Hai
                         </p>
                     </div>
 
