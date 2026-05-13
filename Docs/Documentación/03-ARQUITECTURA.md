@@ -10,7 +10,7 @@ CineVibe utiliza una arquitectura **MVC (Model-View-Controller)** implementada c
 
 | Capa | Tecnología |
 |------|------------|
-| **Backend** | PHP 8.1+, Laravel 10 |
+| **Backend** | PHP ^8.2, ^Laravel 12 |
 | **Frontend** | Blade Templates, Tailwind CSS, Alpine.js |
 | **Base de Datos** | MySQL 8.0 |
 | **Autenticación** | Laravel Breeze / Sanctum |
@@ -25,10 +25,10 @@ CineVibe utiliza una arquitectura **MVC (Model-View-Controller)** implementada c
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                    PRESENTACIÓN                         │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐ │
-│  │   Blade     │  │  Tailwind   │  │    Alpine.js    │ │
-│  │  Templates  │  │     CSS     │  │   (Interacción) │ │
-│  └─────────────┘  └─────────────┘  └─────────────────┘ │
+│  ┌─────────────┐                       ┌─────────────┐  │
+│  │   Blade     │                       │             │  │
+│  │  Templates  │                       │     CSS     │  │
+│  └─────────────┘                       └─────────────┘  │
 ├─────────────────────────────────────────────────────────┤
 │                     APLICACIÓN                          │
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐ │
@@ -41,9 +41,9 @@ CineVibe utiliza una arquitectura **MVC (Model-View-Controller)** implementada c
 │  └─────────────┘  └─────────────┘  └─────────────────┘ │
 ├─────────────────────────────────────────────────────────┤
 │                   INFRAESTRUCTURA                       │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐ │
-│  │   MySQL     │  │    Redis    │  │   File Storage  │ │
-│  └─────────────┘  └─────────────┘  └─────────────────┘ │
+│  ┌─────────────┐                                        │
+│  │   MySQL     │                                        │
+│  └─────────────┘                                        │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -131,55 +131,14 @@ cinevibe/
 
 ---
 
-## 5. Modelo de Datos
 
-### 5.1 Entidades Principales
-
-**Users**
-- id, name, email, password, birth_date, phone, created_at, updated_at
-
-**Movies**
-- id, title, synopsis, poster_url, trailer_url, duration_minutes, rating, release_date, is_active
-
-**Genres** (tabla pivote: movie_genre)
-- id, name
-
-**Theaters**
-- id, name, capacity, rows, columns
-
-**Showtimes**
-- id, movie_id, theater_id, datetime, format (2D/3D/IMAX), price, is_active
-
-**Seats**
-- id, theater_id, row, number, type (standard/vip)
-
-**SeatReservations**
-- id, showtime_id, seat_id, user_id, status (temporary/confirmed), expires_at
-
-**Products**
-- id, category_id, name, description, price, image_url, is_active
-
-**ProductCategories**
-- id, name
-
-**Orders**
-- id, user_id, showtime_id, total, status, transaction_id, created_at
-
-**OrderItems**
-- id, order_id, itemable_type, itemable_id, quantity, unit_price
-
-**Tickets**
-- id, order_id, seat_id, qr_code, pdf_path
-
----
-
-## 6. Flujo de Datos Principal
+## 5. Flujo de Datos Principal
 
 ```
 Usuario → Cartelera → Película → Función → Asientos → Productos → Checkout → Pago → Boletos
 ```
 
-### 6.1 Flujo de Compra
+### 5.1 Flujo de Compra
 
 1. **Exploración**: GET /movies → MovieController@index
 2. **Detalle**: GET /movies/{id} → MovieController@show
@@ -194,7 +153,7 @@ Usuario → Cartelera → Película → Función → Asientos → Productos → 
 
 ---
 
-## 7. Patrones de Diseño Utilizados
+## 6. Patrones de Diseño Utilizados
 
 | Patrón | Uso |
 |--------|-----|
@@ -206,7 +165,7 @@ Usuario → Cartelera → Película → Función → Asientos → Productos → 
 
 ---
 
-## 8. Seguridad
+## 7. Seguridad
 
 - **Autenticación**: Laravel Breeze con sesiones
 - **Autorización**: Middleware `auth` para rutas protegidas
@@ -218,7 +177,7 @@ Usuario → Cartelera → Película → Función → Asientos → Productos → 
 
 ---
 
-## 9. Consideraciones de Rendimiento
+## 8. Consideraciones de Rendimiento
 
 - Eager loading de relaciones (N+1 prevention)
 - Cache de cartelera (Redis opcional)
@@ -228,7 +187,7 @@ Usuario → Cartelera → Película → Función → Asientos → Productos → 
 
 ---
 
-## 10. Diagramas Adicionales
+## 9. Diagramas Adicionales
 
 Ver diagramas en Excalidraw:
 - Flujo de navegación: `04-FLUJO-NAVEGACION.excalidraw`

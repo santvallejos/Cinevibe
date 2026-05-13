@@ -7,39 +7,12 @@
 @section('content')
     <main class="movie-page">
 
-        {{-- Hero --}}
-        <section class="movie-hero">
-            <div class="movie-hero__bg"
-                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9jzebMfnzPkQ8S68AErQ20LsyY63MCeO6PBcEHna_5t20gQpkWInTNHmDk_JUHXLtbCwfY7wZV-jt-eKwspEUpp-Le5_yT6jrW6vlrXEwIScGjKMm9wmWPkO7a_iq6nj5VydOGF9_8vZje6x1tVzDRysXmJfAvG599Nc9hHeD1ZmzaWDhy1y2nReAmgWLXXaCsZDMOkfSEyhVKPC-bJ2cgB744ECqahsuyCUegENMasZjU_9jXy6w76F4ciCPZqcTByayYnghf5xF');">
-            </div>
-            <div class="movie-hero__gradient"></div>
-
-            <div class="movie-hero__content">
-                <div class="movie-hero__wrap">
-                    <div class="movie-hero__kicker">
-                        <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
-                        Premium Experience
-                    </div>
-                    <h1 class="movie-hero__title">SUPERMARIO GALAXY: LA PELICULA</h1>
-                    <div class="movie-hero__meta">
-                        <span class="movie-hero__imdb">IMDb 8.9</span>
-                        <span>Animación / Aventura</span>
-                        <span>1h 38m</span>
-                        <span>23 Abril, 2026</span>
-                        <span class="movie-hero__badge">4K • Atmos</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         {{-- Grid principal --}}
         <section class="movie-content">
-            <div class="movie-content__grid movie-content__grid--wide-aside">
+            <div class="movie-layout">
 
-                {{-- ── Columna izquierda ── --}}
-                <div class="movie-content__main">
-
-                    {{-- ★ Imagen destacada — tag corregido --}}
+                {{-- ── Columna izquierda: póster ── --}}
+                <div class="movie-layout__poster">
                     <div class="movie-featured-img">
                         <img
                             src="{{ asset('img/peliculas/supermario.jpg') }}"
@@ -57,12 +30,32 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                {{-- ── Columna derecha: info + booking ── --}}
+                <div class="movie-layout__info">
 
                     {{-- Sinopsis --}}
                     <div class="movie-block">
+                        <h3 class="movie-block__title">Sinopsis</h3>
+
+                        {{-- Rating visual --}}
+                        <div class="movie-rating">
+                            <div class="movie-rating__stars">
+                                <span class="material-symbols-outlined material-symbols-outlined--fill movie-rating__star">star</span>
+                                <span class="material-symbols-outlined material-symbols-outlined--fill movie-rating__star">star</span>
+                                <span class="material-symbols-outlined material-symbols-outlined--fill movie-rating__star">star</span>
+                                <span class="material-symbols-outlined material-symbols-outlined--fill movie-rating__star">star</span>
+                                <span class="material-symbols-outlined material-symbols-outlined--fill movie-rating__star" style="color:rgba(255,255,255,0.15)">star_half</span>
+                            </div>
+                            <span class="movie-rating__score">8.9</span>
+                            <span class="movie-rating__count">/ 10 · IMDb</span>
+                        </div>
+
                         <div class="movie-block__genres">
                             <span class="movie-genre-tag">Animación</span>
                             <span class="movie-genre-tag">Aventura</span>
+                            <span class="movie-genre-tag">Familiar</span>
                         </div>
                         <p class="movie-block__text">
                             Super Mario Galaxy: La película es una película animada basada en el mundo de Super Mario Bros. y es continuación de Super Mario Bros. La película, que estrenó en 2023, recaudó más de 1,3 mil millones de dólares a nivel mundial. Ambas películas son producidas por Chris Meledandri de Illumination y Shigeru Miyamoto de Nintendo.
@@ -71,7 +64,7 @@
 
                     {{-- Ficha técnica --}}
                     <div class="movie-block">
-                        <h3 class="movie-block__title">Información</h3>
+                        <h3 class="movie-block__title">Ficha Técnica</h3>
                         <div class="movie-ficha">
 
                             <div class="movie-ficha__item">
@@ -125,10 +118,7 @@
                         </div>
                     </div>
 
-                </div>{{-- /movie-content__main --}}
-
-                {{-- ── ASIDE: booking widget ── --}}
-                <aside class="movie-content__aside">
+                    {{-- Booking widget --}}
                     <div class="booking">
 
                         <h3 class="booking__title">
@@ -245,10 +235,11 @@
                             </p>
                         </div>
 
-                    </div>
-                </aside>
+                    </div>{{-- /booking --}}
 
-            </div>
+                </div>{{-- /movie-layout__info --}}
+
+            </div>{{-- /movie-layout --}}
         </section>
     </main>
 
