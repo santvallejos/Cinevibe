@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +36,11 @@ Route::view('/movies/proyectofindelmundo', 'movies.proyectofindelmundo');
 | Registro / Login
 |--------------------------------------------------------------------------
 */
-Route::get('/register', function () {
-    return view('register.index');
-})->name('register.index');
+Route::get('/register', [RegisterController::class, 'showRegisterView'])->name('register.index');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
 
-Route::get('/login', function () {
-    return view('login.index');
-})->name('login.index');
+Route::get('/login', [LoginController::class, 'showLoginView'])->name('login.index');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 /*
 |--------------------------------------------------------------------------
