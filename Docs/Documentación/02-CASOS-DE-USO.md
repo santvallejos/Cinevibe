@@ -11,8 +11,9 @@
 - **Sistema de Email**: Envía notificaciones y boletos
 
 ---
-
-## 2. Casos de Uso
+## 2. Diagrama de caso de usos
+![[Cinevibe/Docs/Esquemas/casos-de-uso.png]]
+## 3. Casos de Uso
 
 ### CU-001: Registrar Usuario
 
@@ -368,8 +369,3 @@
 3. Sistema limpia datos de sesión local
 4. Sistema redirige a página de inicio
 
----
-
-## 3. Diagrama de Casos de Uso
-
-Ver diagrama en Excalidraw: `03-DIAGRAMA-CASOS-USO.excalidraw`
