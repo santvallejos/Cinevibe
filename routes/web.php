@@ -42,6 +42,9 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::get('/login', [LoginController::class, 'showLoginView'])->name('login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
+// Cierre de sesión seguro vía POST (evita CSRF en cierres de sesión vía GET)
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 /*
 |--------------------------------------------------------------------------
 | Carrito / Pago

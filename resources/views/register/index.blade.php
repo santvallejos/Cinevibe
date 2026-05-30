@@ -33,14 +33,25 @@
                 </header>
 
                 {{-- Formulario de registro --}}
-                <form class="register__form">
+                {{-- Alerta de errores de validación --}}
+                @if ($errors->any())
+                    <div class="register__alert register__alert--error">
+                        <span class="material-symbols-outlined">error</span>
+                        {{ $errors->first() }}
+                    </div>
+                @endif
+
+                <form class="register__form" method="POST" action="{{ route('register.submit') }}">
+                    @csrf
                     {{-- Nombre completo --}}
                     <div class="form-field form-field--icon">
                         <label class="form-field__label" for="fullname">Nombre Completo</label>
                         <div class="form-field__control">
                             <span class="material-symbols-outlined form-field__icon">person</span>
-                            <input class="form-field__input" id="fullname"
-                                placeholder="Roberto Ojeda" type="text" />
+                            <input class="form-field__input {{ $errors->has('name') ? 'form-field__input--error' : '' }}"
+                                id="fullname" name="name" type="text"
+                                placeholder="Roberto Ojeda"
+                                value="{{ old('name') }}" autocomplete="name" />
                         </div>
                     </div>
 
@@ -49,8 +60,10 @@
                         <label class="form-field__label" for="email">Correo Electrónico</label>
                         <div class="form-field__control">
                             <span class="material-symbols-outlined form-field__icon">mail</span>
-                            <input class="form-field__input" id="email"
-                                placeholder="RobertoOjeda@cinevibe.com" type="email" />
+                            <input class="form-field__input {{ $errors->has('email') ? 'form-field__input--error' : '' }}"
+                                id="email" name="email" type="email"
+                                placeholder="RobertoOjeda@cinevibe.com"
+                                value="{{ old('email') }}" autocomplete="email" />
                         </div>
                     </div>
 
@@ -60,16 +73,19 @@
                             <label class="form-field__label" for="password">Contraseña</label>
                             <div class="form-field__control">
                                 <span class="material-symbols-outlined form-field__icon">lock</span>
-                                <input class="form-field__input" id="password"
-                                    placeholder="••••••••" type="password" />
+                                <input class="form-field__input {{ $errors->has('password') ? 'form-field__input--error' : '' }}"
+                                    id="password" name="password" type="password"
+                                    placeholder="••••••••" autocomplete="new-password" />
                             </div>
                         </div>
                         <div class="form-field form-field--icon">
                             <label class="form-field__label" for="confirm">Confirmar</label>
                             <div class="form-field__control">
                                 <span class="material-symbols-outlined form-field__icon">verified_user</span>
-                                <input class="form-field__input" id="confirm"
-                                    placeholder="••••••••" type="password" />
+                                {{-- CRUCIAL: name="password_confirmation" es el nombre que espera la regla `confirmed` de Laravel --}}
+                                <input class="form-field__input {{ $errors->has('password_confirmation') ? 'form-field__input--error' : '' }}"
+                                    id="confirm" name="password_confirmation" type="password"
+                                    placeholder="••••••••" autocomplete="new-password" />
                             </div>
                         </div>
                     </div>

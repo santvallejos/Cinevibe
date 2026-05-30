@@ -50,13 +50,32 @@
                 </div>
 
                 {{-- Formulario de autenticación --}}
-                <form class="login__form">
+                {{-- Alerta global de errores de validación --}}
+                @if ($errors->any())
+                    <div class="login__alert login__alert--error">
+                        <span class="material-symbols-outlined">error</span>
+                        {{ $errors->first() }}
+                    </div>
+                @endif
+
+                {{-- Alerta de sesión expirada u otros mensajes de estado --}}
+                @if (session('status'))
+                    <div class="login__alert login__alert--success">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                <form class="login__form" method="POST" action="{{ route('login.submit') }}">
+                    @csrf
                     {{-- Email --}}
                     <div class="form-field">
                         <label class="form-field__label" for="email">Correo Electrónico</label>
                         <div class="form-field__control">
-                            <input class="form-field__input form-field__input--filled" id="email"
-                                placeholder="name@luxury.com" type="email" />
+                            <input class="form-field__input form-field__input--filled {{ $errors->has('email') ? 'form-field__input--error' : '' }}"
+                                id="email" name="email" type="email"
+                                placeholder="name@luxury.com"
+                                value="{{ old('email') }}" autocomplete="email" />
                             <span class="material-symbols-outlined form-field__icon form-field__icon--right">alternate_email</span>
                         </div>
                     </div>
@@ -68,8 +87,9 @@
                             <a class="form-field__aside" href="#">¿Olvidaste tu contraseña?</a>
                         </div>
                         <div class="form-field__control">
-                            <input class="form-field__input form-field__input--filled" id="password"
-                                placeholder="••••••••" type="password" />
+                            <input class="form-field__input form-field__input--filled"
+                                id="password" name="password" type="password"
+                                placeholder="••••••••" autocomplete="current-password" />
                             <span class="material-symbols-outlined form-field__icon form-field__icon--right">lock</span>
                         </div>
                     </div>

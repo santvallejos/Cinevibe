@@ -13,10 +13,13 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes;
 
-    protected $fillable = ['name', 'email', 'password', 'role_id'];
+    protected $fillable = ['name', 'email', 'password', 'rol_id'];
     protected $hidden = ['password', 'remember_token'];
 
-    public function role() {
-        return $this->belongsTo(Role::class, 'role_id');
+    /**
+     * Relación: un usuario pertenece a un rol.
+     */
+    public function rol() {
+        return $this->belongsTo(Role::class, 'rol_id');
     }
 }

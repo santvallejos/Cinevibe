@@ -22,11 +22,12 @@ class RegisterController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Crear el nuevo usuario
+        // Crear el nuevo usuario con rol de Cliente (rol_id = 2)
         $user = User::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
+            'name'     => $validatedData['name'],
+            'email'    => $validatedData['email'],
             'password' => bcrypt($validatedData['password']),
+            'rol_id'   => 2, // ID 2 = Cliente (creado por RoleSeeder)
         ]);
 
         // Iniciar sesión automáticamente después del registro

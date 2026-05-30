@@ -26,8 +26,22 @@
     {{-- Derecha: CTA desktop (oculto en mobile) + botón hamburguesa (oculto en desktop) --}}
     <div class="nav-bar__right">
         <div class="nav-bar__cta">
-            <a class="nav-bar__login" href="{{ route('login.index') }}">Ingresar</a>
-            <a class="nav-bar__register" href="{{ route('register.index') }}">Registrarse</a>
+            @auth
+                {{-- Usuario autenticado: saludo + botón cerrar sesión --}}
+                <span class="nav-bar__user-greeting">
+                    Hola, {{ Auth::user()->name }}
+                </span>
+                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="nav-bar__logout">
+                        Cerrar Sesión
+                    </button>
+                </form>
+            @else
+                {{-- Invitado: links de login y registro --}}
+                <a class="nav-bar__login" href="{{ route('login.index') }}">Ingresar</a>
+                <a class="nav-bar__register" href="{{ route('register.index') }}">Registrarse</a>
+            @endauth
         </div>
 
         {{-- Botón hamburguesa: solo visible en mobile (<768px) --}}
@@ -51,8 +65,17 @@
     <a class="nav-bar__mobile-link" href="#">¿Quiénes Somos?</a>
 
     <div class="nav-bar__mobile-cta">
-        <a class="nav-bar__login" href="{{ route('login.index') }}">Ingresar</a>
-        <a class="nav-bar__register" href="{{ route('register.index') }}">Registrarse</a>
+        @auth
+            {{-- Usuario autenticado en mobile --}}
+            <span class="nav-bar__user-greeting">Hola, {{ Auth::user()->name }}</span>
+            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                @csrf
+                <button type="submit" class="nav-bar__logout">Cerrar Sesión</button>
+            </form>
+        @else
+            <a class="nav-bar__login" href="{{ route('login.index') }}">Ingresar</a>
+            <a class="nav-bar__register" href="{{ route('register.index') }}">Registrarse</a>
+        @endauth
     </div>
 </div>
 
