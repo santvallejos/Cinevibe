@@ -263,3 +263,51 @@
     background-color: rgba(220, 38, 38, 0.2);
     color: #f87171;
 }
+/* ==========================================================
+   CART ICON
+========================================================== */
+
+.nav-bar__cart {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    transition: 0.3s ease;
+}
+
+.nav-bar__cart:hover {
+    color: #e50914;
+    transform: scale(1.08);
+}
+
+.nav-bar__cart .material-symbols-outlined {
+    font-size: 2rem;
+}
+
+/* Badge rojo */
+.nav-bar__cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+
+    min-width: 18px;
+    height: 18px;
+
+    padding: 0 5px;
+
+    border-radius: 999px;
+
+    background: #e50914;
+    color: #ffffff;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

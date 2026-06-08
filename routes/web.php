@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CarritoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,16 +41,31 @@ Route::view('/movies/proyectofindelmundo', 'movies.proyectofindelmundo');
 */
 Route::get('/register', [RegisterController::class, 'showRegisterView'])->name('register.index');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
-
-Route::get('/login', [LoginController::class, 'showLoginView'])->name('login.index');
-Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+Route::get('/login', [LoginController::class, 'showLoginView'])
+    ->name('login');
+Route::post('/login', [LoginController::class, 'login'])
+    ->name('login.submit');
 
 // Cierre de sesión seguro vía POST (evita CSRF en cierres de sesión vía GET)
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+/*
+|--------------------------------------------------------------------------
+| Panel Administración / Cliente
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cliente', [ClienteController::class, 'index'])
+        ->name('cliente.dashboard');
+});
+
+
 
 /*
 |--------------------------------------------------------------------------
-| Carrito / Pago
+| Carrito / Pago 
 |--------------------------------------------------------------------------
 */
 Route::get('/select-armchair', function () {
@@ -77,3 +95,27 @@ Route::get('/select-movie', function () {
 Route::get('/movie', function () {
     return view('cart.movie.index');
 })->name('cart.movie.index');
+
+Route::get('/cart', [CarritoController::class, 'index'])
+    ->name('cart.index');
+Route::middleware(['auth'])->group(function () { 
+    // Mostrar el carrito 
+    Route::get('/carrito', [CarritoController::class, 'index']) 
+                          ->name('cliente.carrito'); 
+    // Agregar un producto 
+    Route::post('/carrito/agregar', [CarritoController::class, 'agregar']) 
+                                   ->name('carrito.agregar'); 
+    // Eliminar un producto 
+    Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar']) 
+                                           ->name('carrito.eliminar'); 
+    // Confirmar la compra 
+    Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar']) 
+                                     ->name('carrito.confirmar'); 
+                                       // Vista de compra confirmada (protegida: redirige si no hay sesión) 
+    Route::get('/compra-confirmada', function () { 
+        if (!session('total')) { 
+            return redirect()->route('cliente.dashboard'); 
+        } 
+        return view('cart.compra-confirmada'); 
+    })->name('compra.confirmada'); 
+}); 

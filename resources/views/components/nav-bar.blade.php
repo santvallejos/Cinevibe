@@ -26,6 +26,17 @@
     {{-- Derecha: CTA desktop (oculto en mobile) + botón hamburguesa (oculto en desktop) --}}
     <div class="nav-bar__right">
         <div class="nav-bar__cta">
+            {{-- Carrito --}}
+    <a class="nav-bar__cart" href="{{ route('cliente.carrito') }}">
+    <span class="material-symbols-outlined">
+        shopping_cart
+    </span>
+
+    <span class="nav-bar__cart-badge">
+        {{ count(session('cart', [])) }}
+    </span>
+
+</a>
             @auth
                 {{-- Usuario autenticado: saludo + botón cerrar sesión --}}
                 <span class="nav-bar__user-greeting">
@@ -39,7 +50,7 @@
                 </form>
             @else
                 {{-- Invitado: links de login y registro --}}
-                <a class="nav-bar__login" href="{{ route('login.index') }}">Ingresar</a>
+                <a class="nav-bar__login" href="{{ route('login') }}">Ingresar</a>
                 <a class="nav-bar__register" href="{{ route('register.index') }}">Registrarse</a>
             @endauth
         </div>
@@ -73,7 +84,7 @@
                 <button type="submit" class="nav-bar__logout">Cerrar Sesión</button>
             </form>
         @else
-            <a class="nav-bar__login" href="{{ route('login.index') }}">Ingresar</a>
+            <a class="nav-bar__login" href="{{ route('login') }}">Ingresar</a>
             <a class="nav-bar__register" href="{{ route('register.index') }}">Registrarse</a>
         @endauth
     </div>
