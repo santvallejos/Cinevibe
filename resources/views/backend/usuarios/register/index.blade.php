@@ -97,7 +97,7 @@
                         </button>
                         <div class="register__switch">
                             <span class="register__switch-text">¿YA TIENES UNA CUENTA?</span>
-                            <a class="register__switch-link" href="{{ route('login.index') }}">LOGIN</a>
+                            <a class="register__switch-link" href="{{ route('login') }}">LOGIN</a>
                         </div>
                     </div>
                 </form>

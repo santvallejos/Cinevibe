@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\TheaterController;
 use App\Http\Controllers\ShowTimeController;
@@ -50,12 +53,27 @@ Route::get('/movies/{movie}/showtimes', [ShowTimeController::class, 'byMovie'])-
 */
 Route::get('/register', [RegisterController::class, 'showRegisterView'])->name('register.index');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
-
-Route::get('/login', [LoginController::class, 'showLoginView'])->name('login.index');
-Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+Route::get('/login', [LoginController::class, 'showLoginView'])
+    ->name('login');
+Route::post('/login', [LoginController::class, 'login'])
+    ->name('login.submit');
 
 // Cierre de sesión seguro vía POST (evita CSRF en cierres de sesión vía GET)
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+/*
+|--------------------------------------------------------------------------
+| Panel Administración / Cliente
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+});
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cliente', [ClienteController::class, 'index'])
+        ->name('cliente.dashboard');
+});
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -91,8 +109,9 @@ Route::get('/terminos-condiciones', function () {
     return view('terms-and-conditions.index');
 })->name('terms-and-conditions.index');
 
-// Ruta de cartelera (selección de película) — usa el controller
-Route::get('/select-movie', [MovieController::class, 'index'])->name('select-movie.index');
+Route::get('/select-movie', function () {
+    return view('cart.select-movie.index');
+})->name('select-movie.index');
 
 // Vista detalle de película en el flujo de compra
 Route::get('/movie/{movie}', [MovieController::class, 'show'])->name('cart.movie.index');

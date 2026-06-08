@@ -10,7 +10,7 @@ class RegisterController extends Controller
 {
     public function showRegisterView()
     {
-        return view('register.index');
+    return view('backend.usuarios.register.index');
     }
 
     public function register(Request $request)

@@ -1,0 +1,374 @@
+/* =============================================
+   CineTech - Panel de Administración
+   Estilos principales
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --rojo-cine:     #C0392B;
+    --rojo-oscuro:   #922B21;
+    --dorado:        #F1C40F;
+    --negro:         #0D0D0D;
+    --negro-suave:   #1A1A2E;
+    --gris-oscuro:   #16213E;
+    --gris-medio:    #2C2C3E;
+    --gris-claro:    #E8E8E8;
+    --blanco:        #FFFFFF;
+    --texto-suave:   #A0A0B0;
+    --admin-badge:   #C0392B;
+    --cliente-badge: #2980B9;
+    --exito:         #27AE60;
+    --sombra:        0 4px 24px rgba(0,0,0,0.5);
+    --sombra-suave:  0 2px 12px rgba(0,0,0,0.3);
+    --radio:         10px;
+    --radio-sm:      6px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 50%, #16213E 100%);
+    min-height: 100vh;
+    color: var(--blanco);
+}
+
+/* ---- NAVBAR ---- */
+.navbar {
+    background: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--rojo-cine);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--sombra);
+}
+
+.navbar-brand {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.6rem;
+    color: var(--blanco);
+    text-decoration: none;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-brand span {
+    color: var(--rojo-cine);
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    list-style: none;
+}
+
+.navbar-nav a {
+    color: var(--gris-claro);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.navbar-nav a:hover {
+    color: var(--rojo-cine);
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blanco);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: var(--radio-sm);
+    border: 1px solid rgba(192,57,43,0.4);
+    transition: background 0.2s;
+}
+
+.navbar-user:hover {
+    background: rgba(192,57,43,0.15);
+}
+
+.navbar-user i {
+    color: var(--rojo-cine);
+}
+
+/* ---- HERO BANNER ---- */
+.hero-banner {
+    background: linear-gradient(90deg, var(--rojo-oscuro) 0%, var(--rojo-cine) 50%, #E74C3C 100%);
+    text-align: center;
+    padding: 1.4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 64px;
+}
+
+/* ---- FIX NAVBAR FIJO: empuja todo el contenido de la página ---- */
+body {
+    padding-top: 64px !important;
+}
+
+/* Como el hero-banner ya tiene margin-top, lo cancelamos para no duplicar */
+body .hero-banner {
+    margin-top: 0 !important;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-banner h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.hero-banner p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-top: 2px;
+    font-weight: 300;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+/* ---- CONTENEDOR PRINCIPAL ---- */
+.panel-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* ---- CABECERA PANEL ---- */
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+}
+
+.panel-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--blanco);
+}
+
+.badge-rol {
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.badge-admin {
+    background: var(--admin-badge);
+    color: var(--blanco);
+    box-shadow: 0 0 12px rgba(192,57,43,0.5);
+}
+
+.badge-cliente {
+    background: var(--cliente-badge);
+    color: var(--blanco);
+}
+
+/* ---- TARJETAS DE ESTADÍSTICAS ---- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radio);
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    backdrop-filter: blur(6px);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--rojo-cine);
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radio-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.stat-icon.usuarios  { background: rgba(41,128,185,0.2);  color: #2980B9; }
+.stat-icon.peliculas { background: rgba(192,57,43,0.2);   color: var(--rojo-cine); }
+.stat-icon.funciones { background: rgba(241,196,15,0.2);  color: var(--dorado); }
+.stat-icon.entradas  { background: rgba(39,174,96,0.2);   color: var(--exito); }
+
+.stat-info label {
+    font-size: 0.72rem;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.stat-info .stat-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--blanco);
+}
+
+/* ---- TABLA ---- */
+.table-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radio);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(6px);
+}
+
+.table-card-header {
+    background: rgba(13,13,13,0.6);
+    padding: 0.9rem 1.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-card-header i {
+    color: var(--rojo-cine);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background: rgba(0,0,0,0.3);
+    padding: 0.7rem 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    text-align: left;
+}
+
+tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s;
+}
+
+tbody tr:hover {
+    background: rgba(192,57,43,0.07);
+}
+
+tbody td {
+    padding: 0.75rem 1.2rem;
+    font-size: 0.85rem;
+    color: var(--gris-claro);
+}
+
+.td-num {
+    color: var(--texto-suave);
+    font-weight: 600;
+}
+
+/* ---- BADGES DE ROL EN TABLA ---- */
+.rol-badge {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.rol-admin   { background: var(--rojo-cine);  color: #fff; }
+.rol-cliente { background: #2980B9;            color: #fff; }
+
+/* ---- ACCESOS RÁPIDOS ---- */
+.accesos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    padding: 1.2rem 1.4rem;
+}
+
+.acceso-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.7rem 1.1rem;
+    border-radius: var(--radio-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+    border: none;
+}
+
+.acceso-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-suave);
+}
+
+.btn-rojo    { background: var(--rojo-cine); color: #fff; }
+.btn-dorado  { background: var(--dorado);    color: #111; }
+.btn-outline { background: transparent; color: var(--blanco); border: 1px solid rgba(255,255,255,0.25); }
+.btn-verde   { background: var(--exito);     color: #fff; }
+
+/* ---- PÁGINA DE LABEL (debug watermark) ---- */
+.page-label {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3.5rem;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+    letter-spacing: 4px;
+    user-select: none;
+}
