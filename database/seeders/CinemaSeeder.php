@@ -34,33 +34,39 @@ class CinemaSeeder extends Seeder
         ]);
 
         // --- Películas ---
+        // Película 1: El Diablo (Estreno / En cartelera)
         $movie1 = Movie::create([
             'name'        => 'El Diablo',
+            'state'       => 'Estreno',
             'description' => 'Un thriller de acción sin precedentes.',
             'duration'    => '2h 10min',
             'category'    => 'Acción',
             'datepremire' => '2026-06-01',
-            'image_url'   => null,
+            'image_url'   => 'img/peliculas/Pelicula,Eldiablo.jpg', // Ruta de imagen local correspondiente
             'trailer_url' => null,
         ]);
 
+        // Película 2: Mortal Kombat (En cartelera)
         $movie2 = Movie::create([
             'name'        => 'Mortal Kombat',
+            'state'       => 'En cartelera',
             'description' => 'La batalla de los campeones del mundo.',
             'duration'    => '1h 50min',
             'category'    => 'Acción/Fantasía',
             'datepremire' => '2026-05-15',
-            'image_url'   => null,
+            'image_url'   => 'img/peliculas/mortalKombat.jpg', // Ruta de imagen local correspondiente
             'trailer_url' => null,
         ]);
 
+        // Película 3: El Mago del Kremlin (Próximamente)
         $movie3 = Movie::create([
             'name'        => 'El Mago del Kremlin',
+            'state'       => 'Próximamente',
             'description' => 'Drama político de intriga internacional.',
             'duration'    => '2h 30min',
             'category'    => 'Drama',
             'datepremire' => '2026-06-10',
-            'image_url'   => null,
+            'image_url'   => 'img/peliculas/Elmago.jpg', // Ruta de imagen local correspondiente
             'trailer_url' => null,
         ]);
 

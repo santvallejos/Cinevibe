@@ -9,21 +9,25 @@ use Illuminate\Http\Request;
 class MovieController extends Controller
 {
     /**
-     * Lista todas las películas (cartelera).
+     * Lista todas las películas de la cartelera y próximos estrenos.
+     * Retorna la vista billboard.index cargando las películas con sus funciones.
      */
     public function index()
     {
+        // Obtiene todas las películas con sus horarios y salas relacionadas
         $movies = Movie::with('showtimes.theater')->get();
-        return view('movies.index', compact('movies'));
+        return view('billboard.index', compact('movies'));
     }
 
     /**
      * Muestra el detalle de una película con sus funciones disponibles.
+     * Retorna la vista reutilizable billboard.movie.index con los datos del modelo $movie.
      */
     public function show(Movie $movie)
     {
+        // Carga las relaciones de horarios y sala asociada a cada función
         $movie->load('showtimes.theater');
-        return view('movies.show', compact('movie'));
+        return view('billboard.movie.index', compact('movie'));
     }
 
     /**

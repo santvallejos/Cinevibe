@@ -27,7 +27,7 @@
     <div class="nav-bar__right">
         <div class="nav-bar__cta">
             {{-- Carrito --}}
-    <a class="nav-bar__cart" href="{{ route('cliente.carrito') }}">
+   {{--  <a class="nav-bar__cart" href="{{ route('cliente.carrito') }}"> --}}
     <span class="material-symbols-outlined">
         shopping_cart
     </span>

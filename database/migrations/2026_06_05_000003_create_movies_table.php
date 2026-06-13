@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('state');       // Ej: "En cartelera", "Próximamente"
             $table->text('description')->nullable();
             $table->string('duration');         // Ej: "2h 15min"
             $table->string('category');
