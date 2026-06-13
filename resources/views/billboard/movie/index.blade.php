@@ -436,9 +436,9 @@
                                     <div class="booking__price" id="priceDisplay">—</div>
                                 </div>
 
-                                {{-- Botón que redirige al flujo de selección de butacas --}}
+                                {{-- Botón que redirige al flujo de selección de butacas con showtime_id --}}
                                 <a
-                                    href="{{ route('armchair.index') }}"
+                                    href="#"
                                     class="btn btn--primary btn--block btn--lg"
                                     id="btnReservar"
                                 >
@@ -532,17 +532,24 @@
          * Actualiza el resumen de la función seleccionada (hora, sala, disponibilidad y precio).
          */
         function updateSummary(timeBtn) {
-            const time     = timeBtn.dataset.time  ?? '—';
-            const hall     = timeBtn.dataset.hall  ?? '—';
-            const seats    = parseInt(timeBtn.dataset.seats ?? 0);
-            const price    = timeBtn.dataset.price ?? '3000';
-            const maxSeats = 80;
+            const time       = timeBtn.dataset.time  ?? '—';
+            const hall       = timeBtn.dataset.hall  ?? '—';
+            const seats      = parseInt(timeBtn.dataset.seats ?? 0);
+            const price      = timeBtn.dataset.price ?? '3000';
+            const showtimeId = timeBtn.dataset.showtimeId ?? '';
+            const maxSeats   = 80;
 
             document.getElementById('summaryVal').textContent = time + ' · ' + hall;
             document.getElementById('seatsText').textContent  = seats + ' butacas disponibles';
             
             // Muestra el precio formateado en español
             document.getElementById('priceDisplay').textContent = '$' + Number(price).toLocaleString('es-CL');
+
+            // Actualiza href del botón Reservar con el showtime_id seleccionado
+            const btnReservar = document.getElementById('btnReservar');
+            if (btnReservar && showtimeId) {
+                btnReservar.href = '{{ route('armchair.index') }}?showtime_id=' + showtimeId;
+            }
 
             const pct  = Math.round((seats / maxSeats) * 100);
             const fill = document.getElementById('seatsFill');

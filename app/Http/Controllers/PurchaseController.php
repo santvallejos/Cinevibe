@@ -92,7 +92,8 @@ class PurchaseController extends Controller
         $cant      = count($request->amchairs);
         $subtotal  = $unitPrice * $cant;
 
-        DB::transaction(function () use ($showtime, $user, $request, $unitPrice, $cant, $subtotal) {
+        // Ejecutar toda la compra en transacción y retornar la cabecera
+        $headboard = DB::transaction(function () use ($showtime, $user, $request, $unitPrice, $cant, $subtotal) {
             // 1. Crear un ticket por cada butaca seleccionada
             $tickets = [];
             foreach ($request->amchairs as $amchair) {
@@ -118,6 +119,9 @@ class PurchaseController extends Controller
                 'subtotal'        => $subtotal,
             ]);
 
+            // 2.5. Vincular todos los tickets a la línea de venta
+            Ticket::whereIn('id', collect($tickets)->pluck('id'))->update(['retail_sale_id' => $retailSale->id]);
+
             // 3. Crear HeadboardSale (cabecera de la orden)
             $headboard = HeadboardSale::create([
                 'user_id'        => $user->id,
@@ -128,10 +132,14 @@ class PurchaseController extends Controller
 
             // 4. Actualizar sale_id del usuario con la compra más reciente
             $user->update(['sale_id' => $headboard->id]);
+
+            return $headboard;
         });
 
+        // Redirigir con ID de venta en sesión flash
         return redirect()->route('purchase.success')
-            ->with('success', '¡Compra realizada exitosamente!');
+            ->with('success', '¡Compra realizada exitosamente!')
+            ->with('sale_id', $headboard->id);
     }
 
     /**
@@ -139,7 +147,21 @@ class PurchaseController extends Controller
      */
     public function success()
     {
-        return view('cart.success');
+        // Recupera la venta desde la sesión o la última del usuario
+        $saleId = session('sale_id');
+        $sale = $saleId
+            ? HeadboardSale::with(['retailSale.tickets.showtime.movie', 'retailSale.tickets.theater'])->find($saleId)
+            : HeadboardSale::with(['retailSale.tickets.showtime.movie', 'retailSale.tickets.theater'])
+                ->where('user_id', Auth::id())
+                ->latest()
+                ->first();
+
+        // Si no existe la venta, redirigir al inicio
+        if (!$sale) {
+            return redirect()->route('index')->with('error', 'No se encontró la compra.');
+        }
+
+        return view('cart.success', compact('sale'));
     }
 
     /**

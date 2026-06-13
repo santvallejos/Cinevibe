@@ -16,7 +16,7 @@ class Ticket extends Model
 
     protected $fillable = [
         'id', 'pelicula_id', 'showtime_id', 'theater_id',
-        'price', 'amchair', 'date', 'movie',
+        'price', 'amchair', 'date', 'movie', 'retail_sale_id',
     ];
 
     protected $casts = [
@@ -49,10 +49,10 @@ class Ticket extends Model
     }
 
     /**
-     * Ticket puede estar en una línea de venta (retail_sale).
+     * Ticket pertenece a una línea de venta (retail_sale).
      */
     public function retailSale()
     {
-        return $this->hasOne(RetailSale::class, 'ticket_id');
+        return $this->belongsTo(RetailSale::class, 'retail_sale_id');
     }
 }

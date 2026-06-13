@@ -35,4 +35,12 @@ class RetailSale extends Model
     {
         return $this->hasOne(HeadboardSale::class, 'retail_sale_id');
     }
+
+    /**
+     * Todos los tickets asociados a esta línea de venta.
+     */
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'retail_sale_id');
+    }
 }
