@@ -5,117 +5,349 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/pages/movie-detail.css') }}">
+    <style>
+        /* Estilos personalizados para la mejora de UI/UX de la película */
+        .movie-layout__poster {
+            position: relative;
+            top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .movie-title-large {
+            font-family: var(--font-headline);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 24px;
+            text-transform: none;
+            letter-spacing: -0.5px;
+        }
+
+        /* Overlay interactivo para el Tráiler */
+        .movie-featured-img {
+            cursor: pointer;
+            position: relative;
+        }
+        .movie-featured-img__play-btn {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 15, 0.45);
+            transition: all 0.3s ease;
+        }
+        .movie-featured-img:hover .movie-featured-img__play-btn {
+            background: rgba(10, 10, 15, 0.75);
+        }
+        .movie-featured-img__play-btn span.material-symbols-outlined {
+            font-size: 64px;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .movie-featured-img:hover .movie-featured-img__play-btn span.material-symbols-outlined {
+            transform: scale(1.15);
+            color: #e50914;
+        }
+        .movie-featured-img__play-text {
+            margin-top: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        /* Ficha técnica y sinopsis a la izquierda */
+        .movie-left-details {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .movie-left-details__block {
+            background: var(--color-surface-container-low, #1c1b1b);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 18px 20px;
+            transition: border-color var(--tr-fast);
+        }
+        .movie-left-details__block:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .movie-left-details__title {
+            font-family: var(--font-headline);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-neutral-500, #737373);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .movie-left-details__title::before {
+            content: '';
+            display: inline-block;
+            width: 3px;
+            height: 12px;
+            background: #e50914;
+            border-radius: 2px;
+        }
+        .movie-left-details__text {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #aaa;
+            margin: 0;
+        }
+        .movie-left-details__genres {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .movie-ficha-simple {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .movie-ficha-simple__item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #e5e2e1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 8px;
+        }
+        .movie-ficha-simple__item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .movie-ficha-simple__item--column {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .movie-ficha-simple__label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #737373;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .movie-ficha-simple__label span {
+            font-size: 14px;
+        }
+        .movie-ficha-simple__val {
+            font-weight: 600;
+        }
+        .movie-ficha-simple__formats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .movie-ficha-simple__fmt {
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #bbb;
+        }
+
+        /* Precios en horarios de funciones */
+        .booking__time {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 8px 14px;
+            min-width: 85px;
+        }
+        .booking__time-price {
+            font-size: 0.68rem;
+            opacity: 0.75;
+            font-weight: 600;
+            color: #F0C96A;
+        }
+        .booking__time--active .booking__time-price {
+            opacity: 1;
+            color: #fff;
+        }
+
+        /* Modal de Tráiler (YouTube) */
+        .movie-trailer-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(10, 10, 15, 0.92);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .movie-trailer-modal--active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .movie-trailer-modal__content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            background: #0f0f23;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .movie-trailer-modal--active .movie-trailer-modal__content {
+            transform: scale(1);
+        }
+        .movie-trailer-modal__close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s;
+        }
+        .movie-trailer-modal__close:hover {
+            background: #e50914;
+            transform: scale(1.1);
+        }
+        .movie-trailer-modal__video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            height: 0;
+        }
+        .movie-trailer-modal__video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .movie-title-large {
+                font-size: 1.8rem;
+                margin-top: 16px;
+            }
+        }
+    </style>
 @endpush
 
 @section('content')
     <main class="movie-page">
 
-        {{-- ── Grid principal de la página de detalle ── --}}
+        {{-- Grid principal de la página de detalle --}}
         <section class="movie-content">
             <div class="movie-layout">
 
-                {{-- ── Columna izquierda: póster de la película ── --}}
+                {{-- Columna izquierda: póster de la película + sinopsis e info --}}
                 <div class="movie-layout__poster">
-                    <div class="movie-featured-img">
-                        {{-- Imagen dinámica: usa image_url si existe, si no muestra un placeholder --}}
+                    <div class="movie-featured-img" id="openTrailerBtn">
+                        {{-- Imagen dinámica con fallback si no hay --}}
                         <img
                             src="{{ $movie->image_url ? asset($movie->image_url) : asset('img/peliculas/default.jpg') }}"
                             alt="{{ $movie->name }}"
                             class="movie-featured-img__img"
                         >
-                        <div class="movie-featured-img__overlay">
-                            <div class="movie-featured-img__pills">
-                                {{-- Badge de estado (Estreno, En cartelera, etc.) --}}
-                                <span class="movie-pill movie-pill--gold">
-                                    <span class="material-symbols-outlined material-symbols-outlined--fill">sell</span>
-                                    {{ strtoupper($movie->state) }}
-                                </span>
-                                {{-- Categoría / género de la película --}}
-                                <span class="movie-pill">{{ $movie->category }}</span>
-                                {{-- Duración de la película --}}
-                                <span class="movie-pill">{{ $movie->duration }}</span>
+                        {{-- Indicación visual de play --}}
+                        <div class="movie-featured-img__play-btn">
+                            <span class="material-symbols-outlined">play_circle</span>
+                            <span class="movie-featured-img__play-text">Ver Tráiler</span>
+                        </div>
+                    </div>
+
+                    {{-- Detalles e información debajo de la foto --}}
+                    <div class="movie-left-details">
+                        {{-- Categoría / géneros --}}
+                        <div class="movie-left-details__block">
+                            <h4 class="movie-left-details__title">Categoría</h4>
+                            <div class="movie-left-details__genres">
+                                @foreach(explode(',', $movie->category) as $genre)
+                                    <span class="movie-genre-tag">{{ trim($genre) }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        {{-- Sinopsis / descripción --}}
+                        <div class="movie-left-details__block">
+                            <h4 class="movie-left-details__title">Sinopsis</h4>
+                            <p class="movie-left-details__text">
+                                {{ $movie->description ?? 'Sin sinopsis disponible.' }}
+                            </p>
+                        </div>
+
+                        {{-- Ficha técnica simplificada (sin estado) --}}
+                        <div class="movie-left-details__block">
+                            <h4 class="movie-left-details__title">Ficha Técnica</h4>
+                            <div class="movie-ficha-simple">
+                                <div class="movie-ficha-simple__item">
+                                    <span class="movie-ficha-simple__label">
+                                        <span class="material-symbols-outlined">schedule</span> Duración
+                                    </span>
+                                    <span class="movie-ficha-simple__val">{{ $movie->duration }}</span>
+                                </div>
+                                <div class="movie-ficha-simple__item">
+                                    <span class="movie-ficha-simple__label">
+                                        <span class="material-symbols-outlined">calendar_today</span> Estreno
+                                    </span>
+                                    <span class="movie-ficha-simple__val">
+                                        {{ $movie->datepremire ? $movie->datepremire->format('d/m/Y') : '—' }}
+                                    </span>
+                                </div>
+                                @if($movie->showtimes->count() > 0)
+                                    <div class="movie-ficha-simple__item movie-ficha-simple__item--column">
+                                        <span class="movie-ficha-simple__label">
+                                            <span class="material-symbols-outlined">videocam</span> Salas Disponibles
+                                        </span>
+                                        <div class="movie-ficha-simple__formats">
+                                            @foreach($movie->showtimes->unique('theater_id') as $showtime)
+                                                <span class="movie-ficha-simple__fmt">{{ $showtime->theater->name }}</span>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {{-- ── Columna derecha: información + booking ── --}}
+                {{-- Columna derecha: título + widget de reserva --}}
                 <div class="movie-layout__info">
 
-                    {{-- Sinopsis --}}
-                    <div class="movie-block">
-                        <h3 class="movie-block__title">{{ $movie->name }}</h3>
+                    {{-- Título de la película --}}
+                    <h2 class="movie-title-large">{{ $movie->name }}</h2>
 
-                        {{-- Categoría como tags --}}
-                        <div class="movie-block__genres">
-                            @foreach(explode(',', $movie->category) as $genre)
-                                <span class="movie-genre-tag">{{ trim($genre) }}</span>
-                            @endforeach
-                        </div>
-
-                        {{-- Descripción de la película (si existe) --}}
-                        @if($movie->description)
-                            <p class="movie-block__text">{{ $movie->description }}</p>
-                        @else
-                            <p class="movie-block__text movie-block__text--muted">Sin sinopsis disponible.</p>
-                        @endif
-                    </div>
-
-                    {{-- Ficha técnica --}}
-                    <div class="movie-block">
-                        <h3 class="movie-block__title">Ficha Técnica</h3>
-                        <div class="movie-ficha">
-
-                            {{-- Fila: Duración y Fecha de estreno --}}
-                            <div class="movie-ficha__row">
-                                <div class="movie-ficha__item">
-                                    <span class="movie-ficha__label">
-                                        <span class="material-symbols-outlined">schedule</span>
-                                        Duración
-                                    </span>
-                                    <span class="movie-ficha__val">{{ $movie->duration }}</span>
-                                </div>
-                                <div class="movie-ficha__item">
-                                    <span class="movie-ficha__label">
-                                        <span class="material-symbols-outlined">calendar_today</span>
-                                        Fecha de estreno
-                                    </span>
-                                    <span class="movie-ficha__val">
-                                        {{-- Formatea la fecha en español si está disponible --}}
-                                        {{ $movie->datepremire ? $movie->datepremire->format('d/m/Y') : '—' }}
-                                    </span>
-                                </div>
-                            </div>
-
-                            {{-- Salas donde se proyecta (extraída de los showtimes) --}}
-                            @if($movie->showtimes->count() > 0)
-                                <div class="movie-ficha__item">
-                                    <span class="movie-ficha__label">
-                                        <span class="material-symbols-outlined">videocam</span>
-                                        Salas disponibles
-                                    </span>
-                                    <div class="movie-ficha__formats">
-                                        {{-- Agrupa los showtimes por sala para no repetir --}}
-                                        @foreach($movie->showtimes->unique('theater_id') as $showtime)
-                                            <span class="movie-ficha__fmt">{{ $showtime->theater->name }}</span>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endif
-
-                            {{-- Estado de la película --}}
-                            <div class="movie-ficha__item">
-                                <span class="movie-ficha__label">
-                                    <span class="material-symbols-outlined">label</span>
-                                    Estado
-                                </span>
-                                <span class="movie-ficha__val">{{ $movie->state }}</span>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    {{-- ── Widget de booking: solo si hay funciones disponibles ── --}}
+                    {{-- Widget de booking: solo si hay funciones disponibles --}}
                     @if($movie->showtimes->count() > 0)
                         <div class="booking">
 
@@ -131,14 +363,12 @@
                                     Fecha
                                 </label>
                                 <div class="booking__dates hide-scrollbar" id="dateSelector">
-                                    {{-- Agrupa los showtimes por día para no repetir la misma fecha --}}
                                     @foreach($movie->showtimes->groupBy(fn($st) => \Carbon\Carbon::parse($st->datetime)->format('Y-m-d')) as $date => $group)
                                         @php $carbon = \Carbon\Carbon::parse($date); @endphp
                                         <div
                                             class="booking__date {{ $loop->first ? 'booking__date--active' : '' }}"
                                             data-date="{{ $date }}"
                                         >
-                                            {{-- Nombre del día de la semana abreviado en español --}}
                                             <span class="booking__date-dow">{{ strtoupper(substr($carbon->locale('es')->dayName, 0, 3)) }}</span>
                                             <span class="booking__date-num">{{ $carbon->format('d') }}</span>
                                         </div>
@@ -146,16 +376,19 @@
                                 </div>
                             </div>
 
-                            {{-- Selector de horarios: generado dinámicamente desde los showtimes --}}
+                            {{-- Selector de horarios agrupados por sala --}}
                             <div class="booking__section">
                                 <label class="booking__label">
                                     <span class="material-symbols-outlined">schedule</span>
-                                    Horario
+                                    Horario y Sala
                                 </label>
 
-                                {{-- Agrupa los horarios por sala --}}
                                 @foreach($movie->showtimes->groupBy('theater_id') as $theaterId => $showtimes)
-                                    @php $theaterName = $showtimes->first()->theater->name; @endphp
+                                    @php
+                                        $theater = $showtimes->first()->theater;
+                                        $theaterName = $theater->name;
+                                        $theaterPrice = $theater->price ?? '3000';
+                                    @endphp
                                     <div class="booking__times-group">
                                         <div class="booking__times-label booking__times-label--gold">
                                             <span class="material-symbols-outlined material-symbols-outlined--fill">workspace_premium</span>
@@ -163,6 +396,7 @@
                                         </div>
                                         <div class="booking__times" id="timeSelector">
                                             @foreach($showtimes as $showtime)
+                                                @php $price = $showtime->theater->price ?? '3000'; @endphp
                                                 <span
                                                     class="booking__time {{ $loop->first && $loop->parent->first ? 'booking__time--active' : '' }}"
                                                     data-time="{{ \Carbon\Carbon::parse($showtime->datetime)->format('H:i') }}"
@@ -170,8 +404,10 @@
                                                     data-showtime-id="{{ $showtime->id }}"
                                                     data-date="{{ \Carbon\Carbon::parse($showtime->datetime)->format('Y-m-d') }}"
                                                     data-seats="50"
+                                                    data-price="{{ $price }}"
                                                 >
                                                     {{ \Carbon\Carbon::parse($showtime->datetime)->format('H:i') }}
+                                                    <span class="booking__time-price">${{ number_format((float) $price, 0, ',', '.') }}</span>
                                                 </span>
                                             @endforeach
                                         </div>
@@ -190,7 +426,7 @@
                                 </div>
                             </div>
 
-                            {{-- Footer del widget: resumen seleccionado + botón de reserva --}}
+                            {{-- Footer del widget: resumen seleccionado + precio + botón de reserva --}}
                             <div class="booking__footer">
                                 <div class="booking__summary">
                                     <div class="booking__summary-label">
@@ -234,11 +470,21 @@
         </section>
     </main>
 
+    {{-- Modal de Tráiler (YouTube) --}}
+    <div id="trailerModal" class="movie-trailer-modal">
+        <div class="movie-trailer-modal__content">
+            <button class="movie-trailer-modal__close" id="closeTrailer">&times;</button>
+            <div class="movie-trailer-modal__video-wrapper">
+                <iframe id="trailerIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     @push('scripts')
     <script>
     document.addEventListener('DOMContentLoaded', function () {
 
-        // ── Selector de fechas ──
+        // Selector de fechas
         document.querySelectorAll('#dateSelector .booking__date').forEach(btn => {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('#dateSelector .booking__date')
@@ -251,7 +497,7 @@
             });
         });
 
-        // ── Selector de horarios ──
+        // Selector de horarios
         document.querySelectorAll('.booking__time').forEach(btn => {
             btn.addEventListener('click', function () {
                 document.querySelectorAll('.booking__time')
@@ -263,7 +509,6 @@
 
         /**
          * Oculta horarios que no corresponden a la fecha seleccionada.
-         * Compara el atributo data-date de cada span de horario.
          */
         function filterShowtimesByDate(selectedDate) {
             document.querySelectorAll('.booking__time').forEach(btn => {
@@ -284,23 +529,83 @@
         }
 
         /**
-         * Actualiza el resumen de la función seleccionada (hora, sala, disponibilidad).
+         * Actualiza el resumen de la función seleccionada (hora, sala, disponibilidad y precio).
          */
         function updateSummary(timeBtn) {
             const time     = timeBtn.dataset.time  ?? '—';
             const hall     = timeBtn.dataset.hall  ?? '—';
             const seats    = parseInt(timeBtn.dataset.seats ?? 0);
+            const price    = timeBtn.dataset.price ?? '3000';
             const maxSeats = 80;
 
             document.getElementById('summaryVal').textContent = time + ' · ' + hall;
             document.getElementById('seatsText').textContent  = seats + ' butacas disponibles';
-            document.getElementById('priceDisplay').textContent = 'Disponible';
+            
+            // Muestra el precio formateado en español
+            document.getElementById('priceDisplay').textContent = '$' + Number(price).toLocaleString('es-CL');
 
             const pct  = Math.round((seats / maxSeats) * 100);
             const fill = document.getElementById('seatsFill');
             fill.style.width      = pct + '%';
             fill.style.background = seats <= 15 ? '#e53935' : seats <= 35 ? '#fb8c00' : '#43a047';
         }
+
+        // ── Lógica del Modal de Tráiler (YouTube) ──
+        const openTrailerBtn = document.getElementById('openTrailerBtn');
+        const trailerModal = document.getElementById('trailerModal');
+        const trailerIframe = document.getElementById('trailerIframe');
+        const closeTrailerBtn = document.getElementById('closeTrailer');
+        const trailerUrl = @json($movie->trailer_url);
+
+        /**
+         * Parsea un URL de YouTube y devuelve su URL de embed.
+         * Si no existe o no coincide, retorna un fallback funcional.
+         */
+        function getYouTubeEmbedUrl(url) {
+            if (!url) return 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // Fallback a video demo
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            if (match && match[2].length === 11) {
+                return 'https://www.youtube.com/embed/' + match[2];
+            }
+            return url;
+        }
+
+        if (openTrailerBtn && trailerModal) {
+            openTrailerBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const embedUrl = getYouTubeEmbedUrl(trailerUrl);
+                trailerIframe.src = embedUrl + "?autoplay=1";
+                trailerModal.classList.add('movie-trailer-modal--active');
+                document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+            });
+        }
+
+        function closeTrailerModal() {
+            if (trailerModal) {
+                trailerModal.classList.remove('movie-trailer-modal--active');
+                trailerIframe.src = ""; // Detiene la reproducción del vídeo
+                document.body.style.overflow = ''; // Restaura scroll
+            }
+        }
+
+        if (closeTrailerBtn) {
+            closeTrailerBtn.addEventListener('click', closeTrailerModal);
+        }
+
+        if (trailerModal) {
+            trailerModal.addEventListener('click', function (e) {
+                if (e.target === trailerModal) {
+                    closeTrailerModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeTrailerModal();
+            }
+        });
 
         // Inicializa con la primer fecha activa al cargar la página
         const firstDate = document.querySelector('#dateSelector .booking__date--active');
