@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-// use App\Models\Entrada;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
@@ -13,16 +10,14 @@ class ClienteController extends Controller
      * Muestra el panel del cliente autenticado.
      */
     public function index()
-{
-    $usuario = auth()->user();
+    {
+        $usuario = auth()->user();
 
-    $cantidadCarrito = session('carrito')
-        ? count(session('carrito'))
-        : 0;
+        // Si es administrador, lo redirigimos a su panel
+        if ($usuario->rol_id == 1) {
+            return redirect()->route('admin.dashboard');
+        }
 
-    return view(
-        'backend.usuarios.cliente.index',
-        compact('usuario', 'cantidadCarrito')
-    );
-}
+        return view('backend.usuarios.cliente.index', compact('usuario'));
+    }
 }

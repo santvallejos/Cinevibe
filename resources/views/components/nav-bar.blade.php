@@ -39,9 +39,9 @@
 </a>
             @auth
                 {{-- Usuario autenticado: saludo + botón cerrar sesión --}}
-                <span class="nav-bar__user-greeting">
-                    Hola, {{ Auth::user()->name }}
-                </span>
+                <a href="{{ route('dashboard') }}" class="nav-bar__user-greeting nav-bar__user-greeting--link">
+    Hola, {{ Auth::user()->name }}
+</a>
                 <form action="{{ route('logout') }}" method="POST" style="display:inline;">
                     @csrf
                     <button type="submit" class="nav-bar__logout">

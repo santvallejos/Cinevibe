@@ -6,7 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CarritoController;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Página principal
@@ -119,3 +119,15 @@ Route::middleware(['auth'])->group(function () {
         return view('cart.compra-confirmada'); 
     })->name('compra.confirmada'); 
 }); 
+
+
+
+Route::get('/dashboard', function () {
+
+    if (Auth::user()->rol_id == 1) {
+        return redirect()->route('admin.dashboard');
+    }
+
+    return redirect()->route('cliente.dashboard');
+
+})->middleware('auth')->name('dashboard');

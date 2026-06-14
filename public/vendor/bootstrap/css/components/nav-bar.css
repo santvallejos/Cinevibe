@@ -311,3 +311,12 @@
     align-items: center;
     justify-content: center;
 }
+.nav-bar__user-greeting--link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-bar__user-greeting--link:hover {
+    text-decoration: underline;
+    opacity: 0.85;
+}
