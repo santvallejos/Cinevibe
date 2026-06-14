@@ -70,11 +70,21 @@
         href="{{ route('index') }}">Inicio</a>
     <a class="nav-bar__mobile-link {{ request()->routeIs('movies.*') ? 'nav-bar__link--active' : '' }}"
         href="{{ route('movies.index') }}">Peliculas</a>
-    <a class="nav-bar__mobile-link" href="#">Ofertas</a>
-    <a class="nav-bar__mobile-link" href="#">Compra</a>
-    <a class="nav-bar__mobile-link" href="#">Contacto</a>
-    <a class="nav-bar__mobile-link" href="#">¿Quiénes Somos?</a>
+   {{-- <a class="nav-bar__mobile-link"href="#">Ofertas</a> --}}
+    <a class="nav-bar__mobile-link"
+   href="{{ route('pay.index') }}">
+   Compra
+</a>
 
+<a class="nav-bar__mobile-link"
+   href="{{ route('contact.index') }}">
+   Contacto
+</a>
+
+<a class="nav-bar__mobile-link"
+   href="{{ route('about-us.index') }}">
+   ¿Quiénes Somos?
+</a>
     <div class="nav-bar__mobile-cta">
         @auth
             {{-- Usuario autenticado en mobile --}}
