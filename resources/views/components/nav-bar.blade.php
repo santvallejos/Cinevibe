@@ -14,8 +14,8 @@
             <a class="nav-bar__link {{ request()->routeIs('movies.*') ? 'nav-bar__link--active' : '' }}"
                 href="{{ route('movies.index') }}">Peliculas</a>
             {{-- <a class="nav-bar__link" href="#">Ofertas</a> --}}
-            <a class="nav-bar__link {{ request()->routeIs('cart.pay.index') ? 'nav-bar__link--active' : '' }}"
-                href="{{ route('pay.index') }}">Compra</a>
+            {{-- <a class="nav-bar__link {{ request()->routeIs('cart.pay.index') ? 'nav-bar__link--active' : '' }}"
+                href="{{ route('pay.index') }}">Compra</a> --}}
             <a class="nav-bar__link {{ request()->routeIs('contact.*') ? 'nav-bar__link--active' : '' }}"
                 href="{{ route('contact.index') }}">Contacto</a>
             <a class="nav-bar__link {{ request()->routeIs('about-us.*') ? 'nav-bar__link--active' : '' }}"
@@ -27,7 +27,7 @@
     <div class="nav-bar__right">
         <div class="nav-bar__cta">
             {{-- Carrito --}}
-    <a class="nav-bar__cart" href="{{ route('cliente.carrito') }}">
+   {{--  <a class="nav-bar__cart" href="{{ route('cliente.carrito') }}"> --}}
     <span class="material-symbols-outlined">
         shopping_cart
     </span>

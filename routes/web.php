@@ -6,7 +6,11 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CarritoController;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;use App\Http\Controllers\MovieController;
+use App\Http\Controllers\TheaterController;
+use App\Http\Controllers\ShowTimeController;
+use App\Http\Controllers\PurchaseController;
+
 /*
 |--------------------------------------------------------------------------
 | Página principal
@@ -18,21 +22,29 @@ Route::get('/', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Películas
+| Películas (resource)
 |--------------------------------------------------------------------------
 */
-Route::get('/peliculas', function () {
-    return view('movies.index');
-})->name('movies.index');
+Route::resource('movies', MovieController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
 
-Route::view('/movies/eldiablo', 'movies.eldiablo');
-Route::view('/movies/supermario', 'movies.supermario');
-Route::view('/movies/michael', 'movies.michael');
-Route::view('/movies/ElmagodelKremlin', 'movies.ElmagodelKremlin');
-Route::view('/movies/elbufon2', 'movies.elbufon2');
-Route::view('/movies/mortalKombat', 'movies.mortalKombat');
-Route::view('/movies/nurenberg', 'movies.nurenberg');
-Route::view('/movies/proyectofindelmundo', 'movies.proyectofindelmundo');
+/*
+|--------------------------------------------------------------------------
+| Salas (resource)
+|--------------------------------------------------------------------------
+*/
+Route::resource('theaters', TheaterController::class)->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy']);
+
+/*
+|--------------------------------------------------------------------------
+| Funciones / ShowTimes
+|--------------------------------------------------------------------------
+*/
+Route::get('/showtimes', [ShowTimeController::class, 'index'])->name('showtimes.index');
+Route::get('/showtimes/create', [ShowTimeController::class, 'create'])->name('showtimes.create');
+Route::post('/showtimes', [ShowTimeController::class, 'store'])->name('showtimes.store');
+Route::delete('/showtimes/{showtime}', [ShowTimeController::class, 'destroy'])->name('showtimes.destroy');
+// Funciones por película
+Route::get('/movies/{movie}/showtimes', [ShowTimeController::class, 'byMovie'])->name('movies.showtimes');
 
 /*
 |--------------------------------------------------------------------------
@@ -65,16 +77,25 @@ Route::middleware(['auth'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Carrito / Pago 
+| Carrito / Flujo de Compra (requiere autenticación)
 |--------------------------------------------------------------------------
 */
-Route::get('/select-armchair', function () {
-    return view('cart.armchair.index');
-})->name('armchair.index');
+Route::middleware('auth')->group(function () {
+    // Paso 1: Selección de butacas
+    Route::get('/select-armchair', [PurchaseController::class, 'selectArmchair'])->name('armchair.index');
 
-Route::get('/pay', function () {
-    return view('cart.pay.index');
-})->name('pay.index');
+    // Paso 2: Revisión de compra / checkout
+    Route::post('/purchase/review', [PurchaseController::class, 'reviewPurchase'])->name('purchase.review');
+
+    // Paso 3: Confirmar y pagar
+    Route::post('/purchase/confirm', [PurchaseController::class, 'confirm'])->name('purchase.confirm');
+
+    // Confirmación exitosa
+    Route::get('/purchase/success', [PurchaseController::class, 'success'])->name('purchase.success');
+
+    // Historial de compras del usuario
+    Route::get('/purchase/history', [PurchaseController::class, 'history'])->name('purchase.history');
+});
 
 Route::get('/sobre-nosotros', function () {
     return view('about-us.index');
@@ -92,33 +113,9 @@ Route::get('/select-movie', function () {
     return view('cart.select-movie.index');
 })->name('select-movie.index');
 
-Route::get('/movie', function () {
-    return view('cart.movie.index');
-})->name('cart.movie.index');
+// Vista detalle de película en el flujo de compra
+Route::get('/movie/{movie}', [MovieController::class, 'show'])->name('cart.movie.index');
 
-Route::get('/cart', [CarritoController::class, 'index'])
-    ->name('cart.index');
-Route::middleware(['auth'])->group(function () { 
-    // Mostrar el carrito 
-    Route::get('/carrito', [CarritoController::class, 'index']) 
-                          ->name('cliente.carrito'); 
-    // Agregar un producto 
-    Route::post('/carrito/agregar', [CarritoController::class, 'agregar']) 
-                                   ->name('carrito.agregar'); 
-    // Eliminar un producto 
-    Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar']) 
-                                           ->name('carrito.eliminar'); 
-    // Confirmar la compra 
-    Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar']) 
-                                     ->name('carrito.confirmar'); 
-                                       // Vista de compra confirmada (protegida: redirige si no hay sesión) 
-    Route::get('/compra-confirmada', function () { 
-        if (!session('total')) { 
-            return redirect()->route('cliente.dashboard'); 
-        } 
-        return view('cart.compra-confirmada'); 
-    })->name('compra.confirmada'); 
-}); 
 
 
 
