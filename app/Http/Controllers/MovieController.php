@@ -5,23 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use App\Models\ShowTime;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controllers\HasMiddleware;
-use Illuminate\Routing\Controllers\Middleware;
 
-class MovieController extends Controller implements HasMiddleware
+class MovieController extends Controller
 {
-    public static function middleware(): array
-    {
-        return [
-            new Middleware('auth', except: ['index', 'show']),
-            new Middleware(function ($request, $next) {
-                if (auth()->user()->rol_id != 1) {
-                    abort(403, 'No autorizado');
-                }
-                return $next($request);
-            }, except: ['index', 'show']),
-        ];
-    }
 
     public function adminIndex(Request $request)
     {

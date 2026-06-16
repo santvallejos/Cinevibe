@@ -111,6 +111,9 @@ class PurchaseController extends Controller
                 'total'          => $subtotal,
             ]);
 
+            // Asocia la línea de venta con la cabecera para unificar la relación 1-a-N
+            $retailSale->update(['headboard_sale_id' => $headboard->id]);
+
             $user->update(['sale_id' => $headboard->id]);
 
             return $headboard;

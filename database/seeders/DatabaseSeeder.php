@@ -30,5 +30,15 @@ class DatabaseSeeder extends Seeder
                 'rol_id'   => 2,
             ]
         );
+
+        // Usuario administrador de prueba
+        \App\Models\User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name'     => 'Admin User',
+                'password' => bcrypt('password'),
+                'rol_id'   => 1,
+            ]
+        );
     }
 }

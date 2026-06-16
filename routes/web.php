@@ -11,6 +11,7 @@ use App\Http\Controllers\TheaterController;
 use App\Http\Controllers\ShowTimeController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 // Home
 Route::get('/', function () {
@@ -91,8 +92,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/tickets/{ticket}', [PurchaseController::class, 'showTicket'])->name('tickets.show');
 
     // Gestión del perfil de usuario
-    Route::get('/perfil', [UserController::class, 'edit'])->name('profile.edit');
-    Route::put('/perfil', [UserController::class, 'update'])->name('profile.update');
+    Route::get('/perfil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/perfil', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 Route::get('/sobre-nosotros', function () {

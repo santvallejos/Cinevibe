@@ -149,22 +149,6 @@
                     </p>
                 </div>
             </div>
-
-            {{-- Ad/promo inferior --}}
-            <div class="promo-ad">
-                <div class="promo-ad__bg">
-                    <img class="promo-ad__img"
-                        alt="Popcorn cinematográfico"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdC_z-0iKQypanetGIAhUymo3XVAOWsdQInoOrg87V14VEFTmmsEB_00zCCC282G9py1TcRuoMu-3XrNQ0Y2-n1OlRFSZ2t1wylJcOBem49N6wd7Ojn6duuC03D1nNLXSkFWpatK7YTYKz9Gy-XTJOEtHlgmX2vl_lBwrB5mR-TttUAytsAHYz9BzXw69hgfR1tp2cStHTKA__PafVcNrPgMivPYpuwWUlsrPxm7Dy2inE_KBDeXHa50cuvD4kW_JsoDE-H7BsksFc">
-                </div>
-                <div class="promo-ad__content">
-                    <span class="promo-ad__kicker">Exclusivo para Miembros</span>
-                    <h4 class="promo-ad__title">Únete al Club y obtén 20% off en Snacks</h4>
-                </div>
-                <div class="promo-ad__add">
-                    <span class="material-symbols-outlined">add</span>
-                </div>
-            </div>
         </aside>
     </main>
 

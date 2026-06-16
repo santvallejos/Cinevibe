@@ -67,15 +67,6 @@
             </a>
         </div>
 
-        <div class="accion-card">
-            <span class="accion-icon icon-historial">📋</span>
-            <h3>Historial</h3>
-            <p>Tu historial completo de compras</p>
-            <a href="{{ route('purchase.history') }}" class="acceso-btn btn-verde">
-                <i class="fas fa-clock-rotate-left"></i> Ver historial
-            </a>
-        </div>
-
     </div>
 
 </div>{{-- /.panel-container --}}
