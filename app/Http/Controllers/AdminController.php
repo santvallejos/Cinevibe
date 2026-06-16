@@ -9,6 +9,9 @@ use App\Models\Ticket;
 
 class AdminController extends Controller
 {
+    /**
+     * GET: /admin - Mostrar vista del administrador
+     */
     public function index()
     {
         if (Auth::user()->rol_id != 1) {

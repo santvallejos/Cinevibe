@@ -16,9 +16,6 @@ class User extends Authenticatable
     protected $fillable = ['name', 'email', 'password', 'rol_id', 'sale_id'];
     protected $hidden = ['password', 'remember_token'];
 
-    /**
-     * Relación: un usuario pertenece a un rol.
-     */
     public function rol()
     {
         return $this->belongsTo(Role::class, 'rol_id');

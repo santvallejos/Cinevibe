@@ -72,6 +72,14 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Carrito de Compras y Flujo de Compra
 Route::middleware('auth')->group(function () {
+    // Rutas de API internas para reservas temporales de butacas
+    Route::prefix('api/seats')->group(function () {
+        Route::get('/status', [\App\Http\Controllers\Api\SeatApiController::class, 'status'])->name('api.seats.status');
+        Route::post('/reserve', [\App\Http\Controllers\Api\SeatApiController::class, 'reserve'])->name('api.seats.reserve');
+        Route::post('/release', [\App\Http\Controllers\Api\SeatApiController::class, 'release'])->name('api.seats.release');
+        Route::post('/release-all', [\App\Http\Controllers\Api\SeatApiController::class, 'releaseAll'])->name('api.seats.release-all');
+    });
+
     // Paso 1: Selección de butacas
     Route::get('/select-armchair', [PurchaseController::class, 'selectArmchair'])->name('armchair.index');
 

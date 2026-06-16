@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
+    /**
+     * GET: /register - Mostrar formulario de registro
+     */
     public function showRegisterView()
     {
     return view('auth.usuarios.register.index');
     }
 
+    /**
+     * POST: /register - Registrar un nuevo usuario
+     */
     public function register(Request $request)
     {
         // Validar los datos del formulario

@@ -6,6 +6,7 @@ use App\Models\Ticket;
 use App\Models\ShowTime;
 use App\Models\RetailSale;
 use App\Models\HeadboardSale;
+use App\Models\TemporaryReservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,9 @@ use Illuminate\Support\Str;
 
 class PurchaseController extends Controller
 {
+    /**
+     * GET: /purchase/armchair - Seleccionar butacas para la compra
+     */
     public function selectArmchair(Request $request)
     {
         $request->validate([
@@ -28,6 +32,9 @@ class PurchaseController extends Controller
         return view('cart.armchair.index', compact('showtime', 'occupiedChairs'));
     }
 
+    /**
+     * GET: /purchase/review - Revisar la compra antes de confirmar
+     */
     public function reviewPurchase(Request $request)
     {
         $request->validate([
@@ -54,6 +61,9 @@ class PurchaseController extends Controller
         ]);
     }
 
+    /**
+     * POST: /purchase/confirm - Confirmar la compra
+     */
     public function confirm(Request $request)
     {
         $request->validate([
@@ -116,6 +126,11 @@ class PurchaseController extends Controller
 
             $user->update(['sale_id' => $headboard->id]);
 
+            // Liberar reservas temporales de las butacas recién compradas
+            TemporaryReservation::where('showtime_id', $showtime->id)
+                ->whereIn('amchair', $request->amchairs)
+                ->delete();
+
             return $headboard;
         });
 
@@ -124,6 +139,9 @@ class PurchaseController extends Controller
             ->with('sale_id', $headboard->id);
     }
 
+    /**
+     * GET: /purchase/success - Mostrar página de éxito después de confirmar la compra
+     */
     public function success()
     {
         $saleId = session('sale_id');
@@ -141,6 +159,9 @@ class PurchaseController extends Controller
         return view('cart.success', compact('sale'));
     }
 
+    /**
+     * GET: /purchase/history - Mostrar historial de compras
+     */
     public function history()
     {
         $sales = HeadboardSale::with(['retailSales.tickets.showtime.movie', 'retailSales.tickets.theater'])
@@ -151,6 +172,9 @@ class PurchaseController extends Controller
         return view('cart.history', compact('sales'));
     }
 
+    /**
+     * GET: /purchase/ticket/{ticket} - Mostrar información de un boleto específico
+     */
     public function showTicket(Ticket $ticket)
     {
         $sale = HeadboardSale::where('user_id', Auth::id())

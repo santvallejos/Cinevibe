@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * Muestra la lista de usuarios.
+     * GET: /admin/users - Listar todos los usuarios
      */
     public function index(Request $request)
     {
@@ -32,12 +32,18 @@ class UserController extends Controller
         return view('auth.users.index', compact('users', 'roles'));
     }
 
+    /**
+     * GET: /admin/users/create - Mostrar formulario de creación de usuarios
+     */
     public function create()
     {
         $roles = \App\Models\Role::all();
         return view('auth.users.create', compact('roles'));
     }
 
+    /**
+     * POST: /admin/users - Almacenar un nuevo usuario
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -59,7 +65,7 @@ class UserController extends Controller
     }
 
     /**
-     * Muestra los detalles de un usuario.
+     * GET: /admin/users/{id} - Muestra los detalles de un usuario.
      */
     public function show(User $user)
     {
@@ -67,7 +73,7 @@ class UserController extends Controller
     }
 
     /**
-     * Muestra el formulario de edición de un usuario.
+     * GET: /admin/users/{id}/edit - Muestra el formulario de edición de un usuario.
      */
     public function edit(User $user)
     {
@@ -76,7 +82,7 @@ class UserController extends Controller
     }
 
     /**
-     * Actualiza la información de un usuario.
+     * PUT: /admin/users/{id} - Actualiza la información de un usuario.
      */
     public function update(Request $request, User $user)
     {
@@ -102,7 +108,7 @@ class UserController extends Controller
     }
 
     /**
-     * Elimina a un usuario.
+     * DELETE: /admin/users/{id} - Elimina a un usuario.
      */
     public function destroy(User $user)
     {

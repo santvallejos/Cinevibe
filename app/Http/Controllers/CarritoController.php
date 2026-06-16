@@ -6,6 +6,7 @@ use App\Models\ShowTime;
 use App\Models\Ticket;
 use App\Models\RetailSale;
 use App\Models\HeadboardSale;
+use App\Models\TemporaryReservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,9 @@ use Illuminate\Support\Str;
 
 class CarritoController extends Controller
 {
+    /**
+     * GET: /cart - Mostrar el carrito de compras
+     */
     public function index()
     {
         $cart = session()->get('cart', []);
@@ -35,6 +39,9 @@ class CarritoController extends Controller
         return view('cart.index', compact('items', 'total'));
     }
 
+    /**
+     * POST: /cart - Agregar elementos al carrito
+     */
     public function add(Request $request)
     {
         $request->validate([
@@ -74,6 +81,9 @@ class CarritoController extends Controller
         return redirect()->route('index')->with('success', 'Boletos agregados al carrito correctamente.');
     }
 
+    /**
+     * DELETE: /cart/{showtimeId} - Eliminar un elemento del carrito
+     */
     public function remove(Request $request, $showtimeId)
     {
         $cart = session()->get('cart', []);
@@ -86,6 +96,9 @@ class CarritoController extends Controller
         return redirect()->route('cart.index')->with('success', 'Elemento removido del carrito.');
     }
 
+    /**
+     * GET: /cart/checkout - Proceder al checkout
+     */
     public function checkout()
     {
         $cart = session()->get('cart', []);
@@ -112,6 +125,9 @@ class CarritoController extends Controller
         return view('cart.pay.index', compact('items', 'total'));
     }
 
+    /**
+     * POST: /cart/confirm - Confirmar la compra
+     */
     public function confirm(Request $request)
     {
         $cart = session()->get('cart', []);
@@ -174,6 +190,11 @@ class CarritoController extends Controller
                 Ticket::whereIn('id', collect($tickets)->pluck('id'))->update(['retail_sale_id' => $retailSale->id]);
 
                 $totalGeneral += $subtotal;
+
+                // Liberar reservas temporales de butacas ya compradas
+                TemporaryReservation::where('showtime_id', $showtimeId)
+                    ->whereIn('amchair', $data['amchairs'])
+                    ->delete();
             }
 
             $headboard->update(['total' => $totalGeneral]);

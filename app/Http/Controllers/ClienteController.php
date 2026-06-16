@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 
 class ClienteController extends Controller
 {
+    /**
+     * GET: /cliente - Mostrar vista del cliente
+     */
     public function index()
     {
         $usuario = auth()->user();

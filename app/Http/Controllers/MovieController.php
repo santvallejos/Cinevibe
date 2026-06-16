@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-
+    /**
+     * GET: /admin/movies - Mostrar lista de películas (solo para administradores)
+     */
     public function adminIndex(Request $request)
     {
         $query = Movie::query();
@@ -25,6 +27,9 @@ class MovieController extends Controller
         return view('auth.movies.index', compact('movies'));
     }
 
+    /**
+     * GET: /movies - Mostrar lista de películas (para todos los usuarios)
+     */
     public function index(Request $request)
     {
         $query = Movie::with('showtimes.theater');
@@ -41,6 +46,9 @@ class MovieController extends Controller
         return view('billboard.index', compact('movies'));
     }
 
+    /**
+     * GET: /movies/{movie} - Mostrar detalles de una película específica
+     */
     public function show(Movie $movie)
     {
         // Carga las relaciones de horarios y sala asociada a cada función
@@ -48,11 +56,17 @@ class MovieController extends Controller
         return view('billboard.movie.index', compact('movie'));
     }
 
+    /**
+     * GET: /movies/create - Mostrar formulario para crear una nueva película
+     */
     public function create()
     {
         return view('movies.create');
     }
 
+    /**
+     * POST: /movies - Crear una nueva película
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -72,11 +86,17 @@ class MovieController extends Controller
             ->with('success', 'Película creada exitosamente.');
     }
 
+    /**
+     * GET: /movies/{movie}/edit - Mostrar formulario para editar una película específica
+     */
     public function edit(Movie $movie)
     {
         return view('movies.edit', compact('movie'));
     }
 
+    /**
+     * POST: /movies/{movie} - Actualizar una película específica
+     */
     public function update(Request $request, Movie $movie)
     {
         $validated = $request->validate([
@@ -96,6 +116,9 @@ class MovieController extends Controller
             ->with('success', 'Película actualizada.');
     }
 
+    /**
+     * DELETE: /movies/{movie} - Eliminar una película específica
+     */
     public function destroy(Movie $movie)
     {
         $movie->delete();

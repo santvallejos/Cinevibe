@@ -8,13 +8,19 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    /**
+     * GET: /login - Mostrar vista de inicio de sesión
+     */
     public function showLoginView()
     {
       return view('auth.usuarios.login.index');
     }
 
-   public function login(Request $request)
-{
+    /**
+     * POST: /login - Iniciar sesión
+     */
+    public function login(Request $request)
+    {
     $credentials = $request->validate([
         'email'    => ['required', 'email'],
         'password' => ['required', 'string'],
@@ -38,6 +44,9 @@ class LoginController extends Controller
         ]);
 }
 
+    /**
+     * GET: /logout - Cerrar sesión
+     */
     public function logout(Request $request)
     {
         Auth::logout();

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 class ProfileController extends Controller
 {
     /**
-     * Muestra la vista de edición de perfil.
-     */
+     * GET: /profile/edit - Mostrar formulario para editar el perfil del usuario
+    */
     public function edit()
     {
         $user = Auth::user();
@@ -17,7 +17,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Actualiza la información del perfil del usuario.
+     * POST: /profile/update - Actualizar la información del perfil del usuario
      */
     public function update(Request $request)
     {

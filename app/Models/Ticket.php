@@ -10,7 +10,6 @@ class Ticket extends Model
 {
     use HasFactory, HasUuids;
 
-    // PK es UUID (guid), no auto-increment
     protected $keyType = 'string';
     public $incrementing = false;
 
