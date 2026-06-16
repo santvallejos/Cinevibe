@@ -50,112 +50,32 @@
                     </button>
 
                     <div class="movie-carousel__track">
-                        {{-- Movie Card 1 --}}
-                        <article class="movie-card">
-                            <div class="movie-card__poster">
-                                <img class="movie-card__img"
-                                      <img class="movie-card__img" src="/img/peliculas/supermario.jpg" alt="Super Mario Galaxy">
-                            </div>
-                            <div class="movie-card__rating">
-                                <span class="movie-card__rating-value">ESTRENO</span>
-                            </div>
-                            <div class="movie-card__info">
-                                <div>
-                                    <h3 class="movie-card__title">Supermario Galaxy: La pelicula</h3>
-                                    <p class="movie-card__genre">Animacion, Aventura</p>
+                        @forelse ($movies->filter(fn($m) => !in_array(strtolower($m->state), ['próximamente', 'proximamente'])) as $movie)
+                            <article class="movie-card">
+                                <div class="movie-card__poster">
+                                    <a href="{{ route('movies.show', $movie->id) }}" class="movie-card__link">
+                                        @if($movie->image_url)
+                                            <img class="movie-card__img" src="{{ asset($movie->image_url) }}" alt="{{ $movie->name }}" onerror="this.onerror=null; this.src='{{ asset('img/peliculas/default.jpg') }}';">
+                                        @else
+                                            <img class="movie-card__img" src="{{ asset('img/peliculas/default.jpg') }}" alt="{{ $movie->name }}">
+                                        @endif
+                                    </a>
                                 </div>
-                               
-                            </div>
-                        </article>
-
-                        {{-- Movie Card 2 --}}
-                        <article class="movie-card">
-                            <div class="movie-card__poster">
-                                <img class="movie-card__img"
-                                    <img class="movie-card__img" src="/img/peliculas/proyectofindelmundo.jpg" alt="Proyecto fin del mundo">
-                            </div>
-                            <div class="movie-card__rating">
-                                <span class="movie-card__rating-value">ESTRENO</span>
-                            </div>
-                            <div class="movie-card__info">
-                                <div>
-                                    <h3 class="movie-card__title">PROYECTO FIN DEL MUNDO</h3>
-                                    <p class="movie-card__genre">Ciencia Ficción</p>
+                                <div class="movie-card__rating">
+                                    <span class="movie-card__rating-value">{{ strtoupper($movie->state) }}</span>
                                 </div>
-                               
-                            </div>
-                        </article>
-
-                        {{-- Movie Card 3 --}}
-                        <article class="movie-card">
-                            <div class="movie-card__poster">
-                                <img class="movie-card__img"
-                                     <img class="movie-card__img" src="/img/peliculas/Nurenberg.jpg" alt="Nurenberg: El Juicio del Siglo">
-                            </div>
-                            <div class="movie-card__rating">
-                                <span class="movie-card__rating-value">ESTRENO</span>
-                            </div>
-                            <div class="movie-card__info">
-                                <div>
-                                    <h3 class="movie-card__title">NUREMBERG: EL JUICIO DEL SIGLO</h3>
-                                    <p class="movie-card__genre">Drama</p>
+                                <div class="movie-card__info">
+                                    <div>
+                                        <h3 class="movie-card__title">{{ $movie->name }}</h3>
+                                        <p class="movie-card__genre">{{ $movie->category }}</p>
+                                    </div>
                                 </div>
-                                
+                            </article>
+                        @empty
+                            <div class="no-movies-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--color-text-muted);">
+                                <p>No hay películas disponibles en cartelera en este momento.</p>
                             </div>
-                        </article>
-
-                        {{-- Movie Card 4 --}}
-                        <article class="movie-card">
-                            <div class="movie-card__poster">
-                                <img class="movie-card__img"
-                                    <img class="movie-card__img" src="/img/peliculas/ElBufon2.jpg" alt="El Bufón 2">
-                            </div>
-                            <div class="movie-card__rating">
-                                <span class="movie-card__rating-value">ESTRENO</span>
-                            </div>
-                            <div class="movie-card__info">
-                                <div>
-                                    <h3 class="movie-card__title">EL BUFÓN 2</h3>
-                                    <p class="movie-card__genre">Terror</p>
-                                </div>
-                               
-                            </div>
-                        </article>
-
-                        {{-- Movie Card 5 --}}
-                        <article class="movie-card">
-                            <div class="movie-card__poster">
-                                <img class="movie-card__img"
-                                      <img class="movie-card__img" src="/img/peliculas/mortalKombat.jpg" alt="Mortal Kombat">
-                            </div>
-                            <div class="movie-card__rating">
-                                <span class="movie-card__rating-value">ESTRENO</span>
-                            </div>
-                            <div class="movie-card__info">
-                                <div>
-                                    <h3 class="movie-card__title">MORTAL KOMBAT II</h3>
-                                    <p class="movie-card__genre">Acción</p>
-                                </div>
-                                
-                            </div>
-                        </article>
-
-                        <article class="movie-card">
-                            <div class="movie-card__poster">
-                                <img class="movie-card__img"
-                                      <img class="movie-card__img" src="/img/peliculas/MichaelJacjkson.jpg" alt="Michael">
-                            </div>
-                            <div class="movie-card__rating">
-                                <span class="movie-card__rating-value">ESTRENO</span>
-                            </div>
-                            <div class="movie-card__info">
-                                <div>
-                                    <h3 class="movie-card__title">MICHAEL</h3>
-                                    <p class="movie-card__genre">Biografía, Drama</p>
-                                </div>
-                                
-                            </div>
-                        </article>
+                        @endforelse
                     </div>
 
                     <button class="movie-carousel__btn movie-carousel__btn--next" aria-label="Siguiente">
@@ -252,74 +172,42 @@
 
                 {{-- Carousel de tarjetas "Proximamente" --}}
                 <div class="movie-carousel" data-carousel>
-                    
+                    <button class="movie-carousel__btn movie-carousel__btn--prev" aria-label="Anterior">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
 
                     <div class="movie-carousel__track">
-                        {{-- Movie Card 1 --}}
-                        <article class="movie-card">
-                            <div class="movie-card__poster">
-                                <img class="movie-card__img"
-                                      <img class="movie-card__img" src="/img/peliculas/spiderman1.jpg" alt="Spiderman">
-                            </div>
-                            
-                            <div class="movie-card__info">
-                                <div>
-                                    <h3 class="movie-card__title">SPIDER-MAN:UN NUEVO DIA</h3>
-                                    <p class="movie-card__genre">Acción, Aventura</p>
+                        @forelse ($movies->filter(fn($m) => in_array(strtolower($m->state), ['próximamente', 'proximamente'])) as $movie)
+                            <article class="movie-card">
+                                <div class="movie-card__poster">
+                                    @if($movie->image_url)
+                                        <img class="movie-card__img" src="{{ asset($movie->image_url) }}" alt="{{ $movie->name }}" onerror="this.onerror=null; this.src='{{ asset('img/peliculas/default.jpg') }}';">
+                                    @else
+                                        <img class="movie-card__img" src="{{ asset('img/peliculas/default.jpg') }}" alt="{{ $movie->name }}">
+                                    @endif
                                 </div>
-                                
-                            </div>
-                        </article>
-
-                        {{-- Movie Card 2 --}}
-                        <article class="movie-card">
-                            <div class="movie-card__poster">
-                                  <img class="movie-card__img" src="/img/peliculas/TOYSTORY5.jpg" alt="Toy Story 5">
-                                  
-                            </div>
-                            
-                            <div class="movie-card__info">
-                                <div>
-                                    <h3 class="movie-card__title">TOY STORY 5</h3>
-                                    <p class="movie-card__genre">Animación, Aventura</p>
+                                <div class="movie-card__rating">
+                                    <span class="movie-card__rating-value">
+                                        {{ $movie->datepremire ? $movie->datepremire->translatedFormat('d \d\e F') : 'PRÓXIMAMENTE' }}
+                                    </span>
                                 </div>
-                               
-                            </div>
-                        </article>
-
-                        {{-- Movie Card 3 --}}
-                        <article class="movie-card">
-                            <div class="movie-card__poster">
-                                <img class="movie-card__img"
-                                     <img class="movie-card__img" src="/img/peliculas/LA ODISEA.jpg" alt="LA ODISEA">
-                            </div>
-                            
-                            <div class="movie-card__info">
-                                <div>
-                                    <h3 class="movie-card__title">LA ODISEA</h3>
-                                    <p class="movie-card__genre">Aventura</p>
+                                <div class="movie-card__info">
+                                    <div>
+                                        <h3 class="movie-card__title">{{ $movie->name }}</h3>
+                                        <p class="movie-card__genre">{{ $movie->category }}</p>
+                                    </div>
                                 </div>
-                               
+                            </article>
+                        @empty
+                            <div class="no-movies-message" style="grid-column: 1 / -1; text-align: center; padding: 2rem; color: var(--color-text-muted);">
+                                <p>No hay próximos estrenos programados por ahora.</p>
                             </div>
-                        </article>
+                        @endforelse
+                    </div>
 
-                        {{-- Movie Card 4 --}}
-                        <article class="movie-card">
-                            <div class="movie-card__poster">
-                                <img class="movie-card__img"
-                                      <img class="movie-card__img" src="/img/peliculas/Zonaderiesgo.jpg" alt="Zona de Riesgo">
-                            </div>
-                            
-                            <div class="movie-card__info">
-                                <div>
-                                    <h3 class="movie-card__title">ZONA DE RIESGO</h3>
-                                    <p class="movie-card__genre">Thriller, Drama</p>
-                                </div>
-                                
-                            </div>
-                        </article>
-
-
+                    <button class="movie-carousel__btn movie-carousel__btn--next" aria-label="Siguiente">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
                 </div>
             </div>
         </section>

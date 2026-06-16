@@ -23,6 +23,13 @@
 
 <body>
 
+    {{-- Barra de navegación simplificada (solo logo para volver al inicio) --}}
+    <nav class="nav-bar nav-bar--simple" style="display: flex; align-items: center; padding: 1rem 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(10px); height: 64px; position: sticky; top: 0; z-index: 1000;">
+        <a href="{{ route('index') }}" style="text-decoration: none; display: flex; align-items: center;">
+            <span class="nav-bar__brand" style="margin: 0;">Cinevibe</span>
+        </a>
+    </nav>
+
     {{-- Contenido específico de cada vista (sin nav-bar) --}}
     @yield('content')
 

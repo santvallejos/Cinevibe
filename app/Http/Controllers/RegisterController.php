@@ -10,7 +10,7 @@ class RegisterController extends Controller
 {
     public function showRegisterView()
     {
-    return view('backend.usuarios.register.index');
+    return view('auth.usuarios.register.index');
     }
 
     public function register(Request $request)
@@ -30,10 +30,8 @@ class RegisterController extends Controller
             'rol_id'   => 2, // ID 2 = Cliente (creado por RoleSeeder)
         ]);
 
-        // Iniciar sesión automáticamente después del registro
         auth()->login($user);
 
-        // Redirigir al usuario a la página principal o a donde desees
         return redirect()->route('index');
     }
 }

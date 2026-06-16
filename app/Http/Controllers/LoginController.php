@@ -8,19 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /**
-     * Muestra el formulario de inicio de sesión.
-     */
     public function showLoginView()
     {
-      return view('backend.usuarios.login.index');
+      return view('auth.usuarios.login.index');
     }
 
-    /**
-     * Procesa las credenciales del formulario y autentica al usuario.
-     * Usa Auth::attempt() para verificar email + password contra la BD.
-     * Regenera la sesión para prevenir ataques de fijación de sesión.
-     */
    public function login(Request $request)
 {
     $credentials = $request->validate([
@@ -46,15 +38,10 @@ class LoginController extends Controller
         ]);
 }
 
-    /**
-     * Cierra la sesión del usuario actual de forma segura.
-     * Invalida la sesión, regenera el token CSRF y redirige al inicio.
-     */
     public function logout(Request $request)
     {
         Auth::logout();
 
-        // Invalidar la sesión y regenerar el token CSRF
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

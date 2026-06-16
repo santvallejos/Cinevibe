@@ -17,13 +17,28 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
+            CinemaSeeder::class,
         ]);
 
-        // User::factory(10)->create();
+        // Usuario de prueba — creado directamente sin factory
+        // para evitar dependencia en email_verified_at
+        \App\Models\User::firstOrCreate(
+            ['email' => 'test@example.com'],
+            [
+                'name'     => 'Test User',
+                'password' => bcrypt('password'),
+                'rol_id'   => 2,
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Usuario administrador de prueba
+        \App\Models\User::firstOrCreate(
+            ['email' => 'admin@example.com'],
+            [
+                'name'     => 'Admin User',
+                'password' => bcrypt('password'),
+                'rol_id'   => 1,
+            ]
+        );
     }
 }
