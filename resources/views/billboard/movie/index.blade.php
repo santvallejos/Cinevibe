@@ -7,28 +7,29 @@
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/pages/movie-detail.css') }}">
     <style>
         /* Estilos personalizados para la mejora de UI/UX de la película */
-        .movie-layout__poster {
-            position: relative;
-            top: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
         .movie-title-large {
             font-family: var(--font-headline);
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             font-weight: 800;
-            color: #fff;
-            margin-bottom: 24px;
+            color: #ffffff;
+            margin-bottom: 20px;
             text-transform: none;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
+            line-height: 1.15;
         }
 
         /* Overlay interactivo para el Tráiler */
         .movie-featured-img {
             cursor: pointer;
             position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .movie-featured-img:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(229, 9, 20, 0.25);
         }
         .movie-featured-img__play-btn {
             position: absolute;
@@ -50,7 +51,7 @@
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .movie-featured-img:hover .movie-featured-img__play-btn span.material-symbols-outlined {
-            transform: scale(1.15);
+            transform: scale(1.12);
             color: #e50914;
         }
         .movie-featured-img__play-text {
@@ -71,18 +72,20 @@
             gap: 16px;
         }
         .movie-left-details__block {
-            background: var(--color-surface-container-low, #1c1b1b);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 18px 20px;
-            transition: border-color var(--tr-fast);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 1.25rem 1.5rem;
+            transition: all 0.2s ease;
         }
         .movie-left-details__block:hover {
-            border-color: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.03);
         }
         .movie-left-details__title {
             font-family: var(--font-headline);
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -101,9 +104,9 @@
             border-radius: 2px;
         }
         .movie-left-details__text {
-            font-size: 0.88rem;
-            line-height: 1.6;
-            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #a0a0b0;
             margin: 0;
         }
         .movie-left-details__genres {
@@ -121,7 +124,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #e5e2e1;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             padding-bottom: 8px;
@@ -139,8 +142,8 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.7rem;
-            font-weight: 600;
+            font-size: 0.72rem;
+            font-weight: 700;
             color: #737373;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -150,6 +153,7 @@
         }
         .movie-ficha-simple__val {
             font-weight: 600;
+            color: #ffffff;
         }
         .movie-ficha-simple__formats {
             display: flex;
@@ -157,33 +161,13 @@
             gap: 6px;
         }
         .movie-ficha-simple__fmt {
-            padding: 3px 8px;
+            padding: 4px 10px;
             border-radius: 6px;
-            font-size: 0.65rem;
+            font-size: 0.68rem;
             font-weight: 700;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
             color: #bbb;
-        }
-
-        /* Precios en horarios de funciones */
-        .booking__time {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            padding: 8px 14px;
-            min-width: 85px;
-        }
-        .booking__time-price {
-            font-size: 0.68rem;
-            opacity: 0.75;
-            font-weight: 600;
-            color: #F0C96A;
-        }
-        .booking__time--active .booking__time-price {
-            opacity: 1;
-            color: #fff;
         }
 
         /* Modal de Tráiler (YouTube) */
@@ -191,8 +175,8 @@
             position: fixed;
             inset: 0;
             z-index: 2000;
-            background: rgba(10, 10, 15, 0.92);
-            backdrop-filter: blur(12px);
+            background: rgba(10, 10, 15, 0.94);
+            backdrop-filter: blur(16px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -209,11 +193,11 @@
             width: 90%;
             max-width: 900px;
             background: #0f0f23;
-            border-radius: 20px;
+            border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
             overflow: hidden;
-            transform: scale(0.9);
+            transform: scale(0.95);
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .movie-trailer-modal--active .movie-trailer-modal__content {
@@ -256,8 +240,8 @@
 
         @media (max-width: 768px) {
             .movie-title-large {
-                font-size: 1.8rem;
-                margin-top: 16px;
+                font-size: 2rem;
+                margin-top: 10px;
             }
         }
     </style>
@@ -278,6 +262,7 @@
                             src="{{ $movie->image_url ? asset($movie->image_url) : asset('img/peliculas/default.jpg') }}"
                             alt="{{ $movie->name }}"
                             class="movie-featured-img__img"
+                            onerror="this.onerror=null; this.src='{{ asset('img/peliculas/default.jpg') }}';"
                         >
                         {{-- Indicación visual de play --}}
                         <div class="movie-featured-img__play-btn">

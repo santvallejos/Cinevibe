@@ -7,35 +7,23 @@ use Illuminate\Http\Request;
 
 class TheaterController extends Controller
 {
-    /**
-     * Lista todas las salas.
-     */
     public function index()
     {
         $theaters = Theater::all();
         return view('theaters.index', compact('theaters'));
     }
 
-    /**
-     * Muestra detalle de una sala.
-     */
     public function show(Theater $theater)
     {
         $theater->load('showtimes.movie');
         return view('theaters.show', compact('theater'));
     }
 
-    /**
-     * Formulario de creación (admin).
-     */
     public function create()
     {
         return view('theaters.create');
     }
 
-    /**
-     * Guarda nueva sala.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -50,17 +38,11 @@ class TheaterController extends Controller
             ->with('success', 'Sala creada exitosamente.');
     }
 
-    /**
-     * Formulario de edición (admin).
-     */
     public function edit(Theater $theater)
     {
         return view('theaters.edit', compact('theater'));
     }
 
-    /**
-     * Actualiza datos de una sala.
-     */
     public function update(Request $request, Theater $theater)
     {
         $validated = $request->validate([
@@ -75,9 +57,6 @@ class TheaterController extends Controller
             ->with('success', 'Sala actualizada.');
     }
 
-    /**
-     * Elimina una sala.
-     */
     public function destroy(Theater $theater)
     {
         $theater->delete();

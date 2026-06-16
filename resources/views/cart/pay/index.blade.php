@@ -1,6 +1,6 @@
 @extends('layouts.sin-navbar.app')
 
-@section('title', 'Confirmación y Pago — ' . $showtime->movie->name)
+@section('title', 'Confirmación y Pago — Cinevibe')
 
 @push('styles')
     <link href="{{ asset('vendor/bootstrap/css/pages/cart-pay.css') }}" rel="stylesheet">
@@ -17,56 +17,59 @@
                     <h2 class="pay__heading">Resumen del Pedido</h2>
 
                     {{-- Tarjeta con poster + datos dinámicos de la función --}}
-                    <div class="summary-card">
-                        {{-- Header con imagen + badge + título --}}
-                        <div class="summary-card__media">
-                            <img alt="{{ $showtime->movie->name }}" class="summary-card__img"
-                                src="{{ $showtime->movie->image_url ? asset($showtime->movie->image_url) : asset('img/peliculas/default.jpg') }}">
-                            <div class="summary-card__overlay"></div>
-                            <div class="summary-card__meta">
-                                <span class="summary-card__badge">{{ $showtime->movie->category }}</span>
-                                <h3 class="summary-card__title">{{ strtoupper($showtime->movie->name) }}</h3>
+                    @foreach($items as $item)
+                        <div class="summary-card" style="margin-bottom: var(--sp-4);">
+                            {{-- Header con imagen + badge + título --}}
+                            <div class="summary-card__media" style="height: 120px;">
+                                <img alt="{{ $item['showtime']->movie->name }}" class="summary-card__img"
+                                    src="{{ $item['showtime']->movie->image_url ? asset($item['showtime']->movie->image_url) : asset('img/peliculas/default.jpg') }}"
+                                    onerror="this.onerror=null; this.src='{{ asset('img/peliculas/default.jpg') }}';">
+                                <div class="summary-card__overlay"></div>
+                                <div class="summary-card__meta" style="padding: var(--sp-3);">
+                                    <span class="summary-card__badge" style="font-size: var(--fs-10);">{{ $item['showtime']->movie->category }}</span>
+                                    <h3 class="summary-card__title" style="font-size: var(--fs-base);">{{ strtoupper($item['showtime']->movie->name) }}</h3>
+                                </div>
+                            </div>
+
+                            {{-- Body: grid de datos + precios --}}
+                            <div class="summary-card__body" style="padding: var(--sp-4);">
+                                <div class="summary-card__grid" style="grid-template-columns: repeat(2, 1fr); gap: var(--sp-2); margin-bottom: var(--sp-3);">
+                                    <div>
+                                        <p class="summary-card__label" style="font-size: var(--fs-10);">Sala</p>
+                                        <p class="summary-card__val" style="font-size: var(--fs-xs);">{{ $item['showtime']->theater->name }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="summary-card__label" style="font-size: var(--fs-10);">Fecha y Hora</p>
+                                        <p class="summary-card__val" style="font-size: var(--fs-xs);">
+                                            {{ $item['showtime']->datetime->format('d/m/Y') }} • {{ $item['showtime']->datetime->format('H:i') }}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="summary-card__label" style="font-size: var(--fs-10);">Asientos</p>
+                                        <p class="summary-card__val" style="font-size: var(--fs-xs);">{{ implode(', ', $item['amchairs']) }}</p>
+                                    </div>
+                                    <div>
+                                        <p class="summary-card__label" style="font-size: var(--fs-10);">Subtotal</p>
+                                        <p class="summary-card__val" style="font-size: var(--fs-xs); font-weight: var(--fw-bold); color: var(--color-secondary-container);">
+                                            ${{ number_format($item['subtotal'], 0, ',', '.') }}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    @endforeach
 
-                        {{-- Body: grid de datos + precios --}}
-                        <div class="summary-card__body">
-                            <div class="summary-card__grid">
-                                <div>
-                                    <p class="summary-card__label">Sala</p>
-                                    <p class="summary-card__val">{{ $showtime->theater->name }}</p>
-                                </div>
-                                <div>
-                                    <p class="summary-card__label">Fecha y Hora</p>
-                                    <p class="summary-card__val">
-                                        {{ $showtime->datetime->format('d/m/Y') }} • {{ $showtime->datetime->format('H:i') }}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="summary-card__label">Asientos</p>
-                                    <p class="summary-card__val">{{ implode(', ', $amchairs) }}</p>
-                                </div>
-                                <div>
-                                    <p class="summary-card__label">Duración</p>
-                                    <p class="summary-card__val">{{ $showtime->movie->duration }}</p>
-                                </div>
-                            </div>
-
-                            {{-- Líneas de precio --}}
+                    {{-- Tarjeta de resumen general consolidado --}}
+                    <div class="summary-card" style="margin-top: var(--sp-4);">
+                        <div class="summary-card__body" style="padding: var(--sp-4);">
                             <div class="summary-card__prices">
                                 <div class="summary-card__row">
-                                    <span class="summary-card__row-label">
-                                        Precio de Entradas ({{ count($amchairs) }}x)
-                                    </span>
-                                    <span class="summary-card__row-val">
-                                        ${{ number_format($subtotal, 0, ',', '.') }}
-                                    </span>
+                                    <span class="summary-card__row-label">Subtotal General</span>
+                                    <span class="summary-card__row-val">${{ number_format($total, 0, ',', '.') }}</span>
                                 </div>
                                 <div class="summary-card__row summary-card__row--total">
-                                    <span class="summary-card__row-label">Total</span>
-                                    <span class="summary-card__row-val">
-                                        ${{ number_format($subtotal, 0, ',', '.') }}
-                                    </span>
+                                    <span class="summary-card__row-label">Total a Pagar</span>
+                                    <span class="summary-card__row-val" style="color: var(--color-secondary-container); font-size: var(--fs-xl);">${{ number_format($total, 0, ',', '.') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -95,13 +98,8 @@
                 <h2 class="pay__heading">Datos de Pago</h2>
 
                 {{-- Formulario que envía POST a purchase.confirm --}}
-                <form id="payForm" action="{{ route('purchase.confirm') }}" method="POST">
+                <form id="payForm" action="{{ route('cart.confirm') }}" method="POST">
                     @csrf
-                    {{-- Inputs ocultos con datos de la compra --}}
-                    <input type="hidden" name="showtime_id" value="{{ $showtime->id }}">
-                    @foreach($amchairs as $amchair)
-                        <input type="hidden" name="amchairs[]" value="{{ $amchair }}">
-                    @endforeach
 
                     <div class="pay__form-wrap">
 
@@ -185,7 +183,7 @@
                         {{-- CTA de confirmación --}}
                         <div class="pay-actions">
                             <button type="submit" class="pay-confirm">
-                                Confirmar Compra — ${{ number_format($subtotal, 0, ',', '.') }}
+                                Confirmar Compra — ${{ number_format($total, 0, ',', '.') }}
                                 <span class="material-symbols-outlined">chevron_right</span>
                             </button>
                             <p class="pay-disclaimer">

@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 
 class ShowTimeController extends Controller
 {
-    /**
-     * Lista todas las funciones disponibles.
-     */
     public function index()
     {
         $showtimes = ShowTime::with(['movie', 'theater'])
@@ -22,9 +19,6 @@ class ShowTimeController extends Controller
         return view('showtimes.index', compact('showtimes'));
     }
 
-    /**
-     * Muestra funciones de una película específica.
-     */
     public function byMovie(Movie $movie)
     {
         $showtimes = ShowTime::with('theater')
@@ -36,9 +30,6 @@ class ShowTimeController extends Controller
         return view('showtimes.by-movie', compact('movie', 'showtimes'));
     }
 
-    /**
-     * Formulario de creación (admin).
-     */
     public function create()
     {
         $movies   = Movie::all();
@@ -46,9 +37,6 @@ class ShowTimeController extends Controller
         return view('showtimes.create', compact('movies', 'theaters'));
     }
 
-    /**
-     * Guarda nuevo ShowTime.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -63,9 +51,27 @@ class ShowTimeController extends Controller
             ->with('success', 'Función creada exitosamente.');
     }
 
-    /**
-     * Elimina un ShowTime.
-     */
+    public function edit(ShowTime $showtime)
+    {
+        $movies   = Movie::all();
+        $theaters = Theater::all();
+        return view('showtimes.edit', compact('showtime', 'movies', 'theaters'));
+    }
+
+    public function update(Request $request, ShowTime $showtime)
+    {
+        $validated = $request->validate([
+            'datetime'   => 'required|date|after:now',
+            'theater_id' => 'required|exists:theaters,id',
+            'movie_id'   => 'required|exists:movies,id',
+        ]);
+
+        $showtime->update($validated);
+
+        return redirect()->route('showtimes.index')
+            ->with('success', 'Función actualizada exitosamente.');
+    }
+
     public function destroy(ShowTime $showtime)
     {
         $showtime->delete();

@@ -5,24 +5,56 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use App\Models\ShowTime;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class MovieController extends Controller
+class MovieController extends Controller implements HasMiddleware
 {
-    /**
-     * Lista todas las películas de la cartelera y próximos estrenos.
-     * Retorna la vista billboard.index cargando las películas con sus funciones.
-     */
-    public function index()
+    public static function middleware(): array
     {
-        // Obtiene todas las películas con sus horarios y salas relacionadas
-        $movies = Movie::with('showtimes.theater')->get();
+        return [
+            new Middleware('auth', except: ['index', 'show']),
+            new Middleware(function ($request, $next) {
+                if (auth()->user()->rol_id != 1) {
+                    abort(403, 'No autorizado');
+                }
+                return $next($request);
+            }, except: ['index', 'show']),
+        ];
+    }
+
+    public function adminIndex(Request $request)
+    {
+        $query = Movie::query();
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('category')) {
+            $query->where('category', 'like', '%' . $request->category . '%');
+        }
+
+        $movies = $query->orderBy('name')->get();
+        return view('auth.movies.index', compact('movies'));
+    }
+
+    public function index(Request $request)
+    {
+        $query = Movie::with('showtimes.theater');
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('category')) {
+            $query->where('category', 'like', '%' . $request->category . '%');
+        }
+
+        $movies = $query->get();
         return view('billboard.index', compact('movies'));
     }
 
-    /**
-     * Muestra el detalle de una película con sus funciones disponibles.
-     * Retorna la vista reutilizable billboard.movie.index con los datos del modelo $movie.
-     */
     public function show(Movie $movie)
     {
         // Carga las relaciones de horarios y sala asociada a cada función
@@ -30,21 +62,16 @@ class MovieController extends Controller
         return view('billboard.movie.index', compact('movie'));
     }
 
-    /**
-     * Formulario de creación (admin).
-     */
     public function create()
     {
         return view('movies.create');
     }
 
-    /**
-     * Guarda nueva película.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name'        => 'required|string|max:255',
+            'state'       => 'required|string|max:100',
             'description' => 'nullable|string',
             'duration'    => 'required|string|max:50',
             'category'    => 'required|string|max:100',
@@ -55,25 +82,20 @@ class MovieController extends Controller
 
         $movie = Movie::create($validated);
 
-        return redirect()->route('movies.show', $movie)
+        return redirect()->route('admin.movies.index')
             ->with('success', 'Película creada exitosamente.');
     }
 
-    /**
-     * Formulario de edición (admin).
-     */
     public function edit(Movie $movie)
     {
         return view('movies.edit', compact('movie'));
     }
 
-    /**
-     * Actualiza datos de una película.
-     */
     public function update(Request $request, Movie $movie)
     {
         $validated = $request->validate([
             'name'        => 'required|string|max:255',
+            'state'       => 'required|string|max:100',
             'description' => 'nullable|string',
             'duration'    => 'required|string|max:50',
             'category'    => 'required|string|max:100',
@@ -84,17 +106,14 @@ class MovieController extends Controller
 
         $movie->update($validated);
 
-        return redirect()->route('movies.show', $movie)
+        return redirect()->route('admin.movies.index')
             ->with('success', 'Película actualizada.');
     }
 
-    /**
-     * Elimina una película.
-     */
     public function destroy(Movie $movie)
     {
         $movie->delete();
-        return redirect()->route('movies.index')
+        return redirect()->route('admin.movies.index')
             ->with('success', 'Película eliminada.');
     }
 }

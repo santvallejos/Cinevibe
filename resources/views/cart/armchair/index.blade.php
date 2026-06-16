@@ -126,16 +126,21 @@
                         <p class="order-card__taxes">Incl. Impuestos y Tasas</p>
                     </div>
 
-                    {{-- Formulario oculto que envía los datos al checkout (purchase.review) --}}
-                    <form id="checkoutForm" action="{{ route('purchase.review') }}" method="POST">
+                    {{-- Formulario oculto que envía los datos al carrito (cart.add) --}}
+                    <form id="checkoutForm" action="{{ route('cart.add') }}" method="POST">
                         @csrf
                         <input type="hidden" name="showtime_id" value="{{ $showtime->id }}">
                         {{-- Los inputs de amchairs[] se agregan dinámicamente con JS --}}
                         <div id="hiddenInputs"></div>
 
-                        <button type="submit" class="btn btn--primary btn--block btn--lg" id="btnCheckout" disabled>
-                            Proceder al Pago
-                            <span class="material-symbols-outlined">arrow_forward</span>
+                        <button type="submit" name="action" value="checkout" class="btn btn--primary btn--block btn--lg" id="btnCheckout" disabled style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: var(--sp-2);">
+                            Comprar Ahora
+                            <span class="material-symbols-outlined">shopping_cart</span>
+                        </button>
+
+                        <button type="submit" name="action" value="add" class="btn btn--outline btn--block" id="btnAddToCart" disabled style="display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgba(255, 255, 255, 0.15);">
+                            Agregar al Carrito
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
                         </button>
                     </form>
 
@@ -184,6 +189,7 @@
         const totalPriceEl    = document.getElementById('totalPrice');
         const hiddenInputs    = document.getElementById('hiddenInputs');
         const btnCheckout     = document.getElementById('btnCheckout');
+        const btnAddToCart    = document.getElementById('btnAddToCart');
 
         // Delegación de eventos en el grid de asientos
         seatGrid.addEventListener('click', function (e) {
@@ -219,16 +225,18 @@
             hiddenInputs.innerHTML = '';
 
             if (selectedSeats.size === 0) {
-                // Sin asientos: mostrar mensaje y deshabilitar botón
+                // Sin asientos: mostrar mensaje y deshabilitar botones
                 noSeatsMsg.style.display = '';
                 totalPriceEl.textContent = '$0';
                 btnCheckout.disabled = true;
+                btnAddToCart.disabled = true;
                 return;
             }
 
-            // Ocultar mensaje y habilitar botón
+            // Ocultar mensaje y habilitar botones
             noSeatsMsg.style.display = 'none';
             btnCheckout.disabled = false;
+            btnAddToCart.disabled = false;
 
             // Ordenar asientos alfabéticamente
             const sorted = Array.from(selectedSeats).sort();

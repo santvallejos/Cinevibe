@@ -17,19 +17,13 @@ class HeadboardSale extends Model
         'total' => 'double',
     ];
 
-    /**
-     * Cabecera pertenece a un usuario.
-     */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    /**
-     * Cabecera referencia a una línea de venta (retail_sale).
-     */
-    public function retailSale()
+    public function retailSales()
     {
-        return $this->belongsTo(RetailSale::class, 'retail_sale_id');
+        return $this->hasMany(RetailSale::class, 'headboard_sale_id');
     }
 }

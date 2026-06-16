@@ -45,60 +45,64 @@
             <div class="success-summary">
                 <h3 class="success-summary__heading">Detalles de tu Compra</h3>
 
-                <div class="success-summary__grid">
-                    {{-- Película --}}
-                    <div class="success-summary__item">
-                        <span class="material-symbols-outlined success-summary__icon">movie</span>
-                        <div>
-                            <p class="success-summary__label">Película</p>
-                            <p class="success-summary__val">
-                                {{ $sale->retailSale->ticket->showtime->movie->name ?? 'N/A' }}
-                            </p>
-                        </div>
-                    </div>
+                @foreach($sale->retailSales as $retailSale)
+                    <div style="border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: var(--sp-4); margin-bottom: var(--sp-4);">
+                        <div class="success-summary__grid" style="margin-bottom: 0;">
+                            {{-- Película --}}
+                            <div class="success-summary__item">
+                                <span class="material-symbols-outlined success-summary__icon">movie</span>
+                                <div>
+                                    <p class="success-summary__label">Película</p>
+                                    <p class="success-summary__val">
+                                        {{ $retailSale->ticket->showtime->movie->name ?? 'N/A' }}
+                                    </p>
+                                </div>
+                            </div>
 
-                    {{-- Sala --}}
-                    <div class="success-summary__item">
-                        <span class="material-symbols-outlined success-summary__icon">weekend</span>
-                        <div>
-                            <p class="success-summary__label">Sala</p>
-                            <p class="success-summary__val">
-                                {{ $sale->retailSale->ticket->theater->name ?? 'N/A' }}
-                            </p>
-                        </div>
-                    </div>
+                            {{-- Sala --}}
+                            <div class="success-summary__item">
+                                <span class="material-symbols-outlined success-summary__icon">weekend</span>
+                                <div>
+                                    <p class="success-summary__label">Sala</p>
+                                    <p class="success-summary__val">
+                                        {{ $retailSale->ticket->theater->name ?? 'N/A' }}
+                                    </p>
+                                </div>
+                            </div>
 
-                    {{-- Fecha y hora --}}
-                    <div class="success-summary__item">
-                        <span class="material-symbols-outlined success-summary__icon">calendar_today</span>
-                        <div>
-                            <p class="success-summary__label">Fecha y Hora</p>
-                            <p class="success-summary__val">
-                                @if($sale->retailSale->ticket->showtime)
-                                    {{ $sale->retailSale->ticket->showtime->datetime->format('d/m/Y') }}
-                                    a las {{ $sale->retailSale->ticket->showtime->datetime->format('H:i') }}
-                                @else
-                                    N/A
-                                @endif
-                            </p>
-                        </div>
-                    </div>
+                            {{-- Fecha y hora --}}
+                            <div class="success-summary__item">
+                                <span class="material-symbols-outlined success-summary__icon">calendar_today</span>
+                                <div>
+                                    <p class="success-summary__label">Fecha y Hora</p>
+                                    <p class="success-summary__val">
+                                        @if($retailSale->ticket->showtime)
+                                            {{ $retailSale->ticket->showtime->datetime->format('d/m/Y') }}
+                                            a las {{ $retailSale->ticket->showtime->datetime->format('H:i') }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
 
-                    {{-- Asientos --}}
-                    <div class="success-summary__item">
-                        <span class="material-symbols-outlined success-summary__icon">event_seat</span>
-                        <div>
-                            <p class="success-summary__label">Asientos ({{ $sale->retailSale->cant }})</p>
-                            <p class="success-summary__val">
-                                @if($sale->retailSale->tickets && $sale->retailSale->tickets->count() > 0)
-                                    {{ $sale->retailSale->tickets->pluck('amchair')->sort()->implode(', ') }}
-                                @else
-                                    {{ $sale->retailSale->ticket->amchair ?? 'N/A' }}
-                                @endif
-                            </p>
+                            {{-- Asientos --}}
+                            <div class="success-summary__item">
+                                <span class="material-symbols-outlined success-summary__icon">event_seat</span>
+                                <div>
+                                    <p class="success-summary__label">Asientos ({{ $retailSale->cant }})</p>
+                                    <p class="success-summary__val">
+                                        @if($retailSale->tickets && $retailSale->tickets->count() > 0)
+                                            {{ $retailSale->tickets->pluck('amchair')->sort()->implode(', ') }}
+                                        @else
+                                            {{ $retailSale->ticket->amchair ?? 'N/A' }}
+                                        @endif
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
                 {{-- Línea de total --}}
                 <div class="success-summary__total">

@@ -26,14 +26,21 @@
     </div>
 
     {{-- Perfil --}}
-    <div class="perfil-card">
-        <div class="perfil-avatar">
-            <i class="fas fa-user"></i>
+    <div class="perfil-card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <div class="perfil-avatar">
+                <i class="fas fa-user"></i>
+            </div>
+            <div class="perfil-info">
+                <h2>{{ $usuario->name }}</h2>
+                <p>{{ $usuario->email }}</p>
+                <p>Cliente desde {{ $usuario->created_at->format('d/m/Y') }}</p>
+            </div>
         </div>
-        <div class="perfil-info">
-            <h2>{{ $usuario->name }}</h2>
-            <p>{{ $usuario->email }}</p>
-            <p>Cliente desde {{ $usuario->created_at->format('d/m/Y') }}</p>
+        <div>
+            <a href="{{ route('profile.edit') }}" class="acceso-btn btn-outline" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: #A0A0B0; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.02); transition: all 0.2s; font-weight: bold;">
+                <i class="fas fa-user-edit" style="color: #e50914;"></i> Editar Perfil
+            </a>
         </div>
     </div>
 
@@ -46,17 +53,8 @@
             <span class="accion-icon icon-entradas">🎟️</span>
             <h3>Mis entradas</h3>
             <p>Revisá las entradas que compraste</p>
-            <a href="{{ url('/mis-entradas') }}" class="acceso-btn btn-dorado">
+            <a href="{{ route('purchase.history') }}" class="acceso-btn btn-dorado">
                 <i class="fas fa-ticket"></i> Ver entradas
-            </a>
-        </div>
-
-        <div class="accion-card">
-            <span class="accion-icon icon-carrito">🛒</span>
-            <h3>Mi carrito</h3>
-            <p>Completá tu compra pendiente</p>
-            <a href="{{ url('/carrito') }}" class="acceso-btn btn-dorado">
-                <i class="fas fa-cart-shopping"></i> Ver carrito
             </a>
         </div>
 
@@ -64,7 +62,7 @@
             <span class="accion-icon icon-peliculas">🎬</span>
             <h3>Cartelera</h3>
             <p>Explorá nuestras películas en cartel</p>
-            <a href="{{ url('/peliculas') }}" class="acceso-btn btn-rojo">
+            <a href="{{ route('movies.index') }}" class="acceso-btn btn-rojo">
                 <i class="fas fa-film"></i> Ver películas
             </a>
         </div>
@@ -73,7 +71,7 @@
             <span class="accion-icon icon-historial">📋</span>
             <h3>Historial</h3>
             <p>Tu historial completo de compras</p>
-            <a href="{{ url('/historial') }}" class="acceso-btn btn-verde">
+            <a href="{{ route('purchase.history') }}" class="acceso-btn btn-verde">
                 <i class="fas fa-clock-rotate-left"></i> Ver historial
             </a>
         </div>

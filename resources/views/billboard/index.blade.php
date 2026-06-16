@@ -10,17 +10,30 @@
         </div>
         <section class="home-section home-section--surface">
             <div class="container">
-                <header class="section-header">
+                <header class="section-header" style="flex-wrap: wrap; gap: 1rem;">
                     <div class="contact-hero__content">
                         <h1 class="movie-hero__title">Cartelera</h1>
-
                     </div>
 
-                    <div class="section-header__actions">
-                        <button class="btn btn--icon">
-                            <span class="material-symbols-outlined">filter_list</span>
+                    <form action="{{ route('movies.index') }}" method="GET" class="section-header__actions" style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; width: 100%; max-width: 600px; justify-content: flex-end;">
+                        <input type="text" name="search" placeholder="Buscar película..." value="{{ request('search') }}" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 0.5rem 1rem; color: white; min-width: 200px; outline: none; font-size: 0.9rem;">
+                        <select name="category" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 0.5rem 1rem; color: white; outline: none; font-size: 0.9rem;">
+                            <option value="">Todas las categorías</option>
+                            <option value="Comedia" {{ request('category') == 'Comedia' ? 'selected' : '' }}>Comedia</option>
+                            <option value="Terror" {{ request('category') == 'Terror' ? 'selected' : '' }}>Terror</option>
+                            <option value="Thriller" {{ request('category') == 'Thriller' ? 'selected' : '' }}>Thriller</option>
+                            <option value="Aventuras" {{ request('category') == 'Aventuras' ? 'selected' : '' }}>Aventuras</option>
+                            <option value="Animación" {{ request('category') == 'Animación' ? 'selected' : '' }}>Animación</option>
+                        </select>
+                        <button type="submit" class="btn" style="background: #e50914; color: white; border: none; border-radius: 6px; padding: 0.5rem 1rem; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 0.25rem;">
+                            <span class="material-symbols-outlined" style="font-size: 1.2rem;">search</span> Buscar
                         </button>
-                    </div>
+                        @if(request()->anyFilled(['search', 'category']))
+                            <a href="{{ route('movies.index') }}" class="btn" style="background: rgba(255,255,255,0.1); color: white; border: none; border-radius: 6px; padding: 0.5rem 1rem; text-decoration: none; font-size: 0.9rem;">
+                                Limpiar
+                            </a>
+                        @endif
+                    </form>
                 </header>
 
                 <div class="movie-grid">
@@ -31,7 +44,7 @@
                                 {{-- Enlace a la vista de detalle de la película --}}
                                 <a href="{{ route('movies.show', $movie->id) }}" class="movie-card__link">
                                     @if($movie->image_url)
-                                        <img class="movie-card__img" src="{{ asset($movie->image_url) }}" alt="{{ $movie->name }}">
+                                        <img class="movie-card__img" src="{{ asset($movie->image_url) }}" alt="{{ $movie->name }}" onerror="this.onerror=null; this.src='{{ asset('img/peliculas/default.jpg') }}';">
                                     @else
                                         <img class="movie-card__img" src="{{ asset('img/peliculas/default.jpg') }}" alt="{{ $movie->name }}">
                                     @endif
@@ -78,7 +91,7 @@
                             <div class="movie-card__poster">
                                 {{-- Las películas que no se han estrenado no tienen enlace al flujo de venta directa --}}
                                 @if($movie->image_url)
-                                    <img class="movie-card__img" src="{{ asset($movie->image_url) }}" alt="{{ $movie->name }}">
+                                    <img class="movie-card__img" src="{{ asset($movie->image_url) }}" alt="{{ $movie->name }}" onerror="this.onerror=null; this.src='{{ asset('img/peliculas/default.jpg') }}';">
                                 @else
                                     <img class="movie-card__img" src="{{ asset('img/peliculas/default.jpg') }}" alt="{{ $movie->name }}">
                                 @endif

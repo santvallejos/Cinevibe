@@ -13,10 +13,6 @@ use Illuminate\Support\Str;
 
 class PurchaseController extends Controller
 {
-    /**
-     * Muestra el selector de butacas para una función.
-     * Recibe showtime_id y devuelve la vista con butacas ocupadas.
-     */
     public function selectArmchair(Request $request)
     {
         $request->validate([
@@ -25,7 +21,6 @@ class PurchaseController extends Controller
 
         $showtime = ShowTime::with(['movie', 'theater'])->findOrFail($request->showtime_id);
 
-        // Butacas ya ocupadas en esta función
         $occupiedChairs = Ticket::where('showtime_id', $showtime->id)
             ->pluck('amchair')
             ->toArray();
@@ -33,10 +28,6 @@ class PurchaseController extends Controller
         return view('cart.armchair.index', compact('showtime', 'occupiedChairs'));
     }
 
-    /**
-     * Muestra el resumen de compra con los asientos seleccionados.
-     * Recibe showtime_id y array de amchairs.
-     */
     public function reviewPurchase(Request $request)
     {
         $request->validate([
@@ -47,7 +38,6 @@ class PurchaseController extends Controller
 
         $showtime = ShowTime::with(['movie', 'theater'])->findOrFail($request->showtime_id);
 
-        // Verificar que ninguna butaca ya esté ocupada
         $already = Ticket::where('showtime_id', $showtime->id)
             ->whereIn('amchair', $request->amchairs)
             ->exists();
@@ -64,10 +54,6 @@ class PurchaseController extends Controller
         ]);
     }
 
-    /**
-     * Confirma y procesa la compra.
-     * Crea Tickets, RetailSale y HeadboardSale dentro de una transacción.
-     */
     public function confirm(Request $request)
     {
         $request->validate([
@@ -79,7 +65,6 @@ class PurchaseController extends Controller
         $showtime = ShowTime::with(['movie', 'theater'])->findOrFail($request->showtime_id);
         $user     = Auth::user();
 
-        // Verificación final de disponibilidad
         $already = Ticket::where('showtime_id', $showtime->id)
             ->whereIn('amchair', $request->amchairs)
             ->exists();
@@ -92,7 +77,6 @@ class PurchaseController extends Controller
         $cant      = count($request->amchairs);
         $subtotal  = $unitPrice * $cant;
 
-        // Ejecutar toda la compra en transacción y retornar la cabecera
         $headboard = DB::transaction(function () use ($showtime, $user, $request, $unitPrice, $cant, $subtotal) {
             // 1. Crear un ticket por cada butaca seleccionada
             $tickets = [];
@@ -110,7 +94,6 @@ class PurchaseController extends Controller
                 $tickets[] = $ticket;
             }
 
-            // 2. Crear RetailSale usando el primer ticket como referencia del evento
             $retailSale = RetailSale::create([
                 'ticket_id'       => $tickets[0]->id,
                 'price'           => $subtotal,
@@ -119,10 +102,8 @@ class PurchaseController extends Controller
                 'subtotal'        => $subtotal,
             ]);
 
-            // 2.5. Vincular todos los tickets a la línea de venta
             Ticket::whereIn('id', collect($tickets)->pluck('id'))->update(['retail_sale_id' => $retailSale->id]);
 
-            // 3. Crear HeadboardSale (cabecera de la orden)
             $headboard = HeadboardSale::create([
                 'user_id'        => $user->id,
                 'retail_sale_id' => $retailSale->id,
@@ -130,33 +111,26 @@ class PurchaseController extends Controller
                 'total'          => $subtotal,
             ]);
 
-            // 4. Actualizar sale_id del usuario con la compra más reciente
             $user->update(['sale_id' => $headboard->id]);
 
             return $headboard;
         });
 
-        // Redirigir con ID de venta en sesión flash
         return redirect()->route('purchase.success')
             ->with('success', '¡Compra realizada exitosamente!')
             ->with('sale_id', $headboard->id);
     }
 
-    /**
-     * Vista de compra exitosa.
-     */
     public function success()
     {
-        // Recupera la venta desde la sesión o la última del usuario
         $saleId = session('sale_id');
         $sale = $saleId
-            ? HeadboardSale::with(['retailSale.tickets.showtime.movie', 'retailSale.tickets.theater'])->find($saleId)
-            : HeadboardSale::with(['retailSale.tickets.showtime.movie', 'retailSale.tickets.theater'])
+            ? HeadboardSale::with(['retailSales.tickets.showtime.movie', 'retailSales.tickets.theater'])->find($saleId)
+            : HeadboardSale::with(['retailSales.tickets.showtime.movie', 'retailSales.tickets.theater'])
                 ->where('user_id', Auth::id())
                 ->latest()
                 ->first();
 
-        // Si no existe la venta, redirigir al inicio
         if (!$sale) {
             return redirect()->route('index')->with('error', 'No se encontró la compra.');
         }
@@ -164,16 +138,30 @@ class PurchaseController extends Controller
         return view('cart.success', compact('sale'));
     }
 
-    /**
-     * Historial de compras del usuario autenticado.
-     */
     public function history()
     {
-        $sales = HeadboardSale::with(['retailSale.ticket.showtime.movie'])
+        $sales = HeadboardSale::with(['retailSales.tickets.showtime.movie', 'retailSales.tickets.theater'])
             ->where('user_id', Auth::id())
             ->orderByDesc('created_at')
             ->get();
 
         return view('cart.history', compact('sales'));
+    }
+
+    public function showTicket(Ticket $ticket)
+    {
+        $sale = HeadboardSale::where('user_id', Auth::id())
+            ->whereHas('retailSales.tickets', function ($q) use ($ticket) {
+                $q->where('id', $ticket->id);
+            })
+            ->first();
+
+        if (!$sale) {
+            abort(403, 'No autorizado a ver este boleto.');
+        }
+
+        $ticket->load(['showtime.movie', 'theater']);
+
+        return view('cart.ticket', compact('ticket', 'sale'));
     }
 }

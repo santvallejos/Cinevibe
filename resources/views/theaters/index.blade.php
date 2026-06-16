@@ -1,0 +1,149 @@
+@extends('layouts.navbar-y-footer.app')
+
+@section('title', 'Salas — CineVibe')
+
+@push('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/pages/admin.css') }}">
+    <style>
+        .list-container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 1.5rem;
+            background: rgba(30, 30, 40, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .list-title {
+            color: #ffffff;
+            font-family: 'Manrope', sans-serif;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-action {
+            background: linear-gradient(135deg, #e50914 0%, #b80710 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+        .btn-action:hover {
+            opacity: 0.9;
+            color: white;
+        }
+        .btn-edit {
+            background: rgba(255, 193, 7, 0.15);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: all 0.2s;
+        }
+        .btn-edit:hover {
+            background: #ffc107;
+            color: #1a1a1a;
+        }
+        .btn-delete {
+            background: rgba(229, 9, 20, 0.15);
+            color: #e50914;
+            border: 1px solid rgba(229, 9, 20, 0.3);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: all 0.2s;
+        }
+        .btn-delete:hover {
+            background: #e50914;
+            color: white;
+        }
+    </style>
+@endpush
+
+@section('content')
+<div class="list-container">
+    @if(session('success'))
+        <div style="background: rgba(40, 167, 69, 0.15); border: 1px solid rgba(40, 167, 69, 0.3); color: #28a745; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-check-circle"></i> {{ session('success') }}
+        </div>
+    @endif
+
+    <div class="list-header">
+        <h1 class="list-title">
+            <i class="fas fa-weekend" style="color: #e50914;"></i> Salas y Precios
+        </h1>
+        <div style="display: flex; gap: 1rem;">
+            <a href="{{ route('admin.dashboard') }}" class="btn-action" style="background: rgba(255,255,255,0.05); color: #A0A0B0; border: 1px solid rgba(255,255,255,0.1);">
+                <i class="fas fa-arrow-left"></i> Volver a Panel
+            </a>
+            <a href="{{ route('theaters.create') }}" class="btn-action">
+                <i class="fas fa-plus"></i> Nueva Sala
+            </a>
+        </div>
+    </div>
+
+    <div class="table-card" style="margin-top: 0;">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre de Sala</th>
+                    <th>Descripción</th>
+                    <th>Precio de Entrada</th>
+                    <th style="text-align: right;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($theaters as $t)
+                <tr>
+                    <td class="td-num">{{ $t->id }}</td>
+                    <td><strong style="color: white;">{{ $t->name }}</strong></td>
+                    <td style="color: #A0A0B0; max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $t->description ?? '—' }}</td>
+                    <td><span style="color: #ffc107; font-weight: bold;">${{ number_format($t->price, 0, ',', '.') }}</span></td>
+                    <td style="text-align: right; display: flex; justify-content: flex-end; gap: 0.5rem;">
+                        <a href="{{ route('theaters.edit', $t) }}" class="btn-edit">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <form action="{{ route('theaters.destroy', $t) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar esta sala?')" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-delete">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="5" style="text-align:center;padding:2rem;color:#A0A0B0;">
+                        No hay salas registradas.
+                    </td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+</div>
+@endsection

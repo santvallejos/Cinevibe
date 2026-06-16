@@ -26,17 +26,23 @@
     {{-- Derecha: CTA desktop (oculto en mobile) + botón hamburguesa (oculto en desktop) --}}
     <div class="nav-bar__right">
         <div class="nav-bar__cta">
-            {{-- Carrito --}}
-   {{--  <a class="nav-bar__cart" href="{{ route('cliente.carrito') }}"> --}}
-    <span class="material-symbols-outlined">
-        shopping_cart
-    </span>
-
-    <span class="nav-bar__cart-badge">
-        {{ count(session('cart', [])) }}
-    </span>
-
-</a>
+            {{-- Carrito dinámico --}}
+            @php
+                $cartCount = 0;
+                foreach(session('cart', []) as $item) {
+                    $cartCount += isset($item['amchairs']) ? count($item['amchairs']) : 0;
+                }
+            @endphp
+            <a class="nav-bar__cart" href="{{ route('cart.index') }}" style="position: relative; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--color-on-surface); margin-right: 1rem;">
+                <span class="material-symbols-outlined">
+                    shopping_cart
+                </span>
+                @if($cartCount > 0)
+                    <span class="nav-bar__cart-badge" style="position: absolute; top: -8px; right: -8px; background: var(--color-primary-container); color: var(--color-on-primary-container); font-size: var(--fs-10); font-weight: var(--fw-bold); border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm);">
+                        {{ $cartCount }}
+                    </span>
+                @endif
+            </a>
             @auth
                 {{-- Usuario autenticado: saludo + botón cerrar sesión --}}
                 <a href="{{ route('dashboard') }}" class="nav-bar__user-greeting nav-bar__user-greeting--link">
@@ -70,10 +76,12 @@
         href="{{ route('index') }}">Inicio</a>
     <a class="nav-bar__mobile-link {{ request()->routeIs('movies.*') ? 'nav-bar__link--active' : '' }}"
         href="{{ route('movies.index') }}">Peliculas</a>
-    <a class="nav-bar__mobile-link" href="#">Ofertas</a>
-    <a class="nav-bar__mobile-link" href="#">Compra</a>
-    <a class="nav-bar__mobile-link" href="#">Contacto</a>
-    <a class="nav-bar__mobile-link" href="#">¿Quiénes Somos?</a>
+    {{-- <a class="nav-bar__mobile-link" href="#">Ofertas</a> --}}
+    {{-- <a class="nav-bar__mobile-link" href="#">Compra</a> --}}
+    <a class="nav-bar__mobile-link {{ request()->routeIs('contact.*') ? 'nav-bar__link--active' : '' }}"
+        href="{{ route('contact.index') }}">Contacto</a>
+    <a class="nav-bar__mobile-link {{ request()->routeIs('about-us.*') ? 'nav-bar__link--active' : '' }}"
+        href="{{ route('about-us.index') }}">¿Quiénes Somos?</a>
 
     <div class="nav-bar__mobile-cta">
         @auth
