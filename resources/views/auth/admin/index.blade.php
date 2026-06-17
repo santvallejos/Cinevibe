@@ -212,6 +212,12 @@
             <a href="{{ route('admin.users.create') }}" class="acceso-btn btn-outline" style="border-color: #3b82f6; color: #3b82f6;">
                 <i class="fas fa-user-plus"></i> Agregar usuario
             </a>
+            <a href="{{ route('admin.sales.index') }}" class="acceso-btn btn-outline" style="border-color: #f59e0b; color: #f59e0b;">
+                <i class="fas fa-receipt"></i> Registro de ventas
+            </a>
+            <a href="{{ route('admin.messages.index') }}" class="acceso-btn btn-outline" style="border-color: #a855f7; color: #a855f7;">
+                <i class="fas fa-envelope"></i> Consultas/Mensajes
+            </a>
             <a href="{{ url('/') }}" class="acceso-btn btn-outline" style="grid-column: span 2;">
                 <i class="fas fa-house"></i> Ir al inicio
             </a>

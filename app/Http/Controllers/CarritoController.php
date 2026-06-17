@@ -6,7 +6,7 @@ use App\Models\ShowTime;
 use App\Models\Ticket;
 use App\Models\RetailSale;
 use App\Models\HeadboardSale;
-use App\Models\TemporaryReservation;
+use App\Models\Seat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -52,6 +52,28 @@ class CarritoController extends Controller
 
         $showtimeId = $request->showtime_id;
         $amchairs = $request->amchairs;
+
+        $showtime = ShowTime::findOrFail($showtimeId);
+
+        // Validar que todas las butacas existan físicamente en la sala
+        foreach ($amchairs as $amchair) {
+            preg_match('/^([A-Z]+)(\d+)$/i', $amchair, $matches);
+            if (count($matches) < 3) {
+                return back()->with('error', "El formato del asiento {$amchair} es inválido.");
+            }
+            $rowLetter = strtoupper($matches[1]);
+            $seatNumber = (int)$matches[2];
+
+            $seatExists = Seat::where('theater_id', $showtime->theater_id)
+                ->where('row_letter', $rowLetter)
+                ->where('seat_number', $seatNumber)
+                ->where('is_active', true)
+                ->exists();
+
+            if (!$seatExists) {
+                return back()->with('error', "El asiento {$amchair} no existe en esta sala.");
+            }
+        }
 
         $already = Ticket::where('showtime_id', $showtimeId)
             ->whereIn('amchair', $amchairs)
@@ -137,7 +159,11 @@ class CarritoController extends Controller
 
         $user = Auth::user();
 
+        // Validar ocupación y existencia de asientos en BD
+        $seatsByShowtime = [];
         foreach ($cart as $showtimeId => $data) {
+            $showtime = ShowTime::findOrFail($showtimeId);
+
             $already = Ticket::where('showtime_id', $showtimeId)
                 ->whereIn('amchair', $data['amchairs'])
                 ->exists();
@@ -145,9 +171,32 @@ class CarritoController extends Controller
             if ($already) {
                 return redirect()->route('cart.index')->with('error', 'Una o más butacas en tu carrito ya fueron ocupadas. Por favor revisa tu selección.');
             }
+
+            // Traducir y validar asientos en BD
+            $seatsMap = [];
+            foreach ($data['amchairs'] as $amchair) {
+                preg_match('/^([A-Z]+)(\d+)$/i', $amchair, $matches);
+                if (count($matches) < 3) {
+                    return redirect()->route('cart.index')->with('error', "El formato del asiento {$amchair} es inválido.");
+                }
+                $rowLetter = strtoupper($matches[1]);
+                $seatNumber = (int)$matches[2];
+
+                $seat = Seat::where('theater_id', $showtime->theater_id)
+                    ->where('row_letter', $rowLetter)
+                    ->where('seat_number', $seatNumber)
+                    ->where('is_active', true)
+                    ->first();
+
+                if (!$seat) {
+                    return redirect()->route('cart.index')->with('error', "El asiento {$amchair} no existe en esta sala.");
+                }
+                $seatsMap[$amchair] = $seat->id;
+            }
+            $seatsByShowtime[$showtimeId] = $seatsMap;
         }
 
-        $headboard = DB::transaction(function () use ($cart, $user) {
+        $headboard = DB::transaction(function () use ($cart, $user, $seatsByShowtime) {
             // Crear cabecera única
             $headboard = HeadboardSale::create([
                 'user_id' => $user->id,
@@ -162,6 +211,7 @@ class CarritoController extends Controller
                 $unitPrice = (float) $showtime->theater->price;
                 $cant = count($data['amchairs']);
                 $subtotal = $unitPrice * $cant;
+                $seatsMap = $seatsByShowtime[$showtimeId];
 
                 $tickets = [];
                 foreach ($data['amchairs'] as $amchair) {
@@ -170,6 +220,7 @@ class CarritoController extends Controller
                         'pelicula_id' => $showtime->movie_id,
                         'showtime_id' => $showtime->id,
                         'theater_id'  => $showtime->theater_id,
+                        'seat_id'     => $seatsMap[$amchair],
                         'price'       => $unitPrice,
                         'amchair'     => $amchair,
                         'date'        => $showtime->datetime,
@@ -190,11 +241,6 @@ class CarritoController extends Controller
                 Ticket::whereIn('id', collect($tickets)->pluck('id'))->update(['retail_sale_id' => $retailSale->id]);
 
                 $totalGeneral += $subtotal;
-
-                // Liberar reservas temporales de butacas ya compradas
-                TemporaryReservation::where('showtime_id', $showtimeId)
-                    ->whereIn('amchair', $data['amchairs'])
-                    ->delete();
             }
 
             $headboard->update(['total' => $totalGeneral]);

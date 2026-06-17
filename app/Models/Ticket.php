@@ -14,7 +14,7 @@ class Ticket extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id', 'pelicula_id', 'showtime_id', 'theater_id',
+        'id', 'pelicula_id', 'showtime_id', 'theater_id', 'seat_id',
         'price', 'amchair', 'date', 'movie', 'retail_sale_id',
     ];
 
@@ -45,6 +45,14 @@ class Ticket extends Model
     public function theater()
     {
         return $this->belongsTo(Theater::class, 'theater_id');
+    }
+
+    /**
+     * Ticket pertenece a una butaca física específica.
+     */
+    public function seat()
+    {
+        return $this->belongsTo(Seat::class, 'seat_id');
     }
 
     /**

@@ -400,16 +400,6 @@
                                 @endforeach
                             </div>
 
-                            {{-- Barra indicadora de ocupación de butacas --}}
-                            <div class="booking__seats-bar">
-                                <div class="booking__seats-info">
-                                    <span class="material-symbols-outlined">event_seat</span>
-                                    <span id="seatsText">Selecciona un horario</span>
-                                </div>
-                                <div class="booking__seats-track">
-                                    <div class="booking__seats-fill" id="seatsFill" style="width:0%;"></div>
-                                </div>
-                            </div>
 
                             {{-- Footer del widget: resumen seleccionado + precio + botón de reserva --}}
                             <div class="booking__footer">
@@ -525,8 +515,7 @@
             const maxSeats   = 80;
 
             document.getElementById('summaryVal').textContent = time + ' · ' + hall;
-            document.getElementById('seatsText').textContent  = seats + ' butacas disponibles';
-            
+
             // Muestra el precio formateado en español
             document.getElementById('priceDisplay').textContent = '$' + Number(price).toLocaleString('es-CL');
 

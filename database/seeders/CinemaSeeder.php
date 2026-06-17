@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Theater;
 use App\Models\Movie;
 use App\Models\ShowTime;
+use App\Models\Seat;
 use Illuminate\Database\Seeder;
 
 class CinemaSeeder extends Seeder
@@ -29,6 +30,48 @@ class CinemaSeeder extends Seeder
             'description' => 'Sala equipada con tecnología 3D.',
             'price'       => '2200',
         ]);
+
+        // --- Asientos de las Salas ---
+        // Sala 1 - VIP (5 filas, 8 asientos por fila = 40 asientos)
+        $vipRows = ['A', 'B', 'C', 'D', 'E'];
+        foreach ($vipRows as $row) {
+            for ($num = 1; $num <= 8; $num++) {
+                Seat::create([
+                    'theater_id'  => $sala1->id,
+                    'row_letter'  => $row,
+                    'seat_number' => $num,
+                    'is_premium'  => true,
+                    'is_active'   => true,
+                ]);
+            }
+        }
+
+        // Sala 2 - Standard (8 filas, 12 asientos por fila = 96 asientos)
+        $standardRows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+        foreach ($standardRows as $row) {
+            for ($num = 1; $num <= 12; $num++) {
+                Seat::create([
+                    'theater_id'  => $sala2->id,
+                    'row_letter'  => $row,
+                    'seat_number' => $num,
+                    'is_premium'  => false,
+                    'is_active'   => true,
+                ]);
+            }
+        }
+
+        // Sala 3 - 3D (8 filas, 12 asientos por fila = 96 asientos)
+        foreach ($standardRows as $row) {
+            for ($num = 1; $num <= 12; $num++) {
+                Seat::create([
+                    'theater_id'  => $sala3->id,
+                    'row_letter'  => $row,
+                    'seat_number' => $num,
+                    'is_premium'  => false,
+                    'is_active'   => true,
+                ]);
+            }
+        }
 
         // --- Películas ---
         $movie1 = Movie::create([

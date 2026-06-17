@@ -18,4 +18,12 @@ class Theater extends Model
     {
         return $this->hasMany(ShowTime::class, 'theater_id');
     }
+
+    /**
+     * Una sala tiene muchos asientos/butacas físicas.
+     */
+    public function seats()
+    {
+        return $this->hasMany(Seat::class, 'theater_id');
+    }
 }

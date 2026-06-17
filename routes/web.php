@@ -12,6 +12,7 @@ use App\Http\Controllers\ShowTimeController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
 
 // Home
 Route::get('/', function () {
@@ -46,6 +47,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
         'update'  => 'admin.users.update',
         'destroy' => 'admin.users.destroy',
     ]);
+
+    // Gestión de Ventas (Filtros y Visualización)
+    Route::get('/admin/sales', [AdminController::class, 'salesIndex'])->name('admin.sales.index');
+
+    // Gestión de Mensajes de Contacto
+    Route::get('/admin/messages', [ContactController::class, 'index'])->name('admin.messages.index');
+    Route::post('/admin/messages/{message}/read', [ContactController::class, 'markAsRead'])->name('admin.messages.read');
 });
 
 // Peliculas y Funciones
@@ -72,13 +80,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Carrito de Compras y Flujo de Compra
 Route::middleware('auth')->group(function () {
-    // Rutas de API internas para reservas temporales de butacas
-    Route::prefix('api/seats')->group(function () {
-        Route::get('/status', [\App\Http\Controllers\Api\SeatApiController::class, 'status'])->name('api.seats.status');
-        Route::post('/reserve', [\App\Http\Controllers\Api\SeatApiController::class, 'reserve'])->name('api.seats.reserve');
-        Route::post('/release', [\App\Http\Controllers\Api\SeatApiController::class, 'release'])->name('api.seats.release');
-        Route::post('/release-all', [\App\Http\Controllers\Api\SeatApiController::class, 'releaseAll'])->name('api.seats.release-all');
-    });
 
     // Paso 1: Selección de butacas
     Route::get('/select-armchair', [PurchaseController::class, 'selectArmchair'])->name('armchair.index');
@@ -111,6 +112,8 @@ Route::get('/sobre-nosotros', function () {
 Route::get('/contacto', function () {
     return view('contact.index');
 })->name('contact.index');
+
+Route::post('/contacto', [ContactController::class, 'submit'])->name('contact.submit');
 
 Route::get('/terminos-condiciones', function () {
     return view('terms-and-conditions.index');

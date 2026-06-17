@@ -28,6 +28,10 @@ return new class extends Migration
             $table->unsignedBigInteger('theater_id');
             $table->foreign('theater_id')->references('id')->on('theaters')->onDelete('restrict');
 
+            $table->foreignId('seat_id')
+                ->constrained('seats')
+                ->onDelete('restrict');
+
             $table->double('price');                // Precio del ticket
             $table->string('amchair');              // Identificador butaca: ej "A1", "B5"
             $table->dateTime('date');               // Fecha/hora de la función

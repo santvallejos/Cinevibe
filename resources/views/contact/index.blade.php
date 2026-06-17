@@ -97,34 +97,52 @@
                 {{-- Columna derecha: formulario de consulta --}}
                 <div class="contact-form-panel">
                     <h2 class="contact-form-panel__title">Envíanos tu Consulta</h2>
-                    <form class="contact-form" action="#">
+
+                    @if(session('success'))
+                        <div class="alert alert--success" style="background: rgba(34, 197, 94, 0.15); border: 1px solid rgba(34, 197, 94, 0.4); color: #86efac; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 0.875rem;">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="alert alert--danger" style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); color: #fca5a5; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 0.875rem;">
+                            <ul style="margin: 0; padding-left: 16px;">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form class="contact-form" action="{{ route('contact.submit') }}" method="POST">
+                        @csrf
 
                         {{-- Nombre (label flotante) --}}
                         <div class="contact-field">
-                            <input class="contact-field__input" id="name" type="text" placeholder=" ">
+                            <input class="contact-field__input" id="name" name="name" type="text" placeholder=" " value="{{ old('name') }}" required>
                             <label class="contact-field__label" for="name">Nombre Completo</label>
                         </div>
 
                         {{-- Email (label flotante) --}}
                         <div class="contact-field">
-                            <input class="contact-field__input" id="email" type="email" placeholder=" ">
+                            <input class="contact-field__input" id="email" name="email" type="email" placeholder=" " value="{{ old('email') }}" required>
                             <label class="contact-field__label" for="email">Correo Electrónico</label>
                         </div>
 
                         {{-- Asunto (select) --}}
                         <div class="contact-field">
-                            <select class="contact-field__select" id="subject">
-                                <option disabled selected value="">Asunto de Interés</option>
-                                <option value="booking">Entradas y Reservas</option>
-                                <option value="membership">Membresía Cinevibe</option>
-                                <option value="events">Eventos Privados</option>
-                                <option value="other">Comentarios Generales</option>
+                            <select class="contact-field__select" id="subject" name="subject" required>
+                                <option disabled {{ old('subject') ? '' : 'selected' }} value="">Asunto de Interés</option>
+                                <option value="Entradas y Reservas" {{ old('subject') == 'Entradas y Reservas' ? 'selected' : '' }}>Entradas y Reservas</option>
+                                <option value="Membresía Cinevibe" {{ old('subject') == 'Membresía Cinevibe' ? 'selected' : '' }}>Membresía Cinevibe</option>
+                                <option value="Eventos Privados" {{ old('subject') == 'Eventos Privados' ? 'selected' : '' }}>Eventos Privados</option>
+                                <option value="Comentarios Generales" {{ old('subject') == 'Comentarios Generales' ? 'selected' : '' }}>Comentarios Generales</option>
                             </select>
                         </div>
 
                         {{-- Mensaje (textarea con label flotante) --}}
                         <div class="contact-field">
-                            <textarea class="contact-field__textarea" id="message" rows="4" placeholder=" "></textarea>
+                            <textarea class="contact-field__textarea" id="message" name="message" rows="4" placeholder=" " required>{{ old('message') }}</textarea>
                             <label class="contact-field__label" for="message">Tu Mensaje</label>
                         </div>
 
