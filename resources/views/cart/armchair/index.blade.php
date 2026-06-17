@@ -147,102 +147,10 @@
 
     @push('scripts')
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const unitPrice = {{ $unitPrice }};
-
-        // Asientos seleccionados por el usuario actual (local en memoria)
-        const selectedSeats = new Set();
-
-        // Referencias DOM
-        const seatGrid    = document.getElementById('seatGrid');
-        const seatsList   = document.getElementById('selectedSeatsList');
-        const noSeatsMsg  = document.getElementById('noSeatsMsg');
-        const totalPriceEl = document.getElementById('totalPrice');
-        const hiddenInputs = document.getElementById('hiddenInputs');
-        const btnCheckout  = document.getElementById('btnCheckout');
-        const btnAddToCart = document.getElementById('btnAddToCart');
-
-        // ─── Alternar selección de asiento ──────────────────────────────
-        function toggleSeat(seatEl, seatId) {
-            if (selectedSeats.has(seatId)) {
-                // Deseleccionar
-                selectedSeats.delete(seatId);
-                seatEl.classList.remove('seat--selected');
-                seatEl.classList.add('seat--available');
-                seatEl.innerHTML = '';
-            } else {
-                // Seleccionar
-                selectedSeats.add(seatId);
-                seatEl.classList.remove('seat--available');
-                seatEl.classList.add('seat--selected');
-                seatEl.innerHTML = `<span class="seat__label">${seatId}</span>`;
-            }
-            updateSidebar();
-        }
-
-        // ─── Delegación de clics en el grid ────────────────────────────
-        seatGrid.addEventListener('click', function (e) {
-            const seat = e.target.closest('.seat--available, .seat--selected');
-            if (!seat) return;
-
-            const seatId = seat.dataset.seat;
-            toggleSeat(seat, seatId);
-        });
-
-        // ─── Actualizar Sidebar y inputs ocultos ────────────────────────
-        function updateSidebar() {
-            // Limpiar los chips previos
-            seatsList.querySelectorAll('.seat-chip').forEach(el => el.remove());
-            hiddenInputs.innerHTML = '';
-
-            if (selectedSeats.size === 0) {
-                noSeatsMsg.style.display = '';
-                totalPriceEl.textContent = '$0';
-                btnCheckout.disabled = true;
-                btnAddToCart.disabled = true;
-                return;
-            }
-
-            noSeatsMsg.style.display = 'none';
-            btnCheckout.disabled = false;
-            btnAddToCart.disabled = false;
-
-            const sorted = Array.from(selectedSeats).sort();
-
-            sorted.forEach(function (seatId) {
-                const chip = document.createElement('div');
-                chip.className = 'seat-chip';
-                chip.innerHTML =
-                    `<span class="seat-chip__code">${seatId}</span>` +
-                    `<span class="seat-chip__price">$${Number(unitPrice).toLocaleString('es-AR')}</span>` +
-                    `<button type="button" class="seat-chip__close" data-remove="${seatId}">` +
-                        '<span class="material-symbols-outlined">close</span>' +
-                    '</button>';
-                seatsList.appendChild(chip);
-
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'amchairs[]';
-                input.value = seatId;
-                hiddenInputs.appendChild(input);
-            });
-
-            const total = selectedSeats.size * unitPrice;
-            totalPriceEl.textContent = '$' + Number(total).toLocaleString('es-AR');
-        }
-
-        // ─── Quitar asiento desde chip del sidebar ──────────────────────
-        seatsList.addEventListener('click', function (e) {
-            const btn = e.target.closest('[data-remove]');
-            if (!btn) return;
-
-            const seatId = btn.dataset.remove;
-            const seatEl = seatGrid.querySelector(`[data-seat="${seatId}"]`);
-            if (seatEl) {
-                toggleSeat(seatEl, seatId);
-            }
-        });
-    });
+        window.CinevibeData = {
+            unitPrice: {{ (float) $showtime->theater->price }}
+        };
     </script>
+    <script src="{{ asset('js/pages/cart.js') }}"></script>
     @endpush
 @endsection

@@ -100,6 +100,9 @@ Route::middleware('auth')->group(function () {
     // Visualización de boleto digital
     Route::get('/tickets/{ticket}', [PurchaseController::class, 'showTicket'])->name('tickets.show');
 
+    // Comprobante de compra unificado
+    Route::get('/purchase/receipt/{sale}', [PurchaseController::class, 'showReceipt'])->name('purchases.show');
+
     // Gestión del perfil de usuario
     Route::get('/perfil', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/perfil', [ProfileController::class, 'update'])->name('profile.update');

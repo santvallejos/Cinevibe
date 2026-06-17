@@ -1,136 +1,15 @@
 @extends('layouts.navbar-y-footer.app')
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensajes de Contacto — CineVibe</title>
+@section('title', 'Mensajes de Contacto — CineVibe')
 
+@push('styles')
     {{-- Font Awesome para los íconos --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     {{-- CSS del panel admin --}}
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/pages/admin.css') }}">
-    
-    <style>
-        .message-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: border-color 0.2s;
-            position: relative;
-        }
-        .message-card.unread {
-            border-left: 4px solid #e50914 !important;
-            background: rgba(229, 9, 20, 0.02);
-        }
-        .message-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            padding-bottom: 0.75rem;
-            margin-bottom: 0.75rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .message-sender {
-            display: flex;
-            flex-direction: column;
-        }
-        .message-sender-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-        }
-        .message-sender-email {
-            font-size: 0.85rem;
-            color: #A0A0B0;
-        }
-        .message-meta {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.85rem;
-            color: #A0A0B0;
-        }
-        .message-subject {
-            font-weight: 700;
-            color: #ffb4aa;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        .message-body {
-            color: #e2e8f0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            white-space: pre-wrap;
-        }
-        .btn-read-toggle {
-            background: rgba(229, 9, 20, 0.15);
-            border: 1px solid rgba(229, 9, 20, 0.3);
-            color: #ffb4aa;
-            padding: 0.35rem 0.85rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-        }
-        .btn-read-toggle:hover {
-            background: #e50914;
-            color: #fff;
-        }
-        .badge-read-status {
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-        }
-        .badge-unread {
-            background: rgba(229, 9, 20, 0.15);
-            color: #ff8585;
-            border: 1px solid rgba(229, 9, 20, 0.3);
-        }
-        .badge-read {
-            background: rgba(255, 255, 255, 0.05);
-            color: #a0aec0;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .nav-admin-tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 0.5rem;
-        }
-        .nav-admin-tab {
-            color: #A0A0B0;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        .nav-admin-tab:hover {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .nav-admin-tab.active {
-            color: #fff;
-            background: rgba(229, 9, 20, 0.15);
-            border: 1px solid rgba(229, 9, 20, 0.3);
-        }
-    </style>
-</head>
-<body>
+@endpush
+
+@section('content')
 
 <div class="hero-banner">
     <h1>🎬 CineVibe</h1>
@@ -202,6 +81,4 @@
         @endif
     </div>
 </div>
-
-</body>
-</html>
+@endsection

@@ -215,7 +215,7 @@ class PurchaseController extends Controller
     }
 
     /**
-     * GET: /purchase/ticket/{ticket} - Mostrar información de un boleto específico
+     * GET: /purchase/ticket/{ticket} - Redirigir al comprobante de la compra correspondiente
      */
     public function showTicket(Ticket $ticket)
     {
@@ -229,8 +229,22 @@ class PurchaseController extends Controller
             abort(403, 'No autorizado a ver este boleto.');
         }
 
-        $ticket->load(['showtime.movie', 'theater']);
+        return redirect()->route('purchases.show', $sale);
+    }
 
-        return view('cart.ticket', compact('ticket', 'sale'));
+    /**
+     * GET: /purchase/receipt/{sale} - Mostrar comprobante de una compra específica
+     */
+    public function showReceipt(HeadboardSale $sale)
+    {
+        if ($sale->user_id !== Auth::id()) {
+            abort(403, 'No autorizado a ver este comprobante.');
+        }
+
+        $sale->load(['retailSales.tickets.showtime.movie', 'retailSales.tickets.theater']);
+
+        $redeemCode = strtoupper('CV-' . str_pad($sale->id, 4, '0', STR_PAD_LEFT) . '-' . substr(md5($sale->id . $sale->created_at), 0, 6));
+
+        return view('cart.receipt', compact('sale', 'redeemCode'));
     }
 }

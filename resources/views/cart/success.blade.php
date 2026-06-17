@@ -114,12 +114,18 @@
             </div>
 
             {{-- Acciones finales --}}
-            <div class="success-actions">
-                <a href="{{ route('movies.index') }}" class="success-actions__btn success-actions__btn--primary">
-                    <span class="material-symbols-outlined">local_activity</span>
-                    Volver a la Cartelera
-                </a>
-                <a href="{{ route('index') }}" class="success-actions__btn success-actions__btn--ghost">
+            <div class="success-actions" style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%;">
+                <div style="display: flex; gap: 1rem; width: 100%;">
+                    <a href="{{ route('purchases.show', $sale) }}" class="success-actions__btn success-actions__btn--primary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                        <span class="material-symbols-outlined">print</span>
+                        Imprimir Comprobante
+                    </a>
+                    <a href="{{ route('movies.index') }}" class="success-actions__btn success-actions__btn--ghost" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                        <span class="material-symbols-outlined">local_activity</span>
+                        Volver a la Cartelera
+                    </a>
+                </div>
+                <a href="{{ route('index') }}" class="success-actions__btn success-actions__btn--ghost" style="width: 100%; text-align: center;">
                     <span class="material-symbols-outlined">home</span>
                     Ir al Inicio
                 </a>
@@ -129,32 +135,6 @@
     </main>
 
     @push('scripts')
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        /**
-         * Funcionalidad de copiar código de canje al portapapeles.
-         */
-        const copyBtn = document.getElementById('copyCodeBtn');
-        const codeEl  = document.getElementById('redeemCode');
-
-        if (copyBtn && codeEl) {
-            copyBtn.addEventListener('click', function () {
-                // Copia el texto del código al portapapeles
-                navigator.clipboard.writeText(codeEl.textContent.trim()).then(function () {
-                    // Feedback visual de copiado exitoso
-                    const textEl = copyBtn.querySelector('.redeem-code-card__copy-text');
-                    const originalText = textEl.textContent;
-                    textEl.textContent = '¡Copiado!';
-                    copyBtn.classList.add('redeem-code-card__copy--copied');
-
-                    setTimeout(function () {
-                        textEl.textContent = originalText;
-                        copyBtn.classList.remove('redeem-code-card__copy--copied');
-                    }, 2000);
-                });
-            });
-        }
-    });
-    </script>
+    <script src="{{ asset('js/pages/cart.js') }}"></script>
     @endpush
 @endsection
