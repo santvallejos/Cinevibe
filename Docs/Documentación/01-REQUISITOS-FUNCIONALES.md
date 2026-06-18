@@ -137,7 +137,8 @@ Persona encargada de administrar y gestionar las peliculas y productos de la cad
 | **Precondiciones** | Asientos seleccionados |
 | **Postcondiciones** | Carrito actualizado con productos |
 
-### RF-010: Resumen de Compra
+### RF-010: Resumen de Compra o código de compra 
+
 | Atributo | Descripción |
 |----------|-------------|
 | **ID** | RF-010 |

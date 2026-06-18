@@ -1,6 +1,10 @@
 @extends('layouts.sin-navbar.app')
 
-@section('title', 'Selección de Asientos')
+@section('title', 'Selección de Asientos — ' . $showtime->movie->name)
+
+@push('styles')
+    <link href="{{ asset('vendor/bootstrap/css/pages/cart-armchair.css') }}" rel="stylesheet">
+@endpush
 
 @section('content')
     {{-- Main armchair: grid de asientos + sidebar de resumen --}}
@@ -15,94 +19,44 @@
                 <div class="screen-indicator__label">Pantalla</div>
             </div>
 
-            {{-- Grid de asientos organizado por filas --}}
-            <div class="seat-grid">
+            {{-- Grid de asientos generado dinámicamente desde la configuración de la sala en base de datos --}}
+            @php
+                $unitPrice = (float) $showtime->theater->price;
+            @endphp
 
-                {{-- Fila A (libre con 1 asiento seleccionado) --}}
-                <div class="seat-row">
-                    <span class="seat-row__label">A</span>
-                    <div class="seat-row__seats">
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat-row__aisle"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--selected">
-                            <span class="seat__label">A5</span>
-                        </div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat-row__aisle"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                    </div>
-                    <span class="seat-row__label">A</span>
-                </div>
+            <div class="seat-grid" id="seatGrid">
+                @foreach($seatsByRow as $rowLetter => $seats)
+                    <div class="seat-row">
+                        {{-- Etiqueta de fila izquierda --}}
+                        <span class="seat-row__label">{{ $rowLetter }}</span>
+                        <div class="seat-row__seats">
+                            @foreach($seats as $seat)
+                                @php
+                                    $seatId = $seat->code;
+                                    $isOccupied = in_array($seatId, $occupiedChairs);
+                                @endphp
 
-                {{-- Fila B (con asientos ocupados) --}}
-                <div class="seat-row">
-                    <span class="seat-row__label">B</span>
-                    <div class="seat-row__seats">
-                        <div class="seat seat--occupied">
-                            <span class="material-symbols-outlined">close</span>
-                        </div>
-                        <div class="seat seat--occupied">
-                            <span class="material-symbols-outlined">close</span>
-                        </div>
-                        <div class="seat-row__aisle"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat-row__aisle"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                    </div>
-                    <span class="seat-row__label">B</span>
-                </div>
+                                {{-- Pasillo antes del asiento si corresponde --}}
+                                @if(in_array($seat->seat_number, [3, 8]))
+                                    <div class="seat-row__aisle"></div>
+                                @endif
 
-                {{-- Fila P (Premium) --}}
-                <div class="seat-row">
-                    <span class="seat-row__label seat-row__label--premium">P</span>
-                    <div class="seat-row__seats seat-row__seats--premium">
-                        <div class="seat seat--premium">
-                            <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
+                                @if($isOccupied)
+                                    {{-- Asiento ocupado definitivamente: vendido en BD --}}
+                                    <div class="seat seat--occupied" data-seat="{{ $seatId }}">
+                                        <span class="material-symbols-outlined">close</span>
+                                    </div>
+                                @else
+                                    {{-- Asiento disponible o reservado: el estado real lo define JS vía API --}}
+                                    <div class="seat seat--available" data-seat="{{ $seatId }}">
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
-                        <div class="seat seat--premium-selected">
-                            <span class="seat__label">P2</span>
-                        </div>
-                        <div class="seat seat--premium">
-                            <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
-                        </div>
-                        <div class="seat seat--premium">
-                            <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
-                        </div>
-                        <div class="seat seat--premium">
-                            <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
-                        </div>
-                        <div class="seat seat--premium">
-                            <span class="material-symbols-outlined material-symbols-outlined--fill">star</span>
-                        </div>
+                        {{-- Etiqueta de fila derecha --}}
+                        <span class="seat-row__label">{{ $rowLetter }}</span>
                     </div>
-                    <span class="seat-row__label seat-row__label--premium">P</span>
-                </div>
-
-                {{-- Fila F (libre) --}}
-                <div class="seat-row">
-                    <span class="seat-row__label">F</span>
-                    <div class="seat-row__seats">
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat-row__aisle"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat-row__aisle"></div>
-                        <div class="seat seat--available"></div>
-                        <div class="seat seat--available"></div>
-                    </div>
-                    <span class="seat-row__label">F</span>
-                </div>
+                @endforeach
             </div>
 
             {{-- Leyenda explicativa --}}
@@ -121,13 +75,6 @@
                     </div>
                     <span class="seat-legend__label">Ocupado</span>
                 </div>
-                <div class="seat-legend__item">
-                    <div class="seat-legend__swatch seat-legend__swatch--premium">
-                        <span
-                            class="material-symbols-outlined material-symbols-outlined--fill seat-legend__icon">star</span>
-                    </div>
-                    <span class="seat-legend__label">Premium</span>
-                </div>
             </div>
         </div>
 
@@ -137,38 +84,31 @@
             {{-- Tarjeta principal del pedido --}}
             <div class="order-card">
 
-                {{-- Bloque cinema --}}
+                {{-- Bloque información película y función --}}
                 <div>
-                    <h3 class="order-card__block-title">Ubicación del Cine</h3>
+                    <h3 class="order-card__block-title">Función Seleccionada</h3>
                     <div class="order-card__cinema">
                         <div class="order-card__cinema-icon">
-                            <span class="material-symbols-outlined">location_on</span>
+                            <span class="material-symbols-outlined">movie</span>
                         </div>
                         <div>
-                            <p class="order-card__cinema-name">The Grand Velvet Theater</p>
-                            <p class="order-card__cinema-hall">Sala 4, 3er Piso</p>
+                            <p class="order-card__cinema-name">{{ $showtime->movie->name }}</p>
+                            <p class="order-card__cinema-hall">
+                                {{ $showtime->theater->name }} ·
+                                {{ $showtime->datetime->format('d/m/Y') }} a las {{ $showtime->datetime->format('H:i') }}
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                {{-- Bloque asientos seleccionados --}}
+                {{-- Bloque asientos seleccionados (se llena dinámicamente con JS) --}}
                 <div>
                     <h3 class="order-card__block-title">Asientos Seleccionados</h3>
-                    <div class="order-card__seats">
-                        <div class="seat-chip">
-                            <span class="seat-chip__code">A5</span>
-                            <span class="seat-chip__price">$18.50</span>
-                            <button class="seat-chip__close">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                        </div>
-                        <div class="seat-chip">
-                            <span class="seat-chip__code seat-chip__code--gold">P2</span>
-                            <span class="seat-chip__price">$32.00</span>
-                            <button class="seat-chip__close">
-                                <span class="material-symbols-outlined">close</span>
-                            </button>
-                        </div>
+                    <div class="order-card__seats" id="selectedSeatsList">
+                        {{-- Se llena dinámicamente con JavaScript --}}
+                        <p class="order-card__empty-msg" id="noSeatsMsg" style="font-size: var(--fs-xs); color: var(--color-neutral-500); margin: 0;">
+                            Hacé click en los asientos para seleccionarlos.
+                        </p>
                     </div>
                 </div>
 
@@ -177,35 +117,40 @@
                     <div class="order-card__total-row">
                         <div>
                             <p class="order-card__total-label">Total</p>
-                            <p class="order-card__total-val">$50.50</p>
+                            <p class="order-card__total-val" id="totalPrice">$0</p>
                         </div>
                         <p class="order-card__taxes">Incl. Impuestos y Tasas</p>
                     </div>
-                    <a href="{{ route('pay.index') }}" class="btn btn--primary btn--block btn--lg">
-                        Proceder al Pago
-                        <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
-                    <p class="order-card__note">
-                        Los asientos se reservarán por 10:00 minutos tras hacer clic en proceder.
-                    </p>
-                </div>
-            </div>
 
-            {{-- Ad/promo inferior --}}
-            <div class="promo-ad">
-                <div class="promo-ad__bg">
-                    <img class="promo-ad__img"
-                        data-alt="close-up of golden buttery popcorn in a dark cinematic lighting setting with soft glowing highlights"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdC_z-0iKQypanetGIAhUymo3XVAOWsdQInoOrg87V14VEFTmmsEB_00zCCC282G9py1TcRuoMu-3XrNQ0Y2-n1OlRFSZ2t1wylJcOBem49N6wd7Ojn6duuC03D1nNLXSkFWpatK7YTYKz9Gy-XTJOEtHlgmX2vl_lBwrB5mR-TttUAytsAHYz9BzXw69hgfR1tp2cStHTKA__PafVcNrPgMivPYpuwWUlsrPxm7Dy2inE_KBDeXHa50cuvD4kW_JsoDE-H7BsksFc">
-                </div>
-                <div class="promo-ad__content">
-                    <span class="promo-ad__kicker">Exclusivo para Miembros</span>
-                    <h4 class="promo-ad__title">Únete al Club y obtén 20% off en Snacks</h4>
-                </div>
-                <div class="promo-ad__add">
-                    <span class="material-symbols-outlined">add</span>
+                    {{-- Formulario oculto que envía los datos al carrito (cart.add) --}}
+                    <form id="checkoutForm" action="{{ route('cart.add') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="showtime_id" value="{{ $showtime->id }}">
+                        {{-- Los inputs de amchairs[] se agregan dinámicamente con JS --}}
+                        <div id="hiddenInputs"></div>
+
+                        <button type="submit" name="action" value="checkout" class="btn btn--primary btn--block btn--lg" id="btnCheckout" disabled style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: var(--sp-2);">
+                            Comprar Ahora
+                            <span class="material-symbols-outlined">shopping_cart</span>
+                        </button>
+
+                        <button type="submit" name="action" value="add" class="btn btn--outline btn--block" id="btnAddToCart" disabled style="display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgba(255, 255, 255, 0.15);">
+                            Agregar al Carrito
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                    </form>
+                    {{-- Eliminada sección de temporizador y nota de reserva temporal por requerimiento --}}
                 </div>
             </div>
         </aside>
     </main>
+
+    @push('scripts')
+    <script>
+        window.CinevibeData = {
+            unitPrice: {{ (float) $showtime->theater->price }}
+        };
+    </script>
+    <script src="{{ asset('js/pages/cart.js') }}"></script>
+    @endpush
 @endsection

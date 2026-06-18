@@ -1,0 +1,868 @@
+/* =============================================
+   CineTech - Panel de Administración
+   Estilos principales
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --rojo-cine:     #C0392B;
+    --rojo-oscuro:   #922B21;
+    --dorado:        #F1C40F;
+    --negro:         #0D0D0D;
+    --negro-suave:   #1A1A2E;
+    --gris-oscuro:   #16213E;
+    --gris-medio:    #2C2C3E;
+    --gris-claro:    #E8E8E8;
+    --blanco:        #FFFFFF;
+    --texto-suave:   #A0A0B0;
+    --admin-badge:   #C0392B;
+    --cliente-badge: #2980B9;
+    --exito:         #27AE60;
+    --sombra:        0 4px 24px rgba(0,0,0,0.5);
+    --sombra-suave:  0 2px 12px rgba(0,0,0,0.3);
+    --radio:         10px;
+    --radio-sm:      6px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 50%, #16213E 100%);
+    min-height: 100vh;
+    color: var(--blanco);
+}
+
+/* ---- NAVBAR ---- */
+.navbar {
+    background: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--rojo-cine);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--sombra);
+}
+
+.navbar-brand {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.6rem;
+    color: var(--blanco);
+    text-decoration: none;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-brand span {
+    color: var(--rojo-cine);
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    list-style: none;
+}
+
+.navbar-nav a {
+    color: var(--gris-claro);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.navbar-nav a:hover {
+    color: var(--rojo-cine);
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blanco);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: var(--radio-sm);
+    border: 1px solid rgba(192,57,43,0.4);
+    transition: background 0.2s;
+}
+
+.navbar-user:hover {
+    background: rgba(192,57,43,0.15);
+}
+
+.navbar-user i {
+    color: var(--rojo-cine);
+}
+
+/* ---- HERO BANNER ---- */
+.hero-banner {
+    background: linear-gradient(90deg, var(--rojo-oscuro) 0%, var(--rojo-cine) 50%, #E74C3C 100%);
+    text-align: center;
+    padding: 1.4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 64px;
+}
+
+/* ---- FIX NAVBAR FIJO: empuja todo el contenido de la página ---- */
+body {
+    padding-top: 64px !important;
+}
+
+/* Como el hero-banner ya tiene margin-top, lo cancelamos para no duplicar */
+body .hero-banner {
+    margin-top: 0 !important;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-banner h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.hero-banner p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-top: 2px;
+    font-weight: 300;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+/* ---- CONTENEDOR PRINCIPAL ---- */
+.panel-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* ---- CABECERA PANEL ---- */
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+}
+
+.panel-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--blanco);
+}
+
+.badge-rol {
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.badge-admin {
+    background: var(--admin-badge);
+    color: var(--blanco);
+    box-shadow: 0 0 12px rgba(192,57,43,0.5);
+}
+
+.badge-cliente {
+    background: var(--cliente-badge);
+    color: var(--blanco);
+}
+
+/* ---- TARJETAS DE ESTADÍSTICAS ---- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radio);
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    backdrop-filter: blur(6px);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--rojo-cine);
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radio-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.stat-icon.usuarios  { background: rgba(41,128,185,0.2);  color: #2980B9; }
+.stat-icon.peliculas { background: rgba(192,57,43,0.2);   color: var(--rojo-cine); }
+.stat-icon.funciones { background: rgba(241,196,15,0.2);  color: var(--dorado); }
+.stat-icon.entradas  { background: rgba(39,174,96,0.2);   color: var(--exito); }
+
+.stat-info label {
+    font-size: 0.72rem;
+    color: var(--texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.stat-info .stat-num {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--blanco);
+}
+
+/* ---- TABLA ---- */
+.table-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radio);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(6px);
+}
+
+.table-card-header {
+    background: rgba(13,13,13,0.6);
+    padding: 0.9rem 1.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-card-header i {
+    color: var(--rojo-cine);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background: rgba(0,0,0,0.3);
+    padding: 0.7rem 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    text-align: left;
+}
+
+tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s;
+}
+
+tbody tr:hover {
+    background: rgba(192,57,43,0.07);
+}
+
+tbody td {
+    padding: 0.75rem 1.2rem;
+    font-size: 0.85rem;
+    color: var(--gris-claro);
+}
+
+.td-num {
+    color: var(--texto-suave);
+    font-weight: 600;
+}
+
+/* ---- BADGES DE ROL EN TABLA ---- */
+.rol-badge {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.rol-admin   { background: var(--rojo-cine);  color: #fff; }
+.rol-cliente { background: #2980B9;            color: #fff; }
+
+/* ---- ACCESOS RÁPIDOS ---- */
+.accesos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    padding: 1.2rem 1.4rem;
+}
+
+.acceso-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.7rem 1.1rem;
+    border-radius: var(--radio-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+    border: none;
+}
+
+.acceso-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-suave);
+}
+
+.btn-rojo    { background: var(--rojo-cine); color: #fff; }
+.btn-dorado  { background: var(--dorado);    color: #111; }
+.btn-outline { background: transparent; color: var(--blanco); border: 1px solid rgba(255,255,255,0.25); }
+.btn-verde   { background: var(--exito);     color: #fff; }
+
+/* ---- PÁGINA DE LABEL (debug watermark) ---- */
+.page-label {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 3.5rem;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+    letter-spacing: 4px;
+    user-select: none;
+}
+
+/* ============================================================
+   ESTILOS UNIFICADOS DE LAS PÁGINAS DEL PANEL ADMIN
+   ============================================================ */
+
+/* --- Estructuras de Listados Comunes (Movies, Users, Showtimes, Theaters) --- */
+.list-container {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 1.5rem;
+    background: rgba(30, 30, 40, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.list-title {
+    color: #ffffff;
+    font-family: 'Manrope', sans-serif;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.btn-action {
+    background: linear-gradient(135deg, #e50914 0%, #b80710 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    border: none;
+}
+.btn-action:hover {
+    opacity: 0.9;
+    color: white;
+}
+.btn-edit {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s;
+}
+.btn-edit:hover {
+    background: #ffc107;
+    color: #1a1a1a;
+}
+.btn-delete {
+    background: rgba(229, 9, 20, 0.15);
+    color: #e50914;
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s;
+}
+.btn-delete:hover {
+    background: #e50914;
+    color: white;
+}
+.btn-edit-sm {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s;
+    font-size: 0.8rem;
+}
+.btn-edit-sm:hover {
+    background: #ffc107;
+    color: #1a1a1a;
+}
+.btn-delete-sm {
+    background: rgba(229, 9, 20, 0.15);
+    color: #e50914;
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 0.2s;
+    font-size: 0.8rem;
+}
+.btn-delete-sm:hover {
+    background: #e50914;
+    color: white;
+}
+.filter-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+.filter-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    color: white;
+    outline: none;
+    font-size: 0.9rem;
+}
+.filter-input:focus {
+    border-color: #e50914;
+}
+
+/* --- Badges y Thumbnails específicos --- */
+.movie-thumb {
+    width: 50px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.state-badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+.state-estreno {
+    background: rgba(229, 9, 20, 0.15);
+    color: #e50914;
+    border: 1px solid rgba(229, 9, 20, 0.3);
+}
+.state-proximo {
+    background: rgba(255, 193, 7, 0.15);
+    color: #ffc107;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+}
+.rol-admin-table {
+    background: rgba(229, 9, 20, 0.15);
+    color: #e50914;
+    border: 1px solid rgba(229, 9, 20, 0.3);
+}
+.rol-cliente-table {
+    background: rgba(40, 167, 69, 0.15);
+    color: #28a745;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+}
+
+/* --- Estilos de la Vista de Mensajes (admin.messages) --- */
+.message-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: border-color 0.2s;
+    position: relative;
+}
+.message-card.unread {
+    border-left: 4px solid #e50914 !important;
+    background: rgba(229, 9, 20, 0.02);
+}
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.message-sender {
+    display: flex;
+    flex-direction: column;
+}
+.message-sender-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+}
+.message-sender-email {
+    font-size: 0.85rem;
+    color: #A0A0B0;
+}
+.message-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    color: #A0A0B0;
+}
+.message-subject {
+    font-weight: 700;
+    color: #ffb4aa;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+.message-body {
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+}
+.btn-read-toggle {
+    background: rgba(229, 9, 20, 0.15);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    color: #ffb4aa;
+    padding: 0.35rem 0.85rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+.btn-read-toggle:hover {
+    background: #e50914;
+    color: #fff;
+}
+.badge-read-status {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+.badge-unread {
+    background: rgba(229, 9, 20, 0.15);
+    color: #ff8585;
+    border: 1px solid rgba(229, 9, 20, 0.3);
+}
+.badge-read {
+    background: rgba(255, 255, 255, 0.05);
+    color: #a0aec0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.nav-admin-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 0.5rem;
+}
+.nav-admin-tab {
+    color: #A0A0B0;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+.nav-admin-tab:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+.nav-admin-tab.active {
+    color: #fff;
+    background: rgba(229, 9, 20, 0.15);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+}
+
+/* --- Estilos de la Vista de Reporte de Ventas (admin.sales) --- */
+.filter-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) auto;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    align-items: end;
+}
+.filter-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.filter-group-vertical label {
+    font-size: 0.8rem;
+    color: #A0A0B0;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.filter-control-custom {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    outline: none;
+    font-size: 0.9rem;
+}
+.filter-control-custom:focus {
+    border-color: #e50914;
+}
+.sales-table-container {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow-x: auto;
+}
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #f8fafc;
+    text-align: left;
+    font-size: 0.95rem;
+}
+.sales-table th {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1rem;
+    font-weight: 700;
+    color: #A0A0B0;
+}
+.sales-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    vertical-align: middle;
+}
+.sales-table tr:hover {
+    background: rgba(255, 255, 255, 0.01);
+}
+.ticket-list-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.ticket-badge-inline {
+    background: rgba(229, 9, 20, 0.1);
+    border: 1px solid rgba(229, 9, 20, 0.3);
+    color: #ffb4aa;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.revenue-stat {
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+    border-left: 4px solid #e50914 !important;
+}
+
+/* --- Formularios Comunes de Creación y Edición --- */
+.form-container {
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: rgba(30, 30, 40, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+.form-title {
+    color: #ffffff;
+    font-family: 'Manrope', sans-serif;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    color: #A0A0B0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(20, 20, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+}
+.form-control:focus {
+    outline: none;
+    border-color: #e50914;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.3);
+}
+.btn-submit {
+    background: linear-gradient(135deg, #e50914 0%, #b80710 100%);
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.btn-submit:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    color: white;
+}
+.btn-cancel {
+    background: rgba(255, 255, 255, 0.05);
+    color: #A0A0B0;
+    padding: 0.75rem 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+.btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+.error-msg {
+    color: #e50914;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+/* --- Compatibilidad de Formularios Específicos (Users Admin) --- */
+.form-label {
+    display: block;
+    color: #A0A0B0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+.form-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    color: white;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+.form-input:focus {
+    border-color: #e50914;
+}
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.error-message {
+    color: #e50914;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}

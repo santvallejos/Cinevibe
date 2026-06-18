@@ -1,0 +1,425 @@
+/* =============================================
+   CineVibe - Panel de Cliente
+   Estilos principales
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Reutiliza las variables y base de admin.css */
+/* Si usás Laravel Mix / Vite podés hacer @import 'admin.css' */
+/* O incluir ambos archivos en el layout */
+
+:root {
+    --rojo-cine:     #C0392B;
+    --rojo-oscuro:   #922B21;
+    --dorado:        #F1C40F;
+    --negro:         #0D0D0D;
+    --negro-suave:   #1A1A2E;
+    --gris-oscuro:   #16213E;
+    --gris-medio:    #2C2C3E;
+    --gris-claro:    #E8E8E8;
+    --blanco:        #FFFFFF;
+    --texto-suave:   #A0A0B0;
+    --admin-badge:   #C0392B;
+    --cliente-badge: #2980B9;
+    --exito:         #27AE60;
+    --sombra:        0 4px 24px rgba(0,0,0,0.5);
+    --sombra-suave:  0 2px 12px rgba(0,0,0,0.3);
+    --radio:         10px;
+    --radio-sm:      6px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 50%, #16213E 100%);
+    min-height: 100vh;
+    color: var(--blanco);
+}
+
+/* ---- NAVBAR (idéntico a admin) ---- */
+.navbar {
+    background: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--rojo-cine);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--sombra);
+}
+
+.navbar-brand {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.6rem;
+    color: var(--blanco);
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.navbar-brand span { color: var(--rojo-cine); }
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    list-style: none;
+}
+
+.navbar-nav a {
+    color: var(--gris-claro);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+}
+
+.navbar-nav a:hover { color: var(--rojo-cine); }
+
+.navbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart-icon {
+    position: relative;
+    color: var(--blanco);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 6px;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: var(--rojo-cine);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--blanco);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: var(--radio-sm);
+    border: 1px solid rgba(41,128,185,0.4);
+    transition: background 0.2s;
+}
+
+.navbar-user:hover { background: rgba(41,128,185,0.15); }
+.navbar-user i { color: #2980B9; }
+
+/* ---- HERO BANNER ---- */
+.hero-banner {
+    background: linear-gradient(90deg, var(--rojo-oscuro) 0%, var(--rojo-cine) 50%, #E74C3C 100%);
+    text-align: center;
+    padding: 1.4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 64px; /* altura exacta del .nav-bar fijo */
+    z-index: 1;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-banner h1 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.hero-banner p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-top: 2px;
+    font-weight: 300;
+    position: relative;
+    letter-spacing: 1px;
+}
+
+/* ---- CONTENEDOR ---- */
+.panel-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* ---- CABECERA ---- */
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.8rem;
+}
+
+.panel-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+.badge-rol {
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.badge-cliente {
+    background: var(--cliente-badge);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(41,128,185,0.4);
+}
+
+/* ---- PERFIL ---- */
+.perfil-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radio);
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.8rem;
+    backdrop-filter: blur(6px);
+}
+
+.perfil-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2980B9, #1A5276);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #fff;
+    flex-shrink: 0;
+    border: 2px solid rgba(41,128,185,0.5);
+}
+
+.perfil-info h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.perfil-info p {
+    font-size: 0.82rem;
+    color: var(--texto-suave);
+    line-height: 1.5;
+}
+
+.perfil-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 1.8rem;
+}
+
+/* ---- GRID DE ACCIONES CLIENTE ---- */
+.acciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.accion-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radio);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(6px);
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    cursor: pointer;
+}
+
+.accion-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(192,57,43,0.4);
+}
+
+.accion-card:hover .accion-icon { transform: scale(1.1); }
+
+.accion-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+    display: block;
+    transition: transform 0.2s;
+}
+
+.accion-card h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.accion-card p {
+    font-size: 0.78rem;
+    color: var(--texto-suave);
+    line-height: 1.4;
+    margin-bottom: 1.2rem;
+}
+
+.icon-entradas { color: var(--dorado); }
+.icon-carrito  { color: var(--dorado); }
+.icon-peliculas{ color: var(--rojo-cine); }
+.icon-historial{ color: var(--exito); }
+
+/* ---- BOTONES ---- */
+.acceso-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radio-sm);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+    cursor: pointer;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.acceso-btn:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.btn-rojo    { background: var(--rojo-cine); color: #fff; }
+.btn-dorado  { background: var(--dorado);    color: #111; }
+.btn-azul    { background: var(--cliente-badge); color: #fff; }
+.btn-verde   { background: var(--exito);     color: #fff; }
+.btn-outline {
+    background: transparent;
+    color: var(--blanco);
+    border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* ---- SECCIÓN MIS ENTRADAS (resumen) ---- */
+.table-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radio);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(6px);
+}
+
+.table-card-header {
+    background: rgba(13,13,13,0.6);
+    padding: 0.9rem 1.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gris-claro);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.table-card-header i { color: var(--dorado); }
+
+table { width: 100%; border-collapse: collapse; }
+
+thead th {
+    background: rgba(0,0,0,0.3);
+    padding: 0.7rem 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    text-align: left;
+}
+
+tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s;
+}
+
+tbody tr:hover { background: rgba(192,57,43,0.07); }
+
+tbody td {
+    padding: 0.75rem 1.2rem;
+    font-size: 0.85rem;
+    color: var(--gris-claro);
+}
+
+.estado-badge {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.estado-confirmado { background: rgba(39,174,96,0.2);  color: var(--exito); border: 1px solid var(--exito); }
+.estado-pendiente  { background: rgba(241,196,15,0.2); color: var(--dorado); border: 1px solid var(--dorado); }
+.estado-cancelado  { background: rgba(192,57,43,0.2);  color: var(--rojo-cine); border: 1px solid var(--rojo-cine); }
+
+.empty-state {
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--texto-suave);
+    font-size: 0.88rem;
+}
+
+.empty-state span { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; opacity: 0.5; }
+
+/* ---- FIX: evitar que Bootstrap u otro CSS sobreescriba el fondo ---- */
+html,
+body {
+    background: linear-gradient(135deg, #0D0D0D 0%, #1A1A2E 50%, #16213E 100%) !important;
+    background-attachment: fixed !important;
+}
+
+/* El contenedor principal no tiene fondo propio */
+.panel-container {
+    background: transparent !important;
+}
+
+/* La sección blanca del panel tampoco */
+main,
+.container,
+.container-fluid,
+.content,
+[class*="wrapper"],
+[class*="page-"] {
+    background: transparent !important;
+}

@@ -50,6 +50,11 @@
     border-bottom-color: var(--color-secondary-fixed-dim);
 }
 
+/* Estado de error de validación — borde rojo */
+.form-field__input--error {
+    border-bottom-color: #ef4444 !important;
+}
+
 /* Variante con fondo (login) */
 .form-field__input--filled {
     background-color: rgba(14, 14, 14, 0.5);

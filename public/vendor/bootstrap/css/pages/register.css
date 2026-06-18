@@ -259,3 +259,29 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
+
+/* ============================================================
+   Alertas de validación (error / success)
+   ============================================================ */
+.register__alert {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-3) var(--sp-4);
+    border-radius: var(--radius-lg);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    margin-bottom: var(--sp-2);
+}
+
+.register__alert--error {
+    background-color: rgba(220, 38, 38, 0.15);
+    border: 1px solid rgba(220, 38, 38, 0.4);
+    color: #fca5a5;
+}
+
+.register__alert--success {
+    background-color: rgba(22, 163, 74, 0.15);
+    border: 1px solid rgba(22, 163, 74, 0.4);
+    color: #86efac;
+}

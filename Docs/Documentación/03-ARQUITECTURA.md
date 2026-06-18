@@ -8,15 +8,14 @@ CineVibe utiliza una arquitectura **MVC (Model-View-Controller)** implementada c
 
 ## 2. Stack Tecnológico
 
-| Capa | Tecnología |
-|------|------------|
-| **Backend** | PHP ^8.2, ^Laravel 12 |
-| **Frontend** | Blade Templates, Tailwind CSS, Alpine.js |
-| **Base de Datos** | MySQL 8.0 |
+| Capa              | Tecnología               |
+| ----------------- | ------------------------ |
+| **Backend**       | PHP ^8.2, ^Laravel 12    |
+| **Frontend**      | Blade Templates          |
+| **Base de Datos** | MySQL 8.2.12             |
 | **Autenticación** | Laravel Breeze / Sanctum |
-| **Cache** | Redis (opcional) |
-| **Email** | Laravel Mail (Mailtrap para desarrollo) |
-| **Servidor** | Apache/Nginx |
+| **Servidor**      | Apache                   |
+
 
 ---
 
@@ -56,71 +55,32 @@ cinevibe/
 ├── app/
 │   ├── Http/
 │   │   ├── Controllers/
-│   │   │   ├── Auth/
-│   │   │   │   ├── LoginController.php
-│   │   │   │   ├── RegisterController.php
-│   │   │   │   └── PasswordResetController.php
-│   │   │   ├── MovieController.php
-│   │   │   ├── ShowtimeController.php
-│   │   │   ├── SeatController.php
-│   │   │   ├── ProductController.php
-│   │   │   ├── CartController.php
-│   │   │   ├── CheckoutController.php
-│   │   │   ├── OrderController.php
-│   │   │   ├── TicketController.php
-│   │   │   └── ProfileController.php
+│   │   │   └── ...
 │   │   ├── Middleware/
-│   │   │   ├── Authenticate.php
-│   │   │   └── EnsureSessionHasCart.php
+│   │   │   └── ...
 │   │   └── Requests/
-│   │       ├── RegisterRequest.php
-│   │       ├── SeatSelectionRequest.php
-│   │       └── CheckoutRequest.php
+│   │       └── ...
 │   ├── Models/
-│   │   ├── User.php
-│   │   ├── Movie.php
-│   │   ├── Genre.php
-│   │   ├── Theater.php
-│   │   ├── Showtime.php
-│   │   ├── Seat.php
-│   │   ├── SeatReservation.php
-│   │   ├── Product.php
-│   │   ├── ProductCategory.php
-│   │   ├── Order.php
-│   │   ├── OrderItem.php
-│   │   └── Ticket.php
+│   │   └── ...
 │   ├── Services/
-│   │   ├── SeatReservationService.php
-│   │   ├── PaymentService.php
-│   │   ├── TicketGeneratorService.php
-│   │   └── QRCodeService.php
+│   │   └── ...
 │   ├── Events/
-│   │   ├── OrderCompleted.php
-│   │   └── SeatReserved.php
+│   │   └── ...
 │   └── Listeners/
-│       ├── SendOrderConfirmation.php
-│       └── GenerateTickets.php
+│       └── ...
 ├── database/
 │   ├── migrations/
 │   └── seeders/
 ├── resources/
 │   ├── views/
-│   │   ├── layouts/
-│   │   │   └── app.blade.php
-│   │   ├── auth/
-│   │   ├── movies/
-│   │   ├── showtimes/
-│   │   ├── seats/
-│   │   ├── products/
-│   │   ├── checkout/
-│   │   ├── orders/
-│   │   └── profile/
+│   │   └── ...
 │   ├── css/
 │   └── js/
 ├── routes/
+│   ├── console.php
 │   └── web.php
 ├── public/
-│   └── storage/ -> ../storage/app/public
+│   └── storage/
 └── storage/
     └── app/
         └── public/
@@ -180,16 +140,5 @@ Usuario → Cartelera → Película → Función → Asientos → Productos → 
 ## 8. Consideraciones de Rendimiento
 
 - Eager loading de relaciones (N+1 prevention)
-- Cache de cartelera (Redis opcional)
 - Paginación en listados
 - Optimización de imágenes (WebP)
-- Assets compilados (Vite)
-
----
-
-## 9. Diagramas Adicionales
-
-Ver diagramas en Excalidraw:
-- Flujo de navegación: `04-FLUJO-NAVEGACION.excalidraw`
-- Diagrama de clases: `05-DIAGRAMA-CLASES.excalidraw`
-- Modelo E-R: `06-MODELO-ER.excalidraw`

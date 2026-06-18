@@ -4,16 +4,14 @@
 
 ### 1.1 Requisitos de Servidor
 
-| Componente | Requisito Mínimo |
-|------------|------------------|
-| **PHP** | 8.1 o superior |
-| **Composer** | 2.0+ |
-| **MySQL** | 8.0 o superior |
-| **Node.js** | 18.x LTS |
-| **npm** | 9.x |
-| **Servidor Web** | Apache 2.4+ / Nginx 1.18+ |
-| **RAM** | 2GB mínimo |
-| **Almacenamiento** | 10GB mínimo |
+| Componente         | Requisito Mínimo          |
+| ------------------ | ------------------------- |
+| **PHP**            | 8.1 o superior            |
+| **Composer**       | 2.0+                      |
+| **MySQL**          | 8.0 o superior            |
+| **Node.js**        | 18.x LTS                  |
+| **npm**            | 9.x                       |
+| **Servidor Web**   | Apache 2.4+ / Nginx 1.18+ |
 
 ### 1.2 Extensiones PHP Requeridas
 
@@ -63,8 +61,6 @@
     "devDependencies": {
         "autoprefixer": "^10.4",
         "laravel-vite-plugin": "^0.8",
-        "postcss": "^8.4",
-        "tailwindcss": "^3.3",
         "vite": "^4.0"
     },
     "dependencies": {
@@ -83,7 +79,7 @@
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=cinevibe
+DB_DATABASE=grupo16
 DB_USERNAME=root
 DB_PASSWORD=
 
@@ -204,32 +200,6 @@ Route::prefix('api')->middleware('auth:sanctum')->group(function () {
 
 ---
 
-## 6. Componentes de Vista
-
-### 6.1 Layouts
-
-- `layouts/app.blade.php` - Layout principal con navegación
-- `layouts/auth.blade.php` - Layout para páginas de autenticación
-- `layouts/checkout.blade.php` - Layout para proceso de compra
-
-### 6.2 Componentes Blade
-
-```
-components/
-├── movie-card.blade.php       # Tarjeta de película
-├── seat-map.blade.php         # Mapa de asientos interactivo
-├── product-card.blade.php     # Tarjeta de producto
-├── cart-summary.blade.php     # Resumen del carrito
-├── ticket-preview.blade.php   # Vista previa de boleto
-├── showtime-selector.blade.php # Selector de función
-└── form/
-    ├── input.blade.php
-    ├── select.blade.php
-    └── button.blade.php
-```
-
----
-
 ## 7. Servicios
 
 ### 7.1 SeatReservationService
@@ -303,62 +273,4 @@ public function rules(): array
         'seat_ids.*' => ['exists:seats,id'],
     ];
 }
-```
-
----
-
-## 10. Comandos Artisan Personalizados
-
-```bash
-# Liberar reservas temporales expiradas
-php artisan seats:release-expired
-
-# Generar datos de prueba
-php artisan db:seed --class=MovieSeeder
-php artisan db:seed --class=ShowtimeSeeder
-```
-
----
-
-## 11. Testing
-
-### 11.1 Tests Unitarios
-
-```bash
-php artisan test --filter=SeatReservationTest
-php artisan test --filter=PaymentServiceTest
-```
-
-### 11.2 Tests de Feature
-
-```bash
-php artisan test --filter=CheckoutTest
-php artisan test --filter=AuthenticationTest
-```
-
----
-
-## 12. Despliegue
-
-### 12.1 Producción
-
-```bash
-composer install --optimize-autoloader --no-dev
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-npm run build
-php artisan migrate --force
-```
-
-### 12.2 Variables de Entorno Producción
-
-```env
-APP_ENV=production
-APP_DEBUG=false
-APP_URL=https://cinevibe.com
-
-QUEUE_CONNECTION=redis
-SESSION_DRIVER=redis
-CACHE_DRIVER=redis
 ```

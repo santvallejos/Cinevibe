@@ -1,59 +1,112 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CarritoController;
+use Illuminate\Support\Facades\Auth;use App\Http\Controllers\MovieController;
+use App\Http\Controllers\TheaterController;
+use App\Http\Controllers\ShowTimeController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
 
-/*
-|--------------------------------------------------------------------------
-| Página principal
-|--------------------------------------------------------------------------
-*/
+// Home
 Route::get('/', function () {
-    return view('index');
+    $movies = \App\Models\Movie::all();
+    return view('index', compact('movies'));
 })->name('index');
 
-/*
-|--------------------------------------------------------------------------
-| Películas
-|--------------------------------------------------------------------------
+/**
+ * Panel de administrador
 */
-Route::get('/peliculas', function () {
-    return view('movies.index');
-})->name('movies.index');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 
-Route::view('/movies/eldiablo', 'movies.eldiablo');
-Route::view('/movies/supermario', 'movies.supermario');
-Route::view('/movies/michael', 'movies.michael');
-Route::view('/movies/ElmagodelKremlin', 'movies.ElmagodelKremlin');
-Route::view('/movies/elbufon2', 'movies.elbufon2');
-Route::view('/movies/mortalKombat', 'movies.mortalKombat');
-Route::view('/movies/nurenberg', 'movies.nurenberg');
-Route::view('/movies/proyectofindelmundo', 'movies.proyectofindelmundo');
+    // Gestión de Películas
+    Route::get('/admin/movies', [MovieController::class, 'adminIndex'])->name('admin.movies.index');
+    Route::resource('movies', MovieController::class)->except(['index', 'show']);
 
-/*
-|--------------------------------------------------------------------------
-| Registro / Login
-|--------------------------------------------------------------------------
+    // Gestión de Salas
+    Route::resource('theaters', TheaterController::class);
+
+    // Gestión de Funciones
+    Route::resource('showtimes', ShowTimeController::class)->except(['index']);
+    Route::get('/showtimes', [ShowTimeController::class, 'index'])->name('showtimes.index');
+
+    // Gestión de Clientes / Usuarios
+    Route::resource('admin/users', UserController::class)->names([
+        'index'   => 'admin.users.index',
+        'create'  => 'admin.users.create',
+        'store'   => 'admin.users.store',
+        'show'    => 'admin.users.show',
+        'edit'    => 'admin.users.edit',
+        'update'  => 'admin.users.update',
+        'destroy' => 'admin.users.destroy',
+    ]);
+
+    // Gestión de Ventas (Filtros y Visualización)
+    Route::get('/admin/sales', [AdminController::class, 'salesIndex'])->name('admin.sales.index');
+
+    // Gestión de Mensajes de Contacto
+    Route::get('/admin/messages', [ContactController::class, 'index'])->name('admin.messages.index');
+    Route::post('/admin/messages/{message}/read', [ContactController::class, 'markAsRead'])->name('admin.messages.read');
+});
+
+// Peliculas y Funciones
+Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
+Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+Route::get('/movies/{movie}/showtimes', [ShowTimeController::class, 'byMovie'])->name('movies.showtimes');
+
+/**
+ * Panel de cliente
 */
-Route::get('/register', function () {
-    return view('register.index');
-})->name('register.index');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cliente', [ClienteController::class, 'index'])
+        ->name('cliente.dashboard');
+});
 
-Route::get('/login', function () {
-    return view('login.index');
-})->name('login.index');
+// Autenticación de Usuarios
+Route::get('/register', [RegisterController::class, 'showRegisterView'])->name('register.index');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.submit');
+Route::get('/login', [LoginController::class, 'showLoginView'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-/*
-|--------------------------------------------------------------------------
-| Carrito / Pago
-|--------------------------------------------------------------------------
-*/
-Route::get('/select-armchair', function () {
-    return view('cart.armchair.index');
-})->name('armchair.index');
 
-Route::get('/pay', function () {
-    return view('cart.pay.index');
-})->name('pay.index');
+
+// Carrito de Compras y Flujo de Compra
+Route::middleware('auth')->group(function () {
+
+    // Paso 1: Selección de butacas
+    Route::get('/select-armchair', [PurchaseController::class, 'selectArmchair'])->name('armchair.index');
+
+    // Rutas del Carrito de Compras Multipelícula
+    Route::get('/cart', [CarritoController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [CarritoController::class, 'add'])->name('cart.add');
+    Route::post('/cart/remove/{showtime_id}', [CarritoController::class, 'remove'])->name('cart.remove');
+    Route::get('/cart/checkout', [CarritoController::class, 'checkout'])->name('cart.checkout');
+    Route::post('/cart/confirm', [CarritoController::class, 'confirm'])->name('cart.confirm');
+
+    // Confirmación exitosa y utilidades de compra (mantener para éxito e historial)
+    Route::get('/purchase/success', [PurchaseController::class, 'success'])->name('purchase.success');
+
+    // Historial de compras del usuario
+    Route::get('/purchase/history', [PurchaseController::class, 'history'])->name('purchase.history');
+
+    // Visualización de boleto digital
+    Route::get('/tickets/{ticket}', [PurchaseController::class, 'showTicket'])->name('tickets.show');
+
+    // Comprobante de compra unificado
+    Route::get('/purchase/receipt/{sale}', [PurchaseController::class, 'showReceipt'])->name('purchases.show');
+
+    // Gestión del perfil de usuario
+    Route::get('/perfil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/perfil', [ProfileController::class, 'update'])->name('profile.update');
+});
 
 Route::get('/sobre-nosotros', function () {
     return view('about-us.index');
@@ -63,6 +116,8 @@ Route::get('/contacto', function () {
     return view('contact.index');
 })->name('contact.index');
 
+Route::post('/contacto', [ContactController::class, 'submit'])->name('contact.submit');
+
 Route::get('/terminos-condiciones', function () {
     return view('terms-and-conditions.index');
 })->name('terms-and-conditions.index');
@@ -71,6 +126,16 @@ Route::get('/select-movie', function () {
     return view('cart.select-movie.index');
 })->name('select-movie.index');
 
-Route::get('/movie', function () {
-    return view('cart.movie.index');
-})->name('cart.movie.index');
+// Vista detalle de película en el flujo de compra
+Route::get('/movie/{movie}', [MovieController::class, 'show'])->name('cart.movie.index');
+
+
+Route::get('/dashboard', function () {
+
+    if (Auth::user()->rol_id == 1) {
+        return redirect()->route('admin.dashboard');
+    }
+
+    return redirect()->route('cliente.dashboard');
+
+})->middleware('auth')->name('dashboard');

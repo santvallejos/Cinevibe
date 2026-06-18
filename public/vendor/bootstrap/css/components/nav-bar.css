@@ -230,3 +230,93 @@
         display: none !important;
     }
 }
+
+/* ============================================================
+   Usuario autenticado: saludo + botón logout
+   ============================================================ */
+
+/* Saludo con el nombre del usuario */
+.nav-bar__user-greeting {
+    color: var(--color-neutral-300);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.025em;
+}
+
+/* Botón de cerrar sesión — estilo link discreto */
+.nav-bar__logout {
+    background: none;
+    border: 1px solid rgba(220, 38, 38, 0.4);
+    border-radius: var(--radius-full);
+    color: #fca5a5;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold);
+    padding: var(--sp-1) var(--sp-4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background-color var(--tr-base), color var(--tr-base);
+}
+
+.nav-bar__logout:hover {
+    background-color: rgba(220, 38, 38, 0.2);
+    color: #f87171;
+}
+/* ==========================================================
+   CART ICON
+========================================================== */
+
+.nav-bar__cart {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    transition: 0.3s ease;
+}
+
+.nav-bar__cart:hover {
+    color: #e50914;
+    transform: scale(1.08);
+}
+
+.nav-bar__cart .material-symbols-outlined {
+    font-size: 2rem;
+}
+
+/* Badge rojo */
+.nav-bar__cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+
+    min-width: 18px;
+    height: 18px;
+
+    padding: 0 5px;
+
+    border-radius: 999px;
+
+    background: #e50914;
+    color: #ffffff;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-bar__user-greeting--link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-bar__user-greeting--link:hover {
+    text-decoration: underline;
+    opacity: 0.85;
+}
