@@ -7,12 +7,34 @@
 ## 🎯 Objetivo del Proyecto
 
 El sistema busca evitar las filas en los establecimientos físicos, brindando una plataforma donde el cliente final pueda:
+
 1. Buscar y explorar estrenos y películas en cartelera de forma rápida.
 2. Comprar boletos seleccionando la sala, horario y butaca exacta mediante un mapa interactivo.
 3. Adquirir de forma opcional productos adicionales y combos (snacks, bebidas).
 4. Generar boletos digitales inmediatos (PDF + QR) luego de un proceso de checkout seguro.
 
 ---
+
+## Guía de instalación
+
+1. Clona el repositorio:
+    ```bash
+    git clone
+    ```
+2. Replicar base de datos con el archivo `grupo16.sql` ubicado en la carpeta Database.
+3. Instalar dependencias con Composer:
+    ```bash
+    composer install
+    ```
+4. Configurar el archivo `.env`.
+    ```
+    copy .env.example .env
+    ```
+5. Generar la clave de la aplicación:
+    ```bash
+    php artisan key:generate
+    ```
+6. Iniciar el servidor
 
 ## ✨ Características Principales
 
@@ -28,11 +50,11 @@ El sistema busca evitar las filas en los establecimientos físicos, brindando un
 
 El proyecto está diseñado bajo una arquitectura de software orientada en el patrón **MVC (Modelo-Vista-Controlador)**:
 
-* **Backend:** PHP 8.1+, Laravel 10.
-* **Frontend:** Laravel Blade (Templating), Tailwind CSS (Estilos), Alpine.js (Interactividad del lado del cliente).
-* **Gestor de BD:** MySQL 8.0 mediante el ORM Eloquent.
-* **Autenticación:** Laravel Breeze / Sanctum, encriptación Bcrypt, mitigación XSS y protección CSRF.
-* **Otras Herramientas:** DomPDF (Generación de boletos), Simple-QrCode, Redis (Caché), Laravel Vite (Assets compilados).
+- **Backend:** PHP 8.1+, Laravel 10.
+- **Frontend:** Laravel Blade (Templating), Tailwind CSS (Estilos), Alpine.js (Interactividad del lado del cliente).
+- **Gestor de BD:** MySQL 8.0 mediante el ORM Eloquent.
+- **Autenticación:** Laravel Breeze / Sanctum, encriptación Bcrypt, mitigación XSS y protección CSRF.
+- **Otras Herramientas:** DomPDF (Generación de boletos), Simple-QrCode, Redis (Caché), Laravel Vite (Assets compilados).
 
 ---
 
@@ -48,5 +70,5 @@ La lógica de negocio pesada está separada en clases como `SeatReservationServi
 
 Dentro de directorio raíz, podrás explorar el diseño exhaustivo en las siguientes carpetas:
 
-* **`Docs/`**: Documentos con análisis profundo (`01-REQUISITOS-FUNCIONALES.md`, `03-ARQUITECTURA.md`, `04-ESPECIFICACIONES-TECNICAS.md`, etc.).
-* **`Excalidraw/`**: Diagramas del **Flujo de Usuario** y diagramas de **Casos de Uso** de la plataforma.
+- **`Docs/`**: Documentos con análisis profundo (`01-REQUISITOS-FUNCIONALES.md`, `03-ARQUITECTURA.md`, `04-ESPECIFICACIONES-TECNICAS.md`, etc.).
+- **`Excalidraw/`**: Diagramas del **Flujo de Usuario** y diagramas de **Casos de Uso** de la plataforma.
