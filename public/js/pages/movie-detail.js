@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * Parsea un URL de YouTube y devuelve su URL de embed.
      */
     function getYouTubeEmbedUrl(url) {
-        if (!url) return 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // Fallback a video demo
+        if (!url) return ''; // Fallback a video demo
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         const match = url.match(regExp);
         if (match && match[2].length === 11) {
